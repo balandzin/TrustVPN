@@ -30,8 +30,9 @@
 		D3CC705E2CA2ACD900D747F5 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC705D2CA2ACD900D747F5 /* AppColors.swift */; };
 		D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70602CA2CDFD00D747F5 /* LoadService.swift */; };
 		D3CC70632CA2CEB300D747F5 /* ConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */; };
-		D3CC70662CA2D60800D747F5 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70652CA2D60800D747F5 /* NextViewController.swift */; };
 		D3CC70682CA2E16500D747F5 /* TabBarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70672CA2E16500D747F5 /* TabBarScene.swift */; };
+		D3CC706A2CA2E5F700D747F5 /* OnboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */; };
+		D3CC706C2CA2F11200D747F5 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC706B2CA2F11200D747F5 /* AppText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,8 +63,9 @@
 		D3CC705D2CA2ACD900D747F5 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		D3CC70602CA2CDFD00D747F5 /* LoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadService.swift; sourceTree = "<group>"; };
 		D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureModel.swift; sourceTree = "<group>"; };
-		D3CC70652CA2D60800D747F5 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
 		D3CC70672CA2E16500D747F5 /* TabBarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScene.swift; sourceTree = "<group>"; };
+		D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardScene.swift; sourceTree = "<group>"; };
+		D3CC706B2CA2F11200D747F5 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +146,7 @@
 				D3CC70312CA2999200D747F5 /* Assets.xcassets */,
 				D3CC70332CA2999200D747F5 /* LaunchScreen.storyboard */,
 				D3CC705D2CA2ACD900D747F5 /* AppColors.swift */,
+				D3CC706B2CA2F11200D747F5 /* AppText.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -171,7 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				D3CC702C2CA2999100D747F5 /* StartupScene.swift */,
-				D3CC70652CA2D60800D747F5 /* NextViewController.swift */,
+				D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */,
 				D3CC70672CA2E16500D747F5 /* TabBarScene.swift */,
 			);
 			path = Modules;
@@ -296,10 +299,11 @@
 				D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */,
 				D3CC70572CA2A7BB00D747F5 /* Extension + UIFont.swift in Sources */,
 				D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */,
+				D3CC706C2CA2F11200D747F5 /* AppText.swift in Sources */,
 				D3CC705E2CA2ACD900D747F5 /* AppColors.swift in Sources */,
-				D3CC70662CA2D60800D747F5 /* NextViewController.swift in Sources */,
 				D3CC70502CA2A7BB00D747F5 /* Extension + Date.swift in Sources */,
 				D3CC70532CA2A7BB00D747F5 /* Extension + UIColor.swift in Sources */,
+				D3CC706A2CA2E5F700D747F5 /* OnboardScene.swift in Sources */,
 				D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */,
 				D3CC70522CA2A7BB00D747F5 /* Extension + UIViewController.swift in Sources */,
 				D3CC70552CA2A7BB00D747F5 /* Extension + Int.swift in Sources */,
