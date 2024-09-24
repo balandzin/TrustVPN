@@ -11,7 +11,6 @@
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
 		D3CC702D2CA2999100D747F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* ViewController.swift */; };
-		D3CC70302CA2999100D747F5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D3CC702F2CA2999100D747F5 /* Base */; };
 		D3CC70322CA2999200D747F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3CC70312CA2999200D747F5 /* Assets.xcassets */; };
 		D3CC70352CA2999200D747F5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D3CC70342CA2999200D747F5 /* Base */; };
 /* End PBXBuildFile section */
@@ -24,7 +23,6 @@
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D3CC702C2CA2999100D747F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D3CC702F2CA2999100D747F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D3CC70312CA2999200D747F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3CC70342CA2999200D747F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3CC70362CA2999200D747F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,7 +54,6 @@
 				69950C8AF58D9802E0C784E8 /* Pods-TrustVPN.debug.xcconfig */,
 				541AB37D113A8A07DA39D10C /* Pods-TrustVPN.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,15 +78,30 @@
 		D3CC70272CA2999100D747F5 /* TrustVPN */ = {
 			isa = PBXGroup;
 			children = (
-				D3CC70282CA2999100D747F5 /* AppDelegate.swift */,
-				D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */,
+				D3CC703C2CA29D3A00D747F5 /* Application */,
 				D3CC702C2CA2999100D747F5 /* ViewController.swift */,
-				D3CC702E2CA2999100D747F5 /* Main.storyboard */,
-				D3CC70312CA2999200D747F5 /* Assets.xcassets */,
-				D3CC70332CA2999200D747F5 /* LaunchScreen.storyboard */,
-				D3CC70362CA2999200D747F5 /* Info.plist */,
+				D3CC703D2CA29D5200D747F5 /* Resource */,
 			);
 			path = TrustVPN;
+			sourceTree = "<group>";
+		};
+		D3CC703C2CA29D3A00D747F5 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC70282CA2999100D747F5 /* AppDelegate.swift */,
+				D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */,
+				D3CC70362CA2999200D747F5 /* Info.plist */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		D3CC703D2CA29D5200D747F5 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC70312CA2999200D747F5 /* Assets.xcassets */,
+				D3CC70332CA2999200D747F5 /* LaunchScreen.storyboard */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,7 +166,6 @@
 			files = (
 				D3CC70322CA2999200D747F5 /* Assets.xcassets in Resources */,
 				D3CC70352CA2999200D747F5 /* Base in Resources */,
-				D3CC70302CA2999100D747F5 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,14 +227,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D3CC702E2CA2999100D747F5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D3CC702F2CA2999100D747F5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		D3CC70332CA2999200D747F5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -272,7 +275,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -287,7 +290,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -335,7 +338,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -344,7 +347,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -363,13 +366,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TrustVPN/Info.plist;
+				INFOPLIST_FILE = TrustVPN/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -396,13 +398,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TrustVPN/Info.plist;
+				INFOPLIST_FILE = TrustVPN/Application/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
