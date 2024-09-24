@@ -60,9 +60,7 @@ final class TermsOfUseScene: UIViewController {
         button.addTarget(self, action: #selector(acceptButtonTapped), for: .touchUpInside)
         return button
     }()
-    
-    // MARK: - Properties
-    
+        
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
