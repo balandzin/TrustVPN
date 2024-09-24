@@ -10,10 +10,23 @@
 		CFB29ADB4E8D4D254AAF84B0 /* Pods_TrustVPN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA91688A5D24C9F886790A61 /* Pods_TrustVPN.framework */; };
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
-		D3CC702D2CA2999100D747F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* ViewController.swift */; };
+		D3CC702D2CA2999100D747F5 /* StartupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupScene.swift */; };
 		D3CC70322CA2999200D747F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3CC70312CA2999200D747F5 /* Assets.xcassets */; };
 		D3CC70352CA2999200D747F5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D3CC70342CA2999200D747F5 /* Base */; };
 		D3CC703F2CA2A35500D747F5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D3CC703E2CA2A35500D747F5 /* PrivacyInfo.xcprivacy */; };
+		D3CC70412CA2A60900D747F5 /* Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70402CA2A60900D747F5 /* Default.swift */; };
+		D3CC70502CA2A7BB00D747F5 /* Extension + Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70442CA2A7BA00D747F5 /* Extension + Date.swift */; };
+		D3CC70512CA2A7BB00D747F5 /* Extension + UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70452CA2A7BA00D747F5 /* Extension + UIView.swift */; };
+		D3CC70522CA2A7BB00D747F5 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70462CA2A7BA00D747F5 /* Extension + UIViewController.swift */; };
+		D3CC70532CA2A7BB00D747F5 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70472CA2A7BA00D747F5 /* Extension + UIColor.swift */; };
+		D3CC70542CA2A7BB00D747F5 /* Extension + Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70482CA2A7BA00D747F5 /* Extension + Gradient.swift */; };
+		D3CC70552CA2A7BB00D747F5 /* Extension + Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70492CA2A7BA00D747F5 /* Extension + Int.swift */; };
+		D3CC70562CA2A7BB00D747F5 /* Extension + UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704A2CA2A7BA00D747F5 /* Extension + UIStackView.swift */; };
+		D3CC70572CA2A7BB00D747F5 /* Extension + UIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704B2CA2A7BA00D747F5 /* Extension + UIFont.swift */; };
+		D3CC70582CA2A7BB00D747F5 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704C2CA2A7BA00D747F5 /* Extension + UITextField.swift */; };
+		D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704D2CA2A7BA00D747F5 /* Extension + UserDefaults.swift */; };
+		D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704E2CA2A7BA00D747F5 /* Extension + Image.swift */; };
+		D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704F2CA2A7BA00D747F5 /* Extension + String.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +36,24 @@
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D3CC702C2CA2999100D747F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D3CC702C2CA2999100D747F5 /* StartupScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupScene.swift; sourceTree = "<group>"; };
 		D3CC70312CA2999200D747F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3CC70342CA2999200D747F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3CC70362CA2999200D747F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3CC703E2CA2A35500D747F5 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		D3CC70402CA2A60900D747F5 /* Default.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Default.swift; sourceTree = "<group>"; };
+		D3CC70442CA2A7BA00D747F5 /* Extension + Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Date.swift"; sourceTree = "<group>"; };
+		D3CC70452CA2A7BA00D747F5 /* Extension + UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIView.swift"; sourceTree = "<group>"; };
+		D3CC70462CA2A7BA00D747F5 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		D3CC70472CA2A7BA00D747F5 /* Extension + UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
+		D3CC70482CA2A7BA00D747F5 /* Extension + Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Gradient.swift"; sourceTree = "<group>"; };
+		D3CC70492CA2A7BA00D747F5 /* Extension + Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Int.swift"; sourceTree = "<group>"; };
+		D3CC704A2CA2A7BA00D747F5 /* Extension + UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIStackView.swift"; sourceTree = "<group>"; };
+		D3CC704B2CA2A7BA00D747F5 /* Extension + UIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UIFont.swift"; sourceTree = "<group>"; };
+		D3CC704C2CA2A7BA00D747F5 /* Extension + UITextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
+		D3CC704D2CA2A7BA00D747F5 /* Extension + UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UserDefaults.swift"; sourceTree = "<group>"; };
+		D3CC704E2CA2A7BA00D747F5 /* Extension + Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Image.swift"; sourceTree = "<group>"; };
+		D3CC704F2CA2A7BA00D747F5 /* Extension + String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +106,10 @@
 		D3CC70272CA2999100D747F5 /* TrustVPN */ = {
 			isa = PBXGroup;
 			children = (
+				D3CC702C2CA2999100D747F5 /* StartupScene.swift */,
+				D3CC70402CA2A60900D747F5 /* Default.swift */,
+				D3CC705C2CA2A7C300D747F5 /* Extensions */,
 				D3CC703C2CA29D3A00D747F5 /* Application */,
-				D3CC702C2CA2999100D747F5 /* ViewController.swift */,
 				D3CC703D2CA29D5200D747F5 /* Resource */,
 			);
 			path = TrustVPN;
@@ -105,6 +133,25 @@
 				D3CC70332CA2999200D747F5 /* LaunchScreen.storyboard */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		D3CC705C2CA2A7C300D747F5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC70442CA2A7BA00D747F5 /* Extension + Date.swift */,
+				D3CC70482CA2A7BA00D747F5 /* Extension + Gradient.swift */,
+				D3CC704E2CA2A7BA00D747F5 /* Extension + Image.swift */,
+				D3CC70492CA2A7BA00D747F5 /* Extension + Int.swift */,
+				D3CC704F2CA2A7BA00D747F5 /* Extension + String.swift */,
+				D3CC70472CA2A7BA00D747F5 /* Extension + UIColor.swift */,
+				D3CC704B2CA2A7BA00D747F5 /* Extension + UIFont.swift */,
+				D3CC704A2CA2A7BA00D747F5 /* Extension + UIStackView.swift */,
+				D3CC704C2CA2A7BA00D747F5 /* Extension + UITextField.swift */,
+				D3CC70452CA2A7BA00D747F5 /* Extension + UIView.swift */,
+				D3CC70462CA2A7BA00D747F5 /* Extension + UIViewController.swift */,
+				D3CC704D2CA2A7BA00D747F5 /* Extension + UserDefaults.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -222,9 +269,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3CC702D2CA2999100D747F5 /* ViewController.swift in Sources */,
+				D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */,
+				D3CC70572CA2A7BB00D747F5 /* Extension + UIFont.swift in Sources */,
+				D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */,
+				D3CC70502CA2A7BB00D747F5 /* Extension + Date.swift in Sources */,
+				D3CC70532CA2A7BB00D747F5 /* Extension + UIColor.swift in Sources */,
+				D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */,
+				D3CC70522CA2A7BB00D747F5 /* Extension + UIViewController.swift in Sources */,
+				D3CC70552CA2A7BB00D747F5 /* Extension + Int.swift in Sources */,
+				D3CC702D2CA2999100D747F5 /* StartupScene.swift in Sources */,
+				D3CC70512CA2A7BB00D747F5 /* Extension + UIView.swift in Sources */,
 				D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */,
+				D3CC70412CA2A60900D747F5 /* Default.swift in Sources */,
 				D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */,
+				D3CC70562CA2A7BB00D747F5 /* Extension + UIStackView.swift in Sources */,
+				D3CC70582CA2A7BB00D747F5 /* Extension + UITextField.swift in Sources */,
+				D3CC70542CA2A7BB00D747F5 /* Extension + Gradient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +435,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -407,7 +467,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
