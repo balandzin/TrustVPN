@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 extension UIImage {
-//    
+    
 //    static func loadImage(_ urlString: String?) -> UIImage {
 //        let image = UIImageView()
 //        guard let url = URL(string: urlString ?? "") else { return UIImage() }

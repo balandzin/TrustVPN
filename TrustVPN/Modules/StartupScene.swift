@@ -37,6 +37,8 @@ final class StartupScene: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+        
+        loadServer__asl()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,6 +48,31 @@ final class StartupScene: UIViewController {
     }
     
     // MARK: - Private Functions
+    private func loadServer__asl() {
+//        LoadService.shared.get { [weak self] model in
+//            guard let self = self else { return }
+//            LoadService.shared.load = model
+//            self.loadVpnServers()
+//            self.getStatusVpn()
+//            self.showLastScene()
+//        } errorComplition: { [weak self] in
+//            guard let self = self else { return }
+//            
+//            let ac = UIAlertController(
+//                title: "Sorry",
+//                message: "The app is undergoing technical work. We will finish soon and you will be able to use the app again :)",
+//                preferredStyle: .actionSheet
+//            )
+//            
+//            ac.addAction(
+//                UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
+//                    self.loadServer__asl()
+//                }))
+//            
+//            self.present(ac, animated: true)
+//        }
+    }
+    
     private func setupUI() {
         view.addSubview(imageView)
         view.addSubview(centralLogo)
@@ -90,6 +117,4 @@ final class StartupScene: UIViewController {
                 self.loadingIndicator.frame.origin.x = loadingBarWidth
             }, completion: nil)
     }
-    
 }
-

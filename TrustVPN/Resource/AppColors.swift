@@ -6,3 +6,7 @@ final class AppColors {
     static var loadingIndicator: UIColor = .init(hex: "#0093E5")
     
 }
+
+
+//AppColors.loadingBar = .init(hex: model.colors?.loadingBar ?? "#303030")
+//AppColors.loadingIndicator = .init(hex: model.colors?.loadingIndicator ?? "#0093E5")

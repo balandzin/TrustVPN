@@ -30,6 +30,8 @@
 		D3CC705E2CA2ACD900D747F5 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC705D2CA2ACD900D747F5 /* AppColors.swift */; };
 		D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70602CA2CDFD00D747F5 /* LoadService.swift */; };
 		D3CC70632CA2CEB300D747F5 /* ConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */; };
+		D3CC70662CA2D60800D747F5 /* NextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70652CA2D60800D747F5 /* NextViewController.swift */; };
+		D3CC70682CA2E16500D747F5 /* TabBarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70672CA2E16500D747F5 /* TabBarScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		D3CC705D2CA2ACD900D747F5 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		D3CC70602CA2CDFD00D747F5 /* LoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadService.swift; sourceTree = "<group>"; };
 		D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureModel.swift; sourceTree = "<group>"; };
+		D3CC70652CA2D60800D747F5 /* NextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewController.swift; sourceTree = "<group>"; };
+		D3CC70672CA2E16500D747F5 /* TabBarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				D3CC702C2CA2999100D747F5 /* StartupScene.swift */,
+				D3CC70652CA2D60800D747F5 /* NextViewController.swift */,
+				D3CC70672CA2E16500D747F5 /* TabBarScene.swift */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 				D3CC70572CA2A7BB00D747F5 /* Extension + UIFont.swift in Sources */,
 				D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */,
 				D3CC705E2CA2ACD900D747F5 /* AppColors.swift in Sources */,
+				D3CC70662CA2D60800D747F5 /* NextViewController.swift in Sources */,
 				D3CC70502CA2A7BB00D747F5 /* Extension + Date.swift in Sources */,
 				D3CC70532CA2A7BB00D747F5 /* Extension + UIColor.swift in Sources */,
 				D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */,
@@ -299,6 +306,7 @@
 				D3CC702D2CA2999100D747F5 /* StartupScene.swift in Sources */,
 				D3CC70512CA2A7BB00D747F5 /* Extension + UIView.swift in Sources */,
 				D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */,
+				D3CC70682CA2E16500D747F5 /* TabBarScene.swift in Sources */,
 				D3CC70412CA2A60900D747F5 /* Default.swift in Sources */,
 				D3CC70632CA2CEB300D747F5 /* ConfigureModel.swift in Sources */,
 				D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */,
