@@ -4,7 +4,7 @@ import SnapKit
 
 final class StartupScene: UIViewController {
     
-    // MARK: - UI
+    // MARK: - GUI Variables
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "startupBackground")
@@ -172,23 +172,26 @@ final class StartupScene: UIViewController {
 extension StartupScene {
     
     private func showLastScene() {
-        showOnboardingController()  // ПОСЛЕ-УБРАТЬ
         
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-//            if Default.shared.isShowOnboard {
-//                self.showTabBarController()
-//            } else {
-//                self.showOnboardingController()
-//            }
-//        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if Default.shared.isShowOnboard {
+                self.showTerms()  // ПОМЕНЯТЬ НА showTabBarController()
+            } else {
+                self.showTerms()
+            }
+        }
     }
     
-    private func showOnboardingController() {
-        let scene = OnboardScene()
-        let newNavigationView = UINavigationController(rootViewController: scene)
-        newNavigationView.modalPresentationStyle = .overFullScreen
-        newNavigationView.modalTransitionStyle = .crossDissolve
-        navigationController?.present(OnboardScene(), animated: false)
+    private func showTerms() {
+        let controller = TermsOfUseScene()
+        navigationController?.pushViewController(controller, animated: true)
+    
+        
+//        let scene = OnboardScene()
+//        let newNavigationView = UINavigationController(rootViewController: scene)
+//        newNavigationView.modalPresentationStyle = .overFullScreen
+//        newNavigationView.modalTransitionStyle = .crossDissolve
+//        navigationController?.present(OnboardScene(), animated: false)
     }
     
     private func showTabBarController() {

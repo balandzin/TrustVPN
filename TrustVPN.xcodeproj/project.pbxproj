@@ -33,6 +33,7 @@
 		D3CC70682CA2E16500D747F5 /* TabBarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70672CA2E16500D747F5 /* TabBarScene.swift */; };
 		D3CC706A2CA2E5F700D747F5 /* OnboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */; };
 		D3CC706C2CA2F11200D747F5 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC706B2CA2F11200D747F5 /* AppText.swift */; };
+		D3CC706E2CA2F1F300D747F5 /* TermsOfUseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC706D2CA2F1F300D747F5 /* TermsOfUseScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		D3CC70672CA2E16500D747F5 /* TabBarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScene.swift; sourceTree = "<group>"; };
 		D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardScene.swift; sourceTree = "<group>"; };
 		D3CC706B2CA2F11200D747F5 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
+		D3CC706D2CA2F1F300D747F5 /* TermsOfUseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				D3CC702C2CA2999100D747F5 /* StartupScene.swift */,
+				D3CC706D2CA2F1F300D747F5 /* TermsOfUseScene.swift */,
 				D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */,
 				D3CC70672CA2E16500D747F5 /* TabBarScene.swift */,
 			);
@@ -297,6 +300,7 @@
 			files = (
 				D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */,
 				D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */,
+				D3CC706E2CA2F1F300D747F5 /* TermsOfUseScene.swift in Sources */,
 				D3CC70572CA2A7BB00D747F5 /* Extension + UIFont.swift in Sources */,
 				D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */,
 				D3CC706C2CA2F11200D747F5 /* AppText.swift in Sources */,
