@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 extension String {
-//    
+    
 //    var localized: String {
 //        guard let fkmklfmlbknf = LoadService.shared.load?.texts else { return "" }
 //        let mirror = Mirror(reflecting: fkmklfmlbknf)

@@ -2,6 +2,8 @@ import UIKit
 import SnapKit
 
 final class StartupScene: UIViewController {
+    
+    // MARK: - UI
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "startupBackground")
@@ -18,18 +20,19 @@ final class StartupScene: UIViewController {
     
     private lazy var loadingBar: UIView = {
         let view = UIView()
-        view.backgroundColor = Colors.loadingBar
+        view.backgroundColor = AppColors.loadingBar
         view.layer.cornerRadius = 3
         return view
     }()
     
     private lazy var  loadingIndicator: UIView = {
         let view = UIView()
-        view.backgroundColor = Colors.loadingIndicator
+        view.backgroundColor = AppColors.loadingIndicator
         view.layer.cornerRadius = 3
         return view
     }()
 
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,6 +45,7 @@ final class StartupScene: UIViewController {
         startAnimation()
     }
     
+    // MARK: - Private Functions
     private func setupUI() {
         view.addSubview(imageView)
         view.addSubview(centralLogo)
@@ -78,15 +82,11 @@ final class StartupScene: UIViewController {
     }
     
     private func startAnimation() {
-        // Установите начальную позицию индикатора загрузки
             loadingIndicator.frame.origin.x = 0
-            
-            // Анимация перемещения индикатора загрузки
             let animationDuration: TimeInterval = 1.0
-            let loadingBarWidth = loadingBar.frame.width - loadingIndicator.frame.width // Вычитаем ширину индикатора
-            
+            let loadingBarWidth = loadingBar.frame.width - loadingIndicator.frame.width
+        
             UIView.animate(withDuration: animationDuration, delay: 0, options: [.autoreverse, .repeat], animations: {
-                // Двигаем индикатор загрузки вправо
                 self.loadingIndicator.frame.origin.x = loadingBarWidth
             }, completion: nil)
     }
