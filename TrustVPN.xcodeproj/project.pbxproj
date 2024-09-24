@@ -27,6 +27,7 @@
 		D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704D2CA2A7BA00D747F5 /* Extension + UserDefaults.swift */; };
 		D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704E2CA2A7BA00D747F5 /* Extension + Image.swift */; };
 		D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC704F2CA2A7BA00D747F5 /* Extension + String.swift */; };
+		D3CC705E2CA2ACD900D747F5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC705D2CA2ACD900D747F5 /* Colors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		D3CC704D2CA2A7BA00D747F5 /* Extension + UserDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + UserDefaults.swift"; sourceTree = "<group>"; };
 		D3CC704E2CA2A7BA00D747F5 /* Extension + Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + Image.swift"; sourceTree = "<group>"; };
 		D3CC704F2CA2A7BA00D747F5 /* Extension + String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension + String.swift"; sourceTree = "<group>"; };
+		D3CC705D2CA2ACD900D747F5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 			children = (
 				D3CC70312CA2999200D747F5 /* Assets.xcassets */,
 				D3CC70332CA2999200D747F5 /* LaunchScreen.storyboard */,
+				D3CC705D2CA2ACD900D747F5 /* Colors.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -272,6 +275,7 @@
 				D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */,
 				D3CC70572CA2A7BB00D747F5 /* Extension + UIFont.swift in Sources */,
 				D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */,
+				D3CC705E2CA2ACD900D747F5 /* Colors.swift in Sources */,
 				D3CC70502CA2A7BB00D747F5 /* Extension + Date.swift in Sources */,
 				D3CC70532CA2A7BB00D747F5 /* Extension + UIColor.swift in Sources */,
 				D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */,
