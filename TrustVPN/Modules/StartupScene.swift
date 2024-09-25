@@ -50,6 +50,11 @@ final class StartupScene: UIViewController {
         startAnimation()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.view.layer.removeAllAnimations()
+    }
+    
     // MARK: - Private Functions
     private func loadServer__asl() {
         LoadService.shared.get { [weak self] model in
