@@ -8,9 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		CFB29ADB4E8D4D254AAF84B0 /* Pods_TrustVPN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA91688A5D24C9F886790A61 /* Pods_TrustVPN.framework */; };
+		D373AA922CA43F0700DF2EC7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA912CA43F0700DF2EC7 /* InfoView.swift */; };
+		D373AA9A2CA456E000DF2EC7 /* DeviceSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */; };
+		D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */; };
+		D373AA9E2CA4571B00DF2EC7 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9D2CA4571B00DF2EC7 /* OptionsController.swift */; };
+		D373AAA42CA4585D00DF2EC7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA32CA4585D00DF2EC7 /* TabBarController.swift */; };
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
-		D3CC702D2CA2999100D747F5 /* StartupScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupScene.swift */; };
+		D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupViewController.swift */; };
 		D3CC70322CA2999200D747F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3CC70312CA2999200D747F5 /* Assets.xcassets */; };
 		D3CC70352CA2999200D747F5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = D3CC70342CA2999200D747F5 /* Base */; };
 		D3CC703F2CA2A35500D747F5 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D3CC703E2CA2A35500D747F5 /* PrivacyInfo.xcprivacy */; };
@@ -30,20 +35,25 @@
 		D3CC705E2CA2ACD900D747F5 /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC705D2CA2ACD900D747F5 /* AppColors.swift */; };
 		D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70602CA2CDFD00D747F5 /* LoadService.swift */; };
 		D3CC70632CA2CEB300D747F5 /* ConfigureModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */; };
-		D3CC70682CA2E16500D747F5 /* TabBarScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70672CA2E16500D747F5 /* TabBarScene.swift */; };
-		D3CC706A2CA2E5F700D747F5 /* OnboardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */; };
+		D3CC70682CA2E16500D747F5 /* VPNServiceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70672CA2E16500D747F5 /* VPNServiceController.swift */; };
+		D3CC706A2CA2E5F700D747F5 /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70692CA2E5F700D747F5 /* OnboardViewController.swift */; };
 		D3CC706C2CA2F11200D747F5 /* AppText.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC706B2CA2F11200D747F5 /* AppText.swift */; };
-		D3CC706E2CA2F1F300D747F5 /* TermsOfUseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC706D2CA2F1F300D747F5 /* TermsOfUseScene.swift */; };
+		D3CC706E2CA2F1F300D747F5 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC706D2CA2F1F300D747F5 /* TermsOfUseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		541AB37D113A8A07DA39D10C /* Pods-TrustVPN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustVPN.release.xcconfig"; path = "Target Support Files/Pods-TrustVPN/Pods-TrustVPN.release.xcconfig"; sourceTree = "<group>"; };
 		69950C8AF58D9802E0C784E8 /* Pods-TrustVPN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustVPN.debug.xcconfig"; path = "Target Support Files/Pods-TrustVPN/Pods-TrustVPN.debug.xcconfig"; sourceTree = "<group>"; };
 		AA91688A5D24C9F886790A61 /* Pods_TrustVPN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustVPN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D373AA912CA43F0700DF2EC7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSearchController.swift; sourceTree = "<group>"; };
+		D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSecurityController.swift; sourceTree = "<group>"; };
+		D373AA9D2CA4571B00DF2EC7 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
+		D373AAA32CA4585D00DF2EC7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D3CC702C2CA2999100D747F5 /* StartupScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupScene.swift; sourceTree = "<group>"; };
+		D3CC702C2CA2999100D747F5 /* StartupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		D3CC70312CA2999200D747F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D3CC70342CA2999200D747F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D3CC70362CA2999200D747F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,10 +74,10 @@
 		D3CC705D2CA2ACD900D747F5 /* AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
 		D3CC70602CA2CDFD00D747F5 /* LoadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadService.swift; sourceTree = "<group>"; };
 		D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigureModel.swift; sourceTree = "<group>"; };
-		D3CC70672CA2E16500D747F5 /* TabBarScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarScene.swift; sourceTree = "<group>"; };
-		D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardScene.swift; sourceTree = "<group>"; };
+		D3CC70672CA2E16500D747F5 /* VPNServiceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNServiceController.swift; sourceTree = "<group>"; };
+		D3CC70692CA2E5F700D747F5 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		D3CC706B2CA2F11200D747F5 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
-		D3CC706D2CA2F1F300D747F5 /* TermsOfUseScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseScene.swift; sourceTree = "<group>"; };
+		D3CC706D2CA2F1F300D747F5 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +107,83 @@
 				541AB37D113A8A07DA39D10C /* Pods-TrustVPN.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		D373AA902CA43ED600DF2EC7 /* Onboard */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC70692CA2E5F700D747F5 /* OnboardViewController.swift */,
+				D373AA932CA43F0C00DF2EC7 /* Views */,
+			);
+			path = Onboard;
+			sourceTree = "<group>";
+		};
+		D373AA932CA43F0C00DF2EC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D373AA912CA43F0700DF2EC7 /* InfoView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		D373AA962CA4549000DF2EC7 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC702C2CA2999100D747F5 /* StartupViewController.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		D373AA972CA454A500DF2EC7 /* Terms */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC706D2CA2F1F300D747F5 /* TermsOfUseViewController.swift */,
+			);
+			path = Terms;
+			sourceTree = "<group>";
+		};
+		D373AA982CA4561A00DF2EC7 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D373AA9F2CA4572700DF2EC7 /* VPNService */,
+				D373AAA02CA4573200DF2EC7 /* DeviceSearch */,
+				D373AAA12CA4573D00DF2EC7 /* PasswordSecurity */,
+				D373AAA22CA4574700DF2EC7 /* Options */,
+				D373AAA32CA4585D00DF2EC7 /* TabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		D373AA9F2CA4572700DF2EC7 /* VPNService */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC70672CA2E16500D747F5 /* VPNServiceController.swift */,
+			);
+			path = VPNService;
+			sourceTree = "<group>";
+		};
+		D373AAA02CA4573200DF2EC7 /* DeviceSearch */ = {
+			isa = PBXGroup;
+			children = (
+				D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */,
+			);
+			path = DeviceSearch;
+			sourceTree = "<group>";
+		};
+		D373AAA12CA4573D00DF2EC7 /* PasswordSecurity */ = {
+			isa = PBXGroup;
+			children = (
+				D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */,
+			);
+			path = PasswordSecurity;
+			sourceTree = "<group>";
+		};
+		D373AAA22CA4574700DF2EC7 /* Options */ = {
+			isa = PBXGroup;
+			children = (
+				D373AA9D2CA4571B00DF2EC7 /* OptionsController.swift */,
+			);
+			path = Options;
 			sourceTree = "<group>";
 		};
 		D3CC701C2CA2999100D747F5 = {
@@ -175,10 +262,10 @@
 		D3CC705F2CA2CDB900D747F5 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				D3CC702C2CA2999100D747F5 /* StartupScene.swift */,
-				D3CC706D2CA2F1F300D747F5 /* TermsOfUseScene.swift */,
-				D3CC70692CA2E5F700D747F5 /* OnboardScene.swift */,
-				D3CC70672CA2E16500D747F5 /* TabBarScene.swift */,
+				D373AA962CA4549000DF2EC7 /* Launch */,
+				D373AA972CA454A500DF2EC7 /* Terms */,
+				D373AA902CA43ED600DF2EC7 /* Onboard */,
+				D373AA982CA4561A00DF2EC7 /* TabBar */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -300,24 +387,29 @@
 			files = (
 				D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */,
 				D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */,
-				D3CC706E2CA2F1F300D747F5 /* TermsOfUseScene.swift in Sources */,
+				D3CC706E2CA2F1F300D747F5 /* TermsOfUseViewController.swift in Sources */,
+				D373AAA42CA4585D00DF2EC7 /* TabBarController.swift in Sources */,
 				D3CC70572CA2A7BB00D747F5 /* Extension + UIFont.swift in Sources */,
 				D3CC705B2CA2A7BB00D747F5 /* Extension + String.swift in Sources */,
 				D3CC706C2CA2F11200D747F5 /* AppText.swift in Sources */,
 				D3CC705E2CA2ACD900D747F5 /* AppColors.swift in Sources */,
 				D3CC70502CA2A7BB00D747F5 /* Extension + Date.swift in Sources */,
 				D3CC70532CA2A7BB00D747F5 /* Extension + UIColor.swift in Sources */,
-				D3CC706A2CA2E5F700D747F5 /* OnboardScene.swift in Sources */,
+				D3CC706A2CA2E5F700D747F5 /* OnboardViewController.swift in Sources */,
+				D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */,
 				D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */,
 				D3CC70522CA2A7BB00D747F5 /* Extension + UIViewController.swift in Sources */,
 				D3CC70552CA2A7BB00D747F5 /* Extension + Int.swift in Sources */,
-				D3CC702D2CA2999100D747F5 /* StartupScene.swift in Sources */,
+				D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */,
 				D3CC70512CA2A7BB00D747F5 /* Extension + UIView.swift in Sources */,
 				D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */,
-				D3CC70682CA2E16500D747F5 /* TabBarScene.swift in Sources */,
+				D373AA922CA43F0700DF2EC7 /* InfoView.swift in Sources */,
+				D3CC70682CA2E16500D747F5 /* VPNServiceController.swift in Sources */,
+				D373AA9E2CA4571B00DF2EC7 /* OptionsController.swift in Sources */,
 				D3CC70412CA2A60900D747F5 /* Default.swift in Sources */,
 				D3CC70632CA2CEB300D747F5 /* ConfigureModel.swift in Sources */,
 				D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */,
+				D373AA9A2CA456E000DF2EC7 /* DeviceSearchController.swift in Sources */,
 				D3CC70562CA2A7BB00D747F5 /* Extension + UIStackView.swift in Sources */,
 				D3CC70582CA2A7BB00D747F5 /* Extension + UITextField.swift in Sources */,
 				D3CC70542CA2A7BB00D747F5 /* Extension + Gradient.swift in Sources */,

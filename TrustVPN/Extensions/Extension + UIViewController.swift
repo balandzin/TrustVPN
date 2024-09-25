@@ -15,14 +15,24 @@ extension UIViewController {
             return navController
         }
     
+    static func createNavController(
+        for rootViewController: UIViewController,
+        image: UIImage,
+        tag: Int) -> UIViewController {
+            let navController = UINavigationController(rootViewController: rootViewController)
+            navController.tabBarItem.tag = tag
+            navController.tabBarItem.image = image
+            return navController
+        }
+    
     func hideKeyboardWhenTappedAround() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tapGesture.cancelsTouchesInView = true
         view.addGestureRecognizer(tapGesture)
     }
     
-    var tabBarView: TabBarScene {
-        return tabBarController as? TabBarScene ?? TabBarScene()
+    var tabBarView: TabBarController {
+        return tabBarController as? TabBarController ?? TabBarController()
     }
     
     @objc func hideKeyboard() {

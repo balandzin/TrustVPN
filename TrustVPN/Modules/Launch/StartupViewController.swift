@@ -2,7 +2,7 @@ import UIKit
 import AVVPNService
 import SnapKit
 
-final class StartupScene: UIViewController {
+final class StartupViewController: UIViewController {
     
     // MARK: - GUI Variables
     private lazy var imageView: UIImageView = {
@@ -34,7 +34,7 @@ final class StartupScene: UIViewController {
     }()
     
     private var vpnItems: [VpnServers] = []
-
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +53,8 @@ final class StartupScene: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.view.layer.removeAllAnimations()
+        loadingBar.isHidden = true
+        loadingIndicator.isHidden = true
     }
     
     // MARK: - Private Functions
@@ -136,7 +138,7 @@ final class StartupScene: UIViewController {
         
         setupConstraints()
     }
-
+    
     private func setupConstraints() {
         imageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -164,17 +166,17 @@ final class StartupScene: UIViewController {
     }
     
     private func startAnimation() {
-            loadingIndicator.frame.origin.x = 0
-            let animationDuration: TimeInterval = 1.0
-            let loadingBarWidth = loadingBar.frame.width - loadingIndicator.frame.width
+        loadingIndicator.frame.origin.x = 0
+        let animationDuration: TimeInterval = 1.0
+        let loadingBarWidth = loadingBar.frame.width - loadingIndicator.frame.width
         
-            UIView.animate(withDuration: animationDuration, delay: 0, options: [.autoreverse, .repeat], animations: {
-                self.loadingIndicator.frame.origin.x = loadingBarWidth
-            }, completion: nil)
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.autoreverse, .repeat], animations: {
+            self.loadingIndicator.frame.origin.x = loadingBarWidth
+        }, completion: nil)
     }
 }
 
-extension StartupScene {
+extension StartupViewController {
     
     private func showLastScene() {
         
@@ -188,54 +190,54 @@ extension StartupScene {
     }
     
     private func showTerms() {
-        let controller = TermsOfUseScene()
+        let controller = TermsOfUseViewController()
         navigationController?.pushViewController(controller, animated: true)
-    
         
-//        let scene = OnboardScene()
-//        let newNavigationView = UINavigationController(rootViewController: scene)
-//        newNavigationView.modalPresentationStyle = .overFullScreen
-//        newNavigationView.modalTransitionStyle = .crossDissolve
-//        navigationController?.present(OnboardScene(), animated: false)
+        
+        //        let scene = OnboardScene()
+        //        let newNavigationView = UINavigationController(rootViewController: scene)
+        //        newNavigationView.modalPresentationStyle = .overFullScreen
+        //        newNavigationView.modalTransitionStyle = .crossDissolve
+        //        navigationController?.present(OnboardScene(), animated: false)
     }
     
-    private func showTabBarController() {
-        let tabBarController = TabBarScene()
-        let newNavigationController = UINavigationController(rootViewController: tabBarController)
-        //createViewControllers(tabBarController)
-        newNavigationController.modalPresentationStyle = .overFullScreen
-        newNavigationController.modalTransitionStyle = .crossDissolve
-        navigationController?.present(newNavigationController, animated: false)
-    }
-    
-//    private func createViewControllers(_ tabBarController: TabBarScene) {
-//        tabBarController.viewControllers = [
-//            UIViewController.createNavController(
-//                for: VpnServiceScene(),
-//                image: .loadImage(LoadService.shared.load?.images?.vpnTabBarIMG),
-//                title: "tab_bar_vpn".localized,
-//                tag: 0
-//            ),
-//            UIViewController.createNavController(
-//                for: LinkVaultScene(),
-//                image: .loadImage(LoadService.shared.load?.images?.vaultTabBarIMG),
-//                title: "tab_bar_vault".localized,
-//                tag: 1
-//            ),
-//            UIViewController.createNavController(
-//                for: StatisticsScene(),
-//                image: .loadImage(LoadService.shared.load?.images?.statisticTabBarIMG),
-//                title: "tab_bar_statisctics".localized,
-//                tag: 2
-//            ),
-//            UIViewController.createNavController(
-//                for: OptionsScene(),
-//                image: .loadImage(LoadService.shared.load?.images?.settingTabBarIMG),
-//                title: "tab_bar_options".localized,
-//                tag: 3
-//            )
-//        ]
+//    private func showTabBarController() {
+//        let tabBarController = TabBarScene()
+//        let newNavigationController = UINavigationController(rootViewController: tabBarController)
+//        //createViewControllers(tabBarController)
+//        newNavigationController.modalPresentationStyle = .overFullScreen
+//        newNavigationController.modalTransitionStyle = .crossDissolve
+//        navigationController?.present(newNavigationController, animated: false)
 //    }
+    
+    //    private func createViewControllers(_ tabBarController: TabBarScene) {
+    //        tabBarController.viewControllers = [
+    //            UIViewController.createNavController(
+    //                for: VpnServiceScene(),
+    //                image: .loadImage(LoadService.shared.load?.images?.vpnTabBarIMG),
+    //                title: "tab_bar_vpn".localized,
+    //                tag: 0
+    //            ),
+    //            UIViewController.createNavController(
+    //                for: LinkVaultScene(),
+    //                image: .loadImage(LoadService.shared.load?.images?.vaultTabBarIMG),
+    //                title: "tab_bar_vault".localized,
+    //                tag: 1
+    //            ),
+    //            UIViewController.createNavController(
+    //                for: StatisticsScene(),
+    //                image: .loadImage(LoadService.shared.load?.images?.statisticTabBarIMG),
+    //                title: "tab_bar_statisctics".localized,
+    //                tag: 2
+    //            ),
+    //            UIViewController.createNavController(
+    //                for: OptionsScene(),
+    //                image: .loadImage(LoadService.shared.load?.images?.settingTabBarIMG),
+    //                title: "tab_bar_options".localized,
+    //                tag: 3
+    //            )
+    //        ]
+    //    }
 }
 
 extension Bundle {

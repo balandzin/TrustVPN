@@ -37,7 +37,7 @@ enum CAGradientPoint {
 }
 
 extension CAGradientLayer {
-
+    
     convenience init(start: CAGradientPoint, end: CAGradientPoint, colors: [CGColor], locations: [NSNumber] = [0, 1]) {
         self.init()
         self.frame.origin = CGPoint.zero
@@ -49,7 +49,7 @@ extension CAGradientLayer {
 }
 
 extension UIView {
-
+    
     func layerGradient(startPoint: CAGradientPoint, endPoint: CAGradientPoint, colorArray: [CGColor], locations: [NSNumber] = [0, 1]) {
         self.removeGradient()
         let gradient = CAGradientLayer(start: startPoint, end: endPoint, colors: colorArray, locations: locations)

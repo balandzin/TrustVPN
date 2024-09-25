@@ -20,6 +20,15 @@ struct VpnServers : Codable {
 }
 
 struct Images : Codable {
+    let onboard1 : String?
+    let onboard2 : String?
+    let onboard3 : String?
+    let vpnService: String?
+    let deviceSearch: String?
+    let passwordSecurity: String?
+    let options: String?
+    
+    
     let aboutApOptionIMG : String?
     let adsFeatureIMG : String?
     let analizingWifiIMG : String?

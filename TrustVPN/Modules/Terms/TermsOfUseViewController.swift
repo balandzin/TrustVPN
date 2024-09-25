@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class TermsOfUseScene: UIViewController {
+final class TermsOfUseViewController: UIViewController {
     
     // MARK: - GUI Variables
     private lazy var shield: UIImageView = {
@@ -60,17 +60,17 @@ final class TermsOfUseScene: UIViewController {
         button.addTarget(self, action: #selector(acceptButtonTapped), for: .touchUpInside)
         return button
     }()
-        
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
     }
-        
+    
     // MARK: - Private Methods
     @objc private func acceptButtonTapped() {
-        navigationController?.pushViewController(OnboardScene(), animated: true)
+        navigationController?.pushViewController(OnboardViewController(), animated: true)
     }
     
     private func setupUI() {
@@ -138,7 +138,7 @@ final class TermsOfUseScene: UIViewController {
             make.height.equalTo(52)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(24)
+            make.bottom.equalToSuperview().inset(35.vertical)
         }
     }
 }

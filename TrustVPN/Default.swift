@@ -13,7 +13,7 @@ final class Default {
         case isConnectVpn
         case isFirstShowAverageTime
     }
-
+    
     static let maxTimeLimit = 10800
     
     static let shared = Default()
@@ -69,7 +69,7 @@ final class Default {
         get { getFlag(.countScan) as? Int ?? 3 }
         set { setFlag(newValue, key: .countScan) }
     }
-       
+    
     var vpnIndex: Int {
         get { getFlag(.vpnIndex) as? Int ?? 0 }
         set { setFlag(newValue, key: .vpnIndex) }
@@ -79,7 +79,7 @@ final class Default {
         get { getFlag(.isShowOnboard) as? Bool ?? false }
         set { setFlag(newValue, key: .isShowOnboard) }
     }
-            
+    
     private lazy var userDefaults = UserDefaults(suiteName: "application")
     
     private func setFlag(_ value: Any, key: KeyId) {
