@@ -17,5 +17,5 @@ final class AppText {
     static var deviceSearch: String = "Device search"
     static var passwordSecurity: String = "Password security"
     static var options: String = "Options"
-    
+    static var selectServer: String = "Select server"
 }

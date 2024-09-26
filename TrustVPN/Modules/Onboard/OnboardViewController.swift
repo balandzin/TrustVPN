@@ -16,7 +16,7 @@ final class OnboardViewController: UIViewController {
     private lazy var continueButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(AppText.continueButton, for: .normal)
-        button.setTitleColor(AppColors.termsHeaderLabel, for: .normal)
+        button.setTitleColor(AppColors.almostWhite, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.backgroundColor = AppColors.termsAcceptButton
         button.layer.cornerRadius = 25
@@ -132,7 +132,7 @@ extension OnboardViewController {
         navigationController?.present(newNavigationController, animated: false)
     }
     
-    // ДОБАВИТЬ ЛОКАЛИЗАЦИЮ TITLE
+    //ДОБАВИТЬ ЛОКАЛИЗАЦИЮ TITLE
     private func createViewControllers(_ tabBarController: TabBarController) {
         tabBarController.viewControllers = [
             UIViewController.createNavController(

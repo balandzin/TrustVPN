@@ -6,7 +6,7 @@ final class InfoView: UIView {
     
     private let title: UILabel = {
         let label = UILabel()
-        label.textColor = AppColors.termsHeaderLabel
+        label.textColor = AppColors.almostWhite
         label.font = .systemFont(ofSize: 24.vertical, weight: .semibold)
         label.textAlignment = .center
         return label

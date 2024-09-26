@@ -36,7 +36,7 @@ final class TermsOfUseViewController: UIViewController {
     private lazy var termsHeaderLabel: UILabel = {
         let label = UILabel()
         label.text = AppText.termsView
-        label.textColor = AppColors.termsHeaderLabel
+        label.textColor = AppColors.almostWhite
         label.font = .systemFont(ofSize: 26, weight: .bold)
         return label
     }()
@@ -53,7 +53,7 @@ final class TermsOfUseViewController: UIViewController {
     private lazy var acceptButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(AppText.termsAcceptButton, for: .normal)
-        button.setTitleColor(AppColors.termsHeaderLabel, for: .normal)
+        button.setTitleColor(AppColors.almostWhite, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.backgroundColor = AppColors.termsAcceptButton
         button.layer.cornerRadius = 25

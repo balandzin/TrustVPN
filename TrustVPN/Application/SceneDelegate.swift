@@ -8,17 +8,23 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
+    
     var window: UIWindow?
-
-
+    
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: StartupViewController())
+        let startupViewController = StartupViewController()
+        let navigationController = UINavigationController(rootViewController: startupViewController)
+        
+        // Скрываем навигационную строку
+        navigationController.isNavigationBarHidden = true
+        
+        // Установка rootViewController
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        guard let _ = (scene as? UIWindowScene) else { return }
     }
 }
 
