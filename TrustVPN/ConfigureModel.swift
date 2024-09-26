@@ -24,9 +24,15 @@ struct Images : Codable {
     let onboard2 : String?
     let onboard3 : String?
     let vpnService: String?
+    let vpnServiceSelected: String?
     let deviceSearch: String?
+    let deviceSearchSelected: String?
     let passwordSecurity: String?
+    let passwordSecuritySelected: String?
     let options: String?
+    let optionsSelected: String?
+    
+    
     
     
     let aboutApOptionIMG : String?
