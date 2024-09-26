@@ -51,6 +51,7 @@ final class StartupViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        print("viewWillDisappear")
         super.viewWillDisappear(animated)
         self.view.layer.removeAllAnimations()
         loadingBar.isHidden = true
@@ -191,7 +192,8 @@ extension StartupViewController {
     
     private func showTerms() {
         let controller = TermsOfUseViewController()
-        navigationController?.pushViewController(controller, animated: true)
+        navigationController?.pushViewController(controller, animated: false)
+        
         
         
         //        let scene = OnboardScene()

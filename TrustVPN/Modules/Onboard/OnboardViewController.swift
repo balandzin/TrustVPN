@@ -126,8 +126,9 @@ extension OnboardViewController {
     private func showTabBarController() {
         let tabBarController = TabBarController()
         let newNavigationController = UINavigationController(rootViewController: tabBarController)
+        newNavigationController.isNavigationBarHidden = true
         createViewControllers(tabBarController)
-        newNavigationController.modalPresentationStyle = .overFullScreen
+        newNavigationController.modalPresentationStyle = .fullScreen
         newNavigationController.modalTransitionStyle = .crossDissolve
         navigationController?.present(newNavigationController, animated: false)
     }

@@ -63,7 +63,7 @@ final class VPNServiceController: UIViewController {
     
     private func setupConstraints() {
         headerLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(100)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
         }
