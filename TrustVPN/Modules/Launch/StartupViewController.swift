@@ -7,13 +7,14 @@ final class StartupViewController: UIViewController {
     // MARK: - GUI Variables
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "startupBackground")
+        //image.image = UIImage(named: "startupBackground")
+        image.image = .loadImage(LoadService.shared.load?.images?.startupBackground) ?? UIImage(named: "startupBackground")
         return image
     }()
     
     private lazy var centralLogo: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "centralLogo")
+        image.image = .loadImage(LoadService.shared.load?.images?.centralLogo) ?? UIImage(named: "centralLogo")
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
         return image

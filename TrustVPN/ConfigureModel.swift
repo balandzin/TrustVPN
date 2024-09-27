@@ -20,6 +20,8 @@ struct VpnServers : Codable {
 }
 
 struct Images : Codable {
+    let startupBackground : String?
+    let centralLogo : String?
     let onboard1 : String?
     let onboard2 : String?
     let onboard3 : String?
@@ -31,6 +33,7 @@ struct Images : Codable {
     let passwordSecuritySelected: String?
     let options: String?
     let optionsSelected: String?
+    let shield: String?
     
     
     

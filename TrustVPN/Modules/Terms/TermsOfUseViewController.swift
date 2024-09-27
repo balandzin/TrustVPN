@@ -6,7 +6,7 @@ final class TermsOfUseViewController: UIViewController {
     // MARK: - GUI Variables
     private lazy var shield: UIImageView = {
         let view = UIImageView()
-        view.image = UIImage(named: "shield")
+        view.image = .loadImage(LoadService.shared.load?.images?.shield) ?? UIImage(named: "shield")
         return view
     }()
     
