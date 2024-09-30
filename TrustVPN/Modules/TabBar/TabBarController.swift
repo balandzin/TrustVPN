@@ -13,38 +13,14 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupImages()
         
-        // Установка кастомного таббара
         let customTabBar = CustomTabBar()
         setValue(customTabBar, forKey: "tabBar")
-       
-        guard let vpnService, let vpnServiceSelected else { return }
-        updateTabBarImages(selectedIndex: 0, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
-        
         createViewControllers()
         self.delegate = self
         
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-        
-    }
-
-    private func setupImages() {
-        vpnService = .loadImage(LoadService.shared.load?.images?.vpnService) ?? UIImage(named: "vpnService") ?? UIImage()
-        deviceSearch = .loadImage(LoadService.shared.load?.images?.deviceSearch) ?? UIImage(named: "deviceSearch") ?? UIImage()
-        passwordSecurity = .loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? UIImage(named: "passwordSecurity") ?? UIImage()
-        options = .loadImage(LoadService.shared.load?.images?.options) ?? UIImage(named: "options") ?? UIImage()
-        
-        vpnServiceSelected = .loadImage(LoadService.shared.load?.images?.vpnServiceSelected) ?? UIImage(named: "vpnServiceSelected") ?? UIImage()
-        deviceSearchSelected = .loadImage(LoadService.shared.load?.images?.deviceSearchSelected) ?? UIImage(named: "deviceSearchSelected") ?? UIImage()
-        passwordSecuritySelected = .loadImage(LoadService.shared.load?.images?.passwordSecuritySelected) ?? UIImage(named: "passwordSecuritySelected") ?? UIImage()
-        optionsSelected = .loadImage(LoadService.shared.load?.images?.optionsSelected) ?? UIImage(named: "optionsSelected") ?? UIImage()
+        guard let vpnService, let vpnServiceSelected else { return }
+        updateTabBarImages(selectedIndex: 0, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
     }
     
     private func updateTabBarImages(selectedIndex: Int, selectedImage: UIImage, unselectedImage: UIImage) {
@@ -77,25 +53,36 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func createViewControllers() {
+        self.tabBar.unselectedItemTintColor = AppColors.dataSecurityLabel
+        vpnService = .loadImage(LoadService.shared.load?.images?.vpnService) ?? UIImage(named: "vpnService") ?? UIImage()
+        deviceSearch = .loadImage(LoadService.shared.load?.images?.deviceSearch) ?? UIImage(named: "deviceSearch") ?? UIImage()
+        passwordSecurity = .loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? UIImage(named: "passwordSecurity") ?? UIImage()
+        options = .loadImage(LoadService.shared.load?.images?.options) ?? UIImage(named: "options") ?? UIImage()
+        
+        vpnServiceSelected = .loadImage(LoadService.shared.load?.images?.vpnServiceSelected) ?? UIImage(named: "vpnServiceSelected") ?? UIImage()
+        deviceSearchSelected = .loadImage(LoadService.shared.load?.images?.deviceSearchSelected) ?? UIImage(named: "deviceSearchSelected") ?? UIImage()
+        passwordSecuritySelected = .loadImage(LoadService.shared.load?.images?.passwordSecuritySelected) ?? UIImage(named: "passwordSecuritySelected") ?? UIImage()
+        optionsSelected = .loadImage(LoadService.shared.load?.images?.optionsSelected) ?? UIImage(named: "optionsSelected") ?? UIImage()
+        
         viewControllers = [
             UIViewController.createNavController(
                 for: VPNServiceController(),
-                image: (.loadImage(LoadService.shared.load?.images?.vpnService) ?? UIImage(named: "vpnService")) ?? UIImage(),
+                image: vpnService ?? UIImage(),
                 tag: 0
             ),
             UIViewController.createNavController(
                 for: DeviceSearchController(),
-                image: (.loadImage(LoadService.shared.load?.images?.deviceSearch) ?? UIImage(named: "deviceSearch")) ?? UIImage(),
+                image: deviceSearch ?? UIImage(),
                 tag: 1
             ),
             UIViewController.createNavController(
                 for: PasswordSecurityController(),
-                image: (.loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? UIImage(named: "passwordSecurity")) ?? UIImage(),
+                image: passwordSecurity ?? UIImage(),
                 tag: 2
             ),
             UIViewController.createNavController(
                 for: OptionsController(),
-                image: (.loadImage(LoadService.shared.load?.images?.options) ?? UIImage(named: "options")) ?? UIImage(),
+                image: options ?? UIImage(),
                 tag: 3
             )
         ]
