@@ -13,9 +13,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        // Установка кастомного таббара
-//                let customTabBar = CustomTabBar()
-//                setValue(customTabBar, forKey: "tabBar")
+        
+        // Установка кастомного таббара
+        let customTabBar = CustomTabBar()
+        setValue(customTabBar, forKey: "tabBar")
         setupImages()
         self.delegate = self
     }
@@ -69,10 +70,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 }
 
-//class CustomTabBar: UITabBar {
-//    override func sizeThatFits(_ size: CGSize) -> CGSize {
-//        var tabBarSize = super.sizeThatFits(size)
-//        tabBarSize.height = 90 // Укажите нужную высоту
-//        return tabBarSize
-//    }
-//}
+class CustomTabBar: UITabBar {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        var tabBarSize = super.sizeThatFits(size)
+        tabBarSize.height = 90
+        return tabBarSize
+    }
+}

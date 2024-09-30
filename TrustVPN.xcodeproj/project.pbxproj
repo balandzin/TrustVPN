@@ -13,6 +13,7 @@
 		D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */; };
 		D373AA9E2CA4571B00DF2EC7 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9D2CA4571B00DF2EC7 /* OptionsController.swift */; };
 		D373AAA42CA4585D00DF2EC7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA32CA4585D00DF2EC7 /* TabBarController.swift */; };
+		D373AAA62CAA97CB00DF2EC7 /* ChooseServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */; };
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
 		D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupViewController.swift */; };
@@ -50,6 +51,7 @@
 		D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSecurityController.swift; sourceTree = "<group>"; };
 		D373AA9D2CA4571B00DF2EC7 /* OptionsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		D373AAA32CA4585D00DF2EC7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseServerController.swift; sourceTree = "<group>"; };
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				D3CC70672CA2E16500D747F5 /* VPNServiceController.swift */,
+				D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */,
 			);
 			path = VPNService;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				D3CC706C2CA2F11200D747F5 /* AppText.swift in Sources */,
 				D3CC705E2CA2ACD900D747F5 /* AppColors.swift in Sources */,
 				D3CC70502CA2A7BB00D747F5 /* Extension + Date.swift in Sources */,
+				D373AAA62CAA97CB00DF2EC7 /* ChooseServerController.swift in Sources */,
 				D3CC70532CA2A7BB00D747F5 /* Extension + UIColor.swift in Sources */,
 				D3CC706A2CA2E5F700D747F5 /* OnboardViewController.swift in Sources */,
 				D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */,
