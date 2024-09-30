@@ -48,7 +48,9 @@ final class VPNServiceController: UIViewController {
     
     // MARK: - ObjC Methods
     @objc private func buttonTapped() {
-        navigationController?.pushViewController(ChooseServerController(), animated: false)
+        let chooseServerController = ChooseServerController()
+        chooseServerController.hidesBottomBarWhenPushed = true
+        navigationController?.pushViewController(chooseServerController, animated: false)
     }
     
     // MARK: - Private Methods
@@ -64,8 +66,7 @@ final class VPNServiceController: UIViewController {
     private func setupConstraints() {
         headerLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
-            make.leading.equalToSuperview().inset(24)
-            make.trailing.equalToSuperview().inset(24)
+            make.leading.trailing.equalToSuperview().inset(24)
         }
         
         plusImage.snp.makeConstraints { make in

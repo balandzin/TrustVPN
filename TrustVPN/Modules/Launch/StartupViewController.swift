@@ -52,7 +52,6 @@ final class StartupViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("viewWillDisappear")
         super.viewWillDisappear(animated)
         self.view.layer.removeAllAnimations()
         loadingBar.isHidden = true
