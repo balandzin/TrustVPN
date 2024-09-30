@@ -34,6 +34,7 @@ struct Images : Codable {
     let options: String?
     let optionsSelected: String?
     let shield: String?
+    let сhooseServerBackButton: String?
     
     
     

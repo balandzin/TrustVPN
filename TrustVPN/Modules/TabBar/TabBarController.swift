@@ -13,19 +13,26 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupImages()
         
         // Установка кастомного таббара
         let customTabBar = CustomTabBar()
         setValue(customTabBar, forKey: "tabBar")
-        setupImages()
+       
+        guard let vpnService, let vpnServiceSelected else { return }
+        updateTabBarImages(selectedIndex: 0, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
+        
+        createViewControllers()
         self.delegate = self
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        guard let vpnService, let vpnServiceSelected else { return }
-        updateTabBarImages(selectedIndex: 0, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
+        
+        
     }
 
     private func setupImages() {
@@ -67,6 +74,31 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
                 break
             }
         }
+    }
+    
+    private func createViewControllers() {
+        viewControllers = [
+            UIViewController.createNavController(
+                for: VPNServiceController(),
+                image: (.loadImage(LoadService.shared.load?.images?.vpnService) ?? UIImage(named: "vpnService")) ?? UIImage(),
+                tag: 0
+            ),
+            UIViewController.createNavController(
+                for: DeviceSearchController(),
+                image: (.loadImage(LoadService.shared.load?.images?.deviceSearch) ?? UIImage(named: "deviceSearch")) ?? UIImage(),
+                tag: 1
+            ),
+            UIViewController.createNavController(
+                for: PasswordSecurityController(),
+                image: (.loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? UIImage(named: "passwordSecurity")) ?? UIImage(),
+                tag: 2
+            ),
+            UIViewController.createNavController(
+                for: OptionsController(),
+                image: (.loadImage(LoadService.shared.load?.images?.options) ?? UIImage(named: "options")) ?? UIImage(),
+                tag: 3
+            )
+        ]
     }
 }
 

@@ -48,7 +48,7 @@ final class VPNServiceController: UIViewController {
     
     // MARK: - ObjC Methods
     @objc private func buttonTapped() {
-        print("buttonTapped")
+        navigationController?.pushViewController(ChooseServerController(), animated: false)
     }
     
     // MARK: - Private Methods
