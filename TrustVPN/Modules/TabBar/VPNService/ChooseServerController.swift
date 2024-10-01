@@ -86,29 +86,6 @@ final class ChooseServerController: UIViewController {
 // MARK: - LoadVPNServers
 extension ChooseServerController {
     
-//    private func loadVpnServers() {
-//        DispatchQueue.global(qos: .background).async {
-//            guard var servers = LoadService.shared.load?.vpnServers else { return }
-//            var updatedItems: [VpnServers] = []
-//            
-//            for (index, var server) in servers.enumerated() {
-//                if index < 2 {
-//                    server.isPay = false
-//                } else {
-//                    server.isPay = false
-//                }
-//                servers[index] = server
-//                updatedItems.append(server)
-//            }
-//            
-//            DispatchQueue.main.async {
-//                self.vpnItems = updatedItems
-//                
-//                self.serversTableView.reloadData()
-//            }
-//        }
-//    }
-    
         private func loadVpnServers() {
             guard var servers = LoadService.shared.load?.vpnServers else { return }
             vpnItems.removeAll()
