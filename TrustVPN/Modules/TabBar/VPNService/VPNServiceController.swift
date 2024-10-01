@@ -1,8 +1,8 @@
 import UIKit
 
 final class VPNServiceController: UIViewController {
-    
-    // GUI Variables
+        
+    // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
         label.text = AppText.vpnService

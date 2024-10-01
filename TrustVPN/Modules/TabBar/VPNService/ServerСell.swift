@@ -49,15 +49,11 @@ final class ServerСell: UITableViewCell {
     func setupCell(model: VpnServers) {
         flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
         serverName.text = model.countryName
-        
-        
-        
-        
     }
     
     // MARK: - ObjC Methods
     @objc private func selectButtonTapped() {
-        print("selectButtonTapped")
+        
     }
     
     // MARK: - Private Methods
