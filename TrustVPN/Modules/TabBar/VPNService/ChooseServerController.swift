@@ -2,6 +2,11 @@ import UIKit
 
 final class ChooseServerController: UIViewController {
 
+    // MARK: - Properties
+    private var isConnectVpn: Bool = false
+    private let vpnService = VpnService()
+    private var vpnItems: [VpnServers] = []
+    
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
         let button = UIImageView()
@@ -29,6 +34,11 @@ final class ChooseServerController: UIViewController {
         super.viewDidLoad()
         
         setupUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
     }
     
     // MARK: - Private Methods
@@ -63,10 +73,29 @@ final class ChooseServerController: UIViewController {
         }
     }
     
-    
     // MARK: - ObjC Methods
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
+    }
+}
+
+// MARK: - LoadVPNServers
+extension ChooseServerController {
+    private func loadVpnServers() {
+        guard var servers = LoadService.shared.load?.vpnServers else { return }
+        vpnItems.removeAll()
+        
+        for (index, var server) in servers.enumerated() {
+            if index < 2 {
+                server.isPay = false
+            } else {
+                server.isPay = false
+            }
+            servers[index] = server
+            vpnItems.append(servers[index])
+        }
+        
+        setupVpnItemsStack(vpnItems)
     }
 }
 

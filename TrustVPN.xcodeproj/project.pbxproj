@@ -16,6 +16,7 @@
 		D373AAA62CAA97CB00DF2EC7 /* ChooseServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */; };
 		D373AAA82CAAB4D200DF2EC7 /* ServersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */; };
 		D373AAAA2CAACA9C00DF2EC7 /* ServerСell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */; };
+		D373AAAC2CABE10300DF2EC7 /* VpnService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAAB2CABE10300DF2EC7 /* VpnService.swift */; };
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
 		D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupViewController.swift */; };
@@ -56,6 +57,7 @@
 		D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseServerController.swift; sourceTree = "<group>"; };
 		D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersTableView.swift; sourceTree = "<group>"; };
 		D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerСell.swift"; sourceTree = "<group>"; };
+		D373AAAB2CABE10300DF2EC7 /* VpnService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VpnService.swift; sourceTree = "<group>"; };
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				D3CC703C2CA29D3A00D747F5 /* Application */,
 				D3CC703D2CA29D5200D747F5 /* Resource */,
 				D3CC70602CA2CDFD00D747F5 /* LoadService.swift */,
+				D373AAAB2CABE10300DF2EC7 /* VpnService.swift */,
 				D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */,
 			);
 			path = TrustVPN;
@@ -410,6 +413,7 @@
 				D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */,
 				D3CC705A2CA2A7BB00D747F5 /* Extension + Image.swift in Sources */,
 				D3CC70522CA2A7BB00D747F5 /* Extension + UIViewController.swift in Sources */,
+				D373AAAC2CABE10300DF2EC7 /* VpnService.swift in Sources */,
 				D3CC70552CA2A7BB00D747F5 /* Extension + Int.swift in Sources */,
 				D373AAA82CAAB4D200DF2EC7 /* ServersTableView.swift in Sources */,
 				D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */,
