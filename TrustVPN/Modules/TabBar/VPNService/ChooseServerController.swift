@@ -82,7 +82,7 @@ final class ChooseServerController: UIViewController {
 
 // MARK: - LoadVPNServers
 extension ChooseServerController {
-    
+
         private func loadVpnServers() {
             guard var servers = LoadService.shared.load?.vpnServers else { return }
             vpnItems.removeAll()
@@ -96,16 +96,9 @@ extension ChooseServerController {
                 servers[index] = server
                 vpnItems.append(server)
             }
-            setupVpnItems(vpnItems)
-            serversTableView.reloadData()
-        }
-    
-    private func setupVpnItems(_ items: [VpnServers]) {
-        items.indices.sorted(by: { $0 == Default.shared.vpnIndex && $1 != Default.shared.vpnIndex }).forEach { index in
             
             serversTableView.reloadData()
         }
-    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
