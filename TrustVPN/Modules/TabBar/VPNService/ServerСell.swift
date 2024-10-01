@@ -10,15 +10,10 @@ final class ServerСell: UITableViewCell {
         return view
     }()
     
-    private lazy var flagImage: UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "netherlands")
-        return image
-    }()
+    private lazy var flagImage = UIImageView()
     
     private lazy var serverName: UILabel = {
         let label = UILabel()
-        label.text = "Netherlands"
         label.textAlignment = .left
         label.textColor = AppColors.almostWhite
         label.font = .systemFont(ofSize: 18, weight: .bold)
@@ -44,6 +39,12 @@ final class ServerСell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Methods
+    func setupCell(model: VpnServers) {
+        flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
+        serverName.text = model.countryName
     }
     
     // MARK: - ObjC Methods

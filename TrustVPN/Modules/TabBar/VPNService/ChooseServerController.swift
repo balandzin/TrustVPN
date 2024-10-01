@@ -6,6 +6,7 @@ final class ChooseServerController: UIViewController {
     private var isConnectVpn: Bool = false
     private let vpnService = VpnService()
     private var vpnItems: [VpnServers] = []
+    private var model: [VpnServers] = []
     
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
@@ -38,7 +39,10 @@ final class ChooseServerController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadVpnServers()
         
+        // Reload table
+        serversTableView.reloadData()
     }
     
     // MARK: - Private Methods
@@ -92,22 +96,31 @@ extension ChooseServerController {
                 server.isPay = false
             }
             servers[index] = server
-            vpnItems.append(servers[index])
+            vpnItems.append(server)
         }
-        
-        setupVpnItemsStack(vpnItems)
+        setupVpnItems(vpnItems)
+    }
+    
+    private func setupVpnItems(_ items: [VpnServers]) {
+        items.indices.sorted(by: { $0 == Default.shared.vpnIndex && $1 != Default.shared.vpnIndex }).forEach {_ in
+            model = vpnItems
+            
+            
+            serversTableView.reloadData()
+        }
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension ChooseServerController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        model.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as? ServerСell else { return UITableViewCell() }
         
+        cell.setupCell(model: model[indexPath.row])
         return cell
     }
     

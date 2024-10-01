@@ -219,10 +219,10 @@
 			isa = PBXGroup;
 			children = (
 				D3CC705F2CA2CDB900D747F5 /* Modules */,
-				D3CC70402CA2A60900D747F5 /* Default.swift */,
 				D3CC705C2CA2A7C300D747F5 /* Extensions */,
 				D3CC703C2CA29D3A00D747F5 /* Application */,
 				D3CC703D2CA29D5200D747F5 /* Resource */,
+				D3CC70402CA2A60900D747F5 /* Default.swift */,
 				D3CC70602CA2CDFD00D747F5 /* LoadService.swift */,
 				D373AAAB2CABE10300DF2EC7 /* VpnService.swift */,
 				D3CC70622CA2CEB300D747F5 /* ConfigureModel.swift */,
