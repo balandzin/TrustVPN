@@ -1,7 +1,7 @@
 import UIKit
 
 final class ChooseServerController: UIViewController {
-
+    
     // MARK: - Properties
     private var isConnectVpn: Bool = false
     private let vpnService = VpnService()
@@ -29,7 +29,7 @@ final class ChooseServerController: UIViewController {
     }()
     
     private let serversTableView = ServersTableView()
-        
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,24 +85,49 @@ final class ChooseServerController: UIViewController {
 
 // MARK: - LoadVPNServers
 extension ChooseServerController {
-    private func loadVpnServers() {
-        guard var servers = LoadService.shared.load?.vpnServers else { return }
-        vpnItems.removeAll()
-        
-        for (index, var server) in servers.enumerated() {
-            if index < 2 {
-                server.isPay = false
-            } else {
-                server.isPay = false
+    
+//    private func loadVpnServers() {
+//        DispatchQueue.global(qos: .background).async {
+//            guard var servers = LoadService.shared.load?.vpnServers else { return }
+//            var updatedItems: [VpnServers] = []
+//            
+//            for (index, var server) in servers.enumerated() {
+//                if index < 2 {
+//                    server.isPay = false
+//                } else {
+//                    server.isPay = false
+//                }
+//                servers[index] = server
+//                updatedItems.append(server)
+//            }
+//            
+//            DispatchQueue.main.async {
+//                self.vpnItems = updatedItems
+//                
+//                self.serversTableView.reloadData()
+//            }
+//        }
+//    }
+    
+        private func loadVpnServers() {
+            guard var servers = LoadService.shared.load?.vpnServers else { return }
+            vpnItems.removeAll()
+    
+            for (index, var server) in servers.enumerated() {
+                if index < 2 {
+                    server.isPay = false
+                } else {
+                    server.isPay = false
+                }
+                servers[index] = server
+                vpnItems.append(server)
             }
-            servers[index] = server
-            vpnItems.append(server)
+            setupVpnItems(vpnItems)
+            serversTableView.reloadData()
         }
-        setupVpnItems(vpnItems)
-    }
     
     private func setupVpnItems(_ items: [VpnServers]) {
-        items.indices.sorted(by: { $0 == Default.shared.vpnIndex && $1 != Default.shared.vpnIndex }).forEach {_ in
+        items.indices.sorted(by: { $0 == Default.shared.vpnIndex && $1 != Default.shared.vpnIndex }).forEach { index in
             model = vpnItems
             
             

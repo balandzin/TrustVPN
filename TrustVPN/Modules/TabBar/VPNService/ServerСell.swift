@@ -10,7 +10,11 @@ final class ServerСell: UITableViewCell {
         return view
     }()
     
-    private lazy var flagImage = UIImageView()
+    private lazy var flagImage: UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
     
     private lazy var serverName: UILabel = {
         let label = UILabel()
@@ -45,6 +49,10 @@ final class ServerСell: UITableViewCell {
     func setupCell(model: VpnServers) {
         flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
         serverName.text = model.countryName
+        
+        
+        
+        
     }
     
     // MARK: - ObjC Methods
