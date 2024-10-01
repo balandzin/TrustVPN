@@ -1,13 +1,11 @@
 PODS:
   - AVVPNService (0.1.4)
-  - Kingfisher (8.0.3)
   - MMLanScan (3.0.0)
   - ReachabilitySwift (5.2.3)
   - SnapKit (5.7.1)
 
 DEPENDENCIES:
   - AVVPNService
-  - Kingfisher
   - MMLanScan
   - ReachabilitySwift
   - SnapKit
@@ -15,18 +13,16 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AVVPNService
-    - Kingfisher
     - MMLanScan
     - ReachabilitySwift
     - SnapKit
 
 SPEC CHECKSUMS:
   AVVPNService: 13158abf0f522a59c847da07194bdc50eac93906
-  Kingfisher: bbf78af014cc845cf9a799363f627b5212784165
   MMLanScan: 86a0f77edbf163be30c1f58321469c7c8ce4c50e
   ReachabilitySwift: 7f151ff156cea1481a8411701195ac6a984f4979
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
 
-PODFILE CHECKSUM: 11601b091848e0808eee445ecacfad48e414fef8
+PODFILE CHECKSUM: 557171df06c6016a467a8b8d030476b197222945
 
 COCOAPODS: 1.15.2

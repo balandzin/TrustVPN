@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CFB29ADB4E8D4D254AAF84B0 /* Pods_TrustVPN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA91688A5D24C9F886790A61 /* Pods_TrustVPN.framework */; };
+		97B1974B2E1B601ABA1FE937 /* Pods_TrustVPN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E38BFD48072E33027407D554 /* Pods_TrustVPN.framework */; };
 		D373AA922CA43F0700DF2EC7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA912CA43F0700DF2EC7 /* InfoView.swift */; };
 		D373AA9A2CA456E000DF2EC7 /* DeviceSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */; };
 		D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */; };
@@ -17,6 +17,7 @@
 		D373AAA82CAAB4D200DF2EC7 /* ServersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */; };
 		D373AAAA2CAACA9C00DF2EC7 /* ServerСell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */; };
 		D373AAAC2CABE10300DF2EC7 /* VpnService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAAB2CABE10300DF2EC7 /* VpnService.swift */; };
+		D373AAAF2CAC15AD00DF2EC7 /* Kingfisher in Resources */ = {isa = PBXBuildFile; fileRef = D373AAAE2CAC15AD00DF2EC7 /* Kingfisher */; };
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
 		D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupViewController.swift */; };
@@ -46,9 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		541AB37D113A8A07DA39D10C /* Pods-TrustVPN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustVPN.release.xcconfig"; path = "Target Support Files/Pods-TrustVPN/Pods-TrustVPN.release.xcconfig"; sourceTree = "<group>"; };
-		69950C8AF58D9802E0C784E8 /* Pods-TrustVPN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustVPN.debug.xcconfig"; path = "Target Support Files/Pods-TrustVPN/Pods-TrustVPN.debug.xcconfig"; sourceTree = "<group>"; };
-		AA91688A5D24C9F886790A61 /* Pods_TrustVPN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustVPN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		15B129F793D1ED0370DECE97 /* Pods-TrustVPN.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustVPN.release.xcconfig"; path = "Target Support Files/Pods-TrustVPN/Pods-TrustVPN.release.xcconfig"; sourceTree = "<group>"; };
+		38F37FA560FE7176BE372599 /* Pods-TrustVPN.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TrustVPN.debug.xcconfig"; path = "Target Support Files/Pods-TrustVPN/Pods-TrustVPN.debug.xcconfig"; sourceTree = "<group>"; };
 		D373AA912CA43F0700DF2EC7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSearchController.swift; sourceTree = "<group>"; };
 		D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSecurityController.swift; sourceTree = "<group>"; };
@@ -59,6 +59,7 @@
 		D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerСell.swift"; sourceTree = "<group>"; };
 		D373AAAB2CABE10300DF2EC7 /* VpnService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VpnService.swift; sourceTree = "<group>"; };
 		D373AAAD2CAC0A9C00DF2EC7 /* TrustVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrustVPN.entitlements; sourceTree = "<group>"; };
+		D373AAAE2CAC15AD00DF2EC7 /* Kingfisher */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Kingfisher; sourceTree = "<group>"; };
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,6 +88,7 @@
 		D3CC70692CA2E5F700D747F5 /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		D3CC706B2CA2F11200D747F5 /* AppText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppText.swift; sourceTree = "<group>"; };
 		D3CC706D2CA2F1F300D747F5 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		E38BFD48072E33027407D554 /* Pods_TrustVPN.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TrustVPN.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,17 +96,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CFB29ADB4E8D4D254AAF84B0 /* Pods_TrustVPN.framework in Frameworks */,
+				97B1974B2E1B601ABA1FE937 /* Pods_TrustVPN.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2626E6B8632A5C3103A459A7 /* Frameworks */ = {
+		11D652038195DF78AC12BBF1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA91688A5D24C9F886790A61 /* Pods_TrustVPN.framework */,
+				E38BFD48072E33027407D554 /* Pods_TrustVPN.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,8 +114,8 @@
 		5118AEA919A96F65DB7B33C0 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				69950C8AF58D9802E0C784E8 /* Pods-TrustVPN.debug.xcconfig */,
-				541AB37D113A8A07DA39D10C /* Pods-TrustVPN.release.xcconfig */,
+				38F37FA560FE7176BE372599 /* Pods-TrustVPN.debug.xcconfig */,
+				15B129F793D1ED0370DECE97 /* Pods-TrustVPN.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -204,7 +206,7 @@
 				D3CC70272CA2999100D747F5 /* TrustVPN */,
 				D3CC70262CA2999100D747F5 /* Products */,
 				5118AEA919A96F65DB7B33C0 /* Pods */,
-				2626E6B8632A5C3103A459A7 /* Frameworks */,
+				11D652038195DF78AC12BBF1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -220,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				D373AAAD2CAC0A9C00DF2EC7 /* TrustVPN.entitlements */,
+				D373AAAE2CAC15AD00DF2EC7 /* Kingfisher */,
 				D3CC705F2CA2CDB900D747F5 /* Modules */,
 				D3CC705C2CA2A7C300D747F5 /* Extensions */,
 				D3CC703C2CA29D3A00D747F5 /* Application */,
@@ -291,11 +294,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D3CC70392CA2999200D747F5 /* Build configuration list for PBXNativeTarget "TrustVPN" */;
 			buildPhases = (
-				1629DE8023D295C9738D5DA9 /* [CP] Check Pods Manifest.lock */,
+				10682D84D132F61815FFBB43 /* [CP] Check Pods Manifest.lock */,
 				D3CC70212CA2999100D747F5 /* Sources */,
 				D3CC70222CA2999100D747F5 /* Frameworks */,
 				D3CC70232CA2999100D747F5 /* Resources */,
-				DBAE27C2B9216BA419D1FD04 /* [CP] Embed Pods Frameworks */,
+				A8AEBB58ED030DC7560D0EBC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -344,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D373AAAF2CAC15AD00DF2EC7 /* Kingfisher in Resources */,
 				D3CC703F2CA2A35500D747F5 /* PrivacyInfo.xcprivacy in Resources */,
 				D3CC70322CA2999200D747F5 /* Assets.xcassets in Resources */,
 				D3CC70352CA2999200D747F5 /* Base in Resources */,
@@ -353,7 +357,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1629DE8023D295C9738D5DA9 /* [CP] Check Pods Manifest.lock */ = {
+		10682D84D132F61815FFBB43 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -375,7 +379,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DBAE27C2B9216BA419D1FD04 /* [CP] Embed Pods Frameworks */ = {
+		A8AEBB58ED030DC7560D0EBC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -569,7 +573,7 @@
 		};
 		D3CC703A2CA2999200D747F5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69950C8AF58D9802E0C784E8 /* Pods-TrustVPN.debug.xcconfig */;
+			baseConfigurationReference = 38F37FA560FE7176BE372599 /* Pods-TrustVPN.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -601,7 +605,7 @@
 		};
 		D3CC703B2CA2999200D747F5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 541AB37D113A8A07DA39D10C /* Pods-TrustVPN.release.xcconfig */;
+			baseConfigurationReference = 15B129F793D1ED0370DECE97 /* Pods-TrustVPN.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
