@@ -42,7 +42,7 @@ final class ChooseServerController: UIViewController {
         loadVpnServers()
         
         // Reload table
-        serversTableView.reloadData()
+        //serversTableView.reloadData()
     }
     
     // MARK: - Private Methods

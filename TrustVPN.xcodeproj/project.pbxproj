@@ -58,6 +58,7 @@
 		D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersTableView.swift; sourceTree = "<group>"; };
 		D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerСell.swift"; sourceTree = "<group>"; };
 		D373AAAB2CABE10300DF2EC7 /* VpnService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VpnService.swift; sourceTree = "<group>"; };
+		D373AAAD2CAC0A9C00DF2EC7 /* TrustVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrustVPN.entitlements; sourceTree = "<group>"; };
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -218,6 +219,7 @@
 		D3CC70272CA2999100D747F5 /* TrustVPN */ = {
 			isa = PBXGroup;
 			children = (
+				D373AAAD2CAC0A9C00DF2EC7 /* TrustVPN.entitlements */,
 				D3CC705F2CA2CDB900D747F5 /* Modules */,
 				D3CC705C2CA2A7C300D747F5 /* Extensions */,
 				D3CC703C2CA29D3A00D747F5 /* Application */,

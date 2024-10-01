@@ -7,7 +7,6 @@ final class StartupViewController: UIViewController {
     // MARK: - GUI Variables
     private lazy var imageView: UIImageView = {
         let image = UIImageView()
-        //image.image = UIImage(named: "startupBackground")
         image.image = .loadImage(LoadService.shared.load?.images?.startupBackground) ?? UIImage(named: "startupBackground")
         return image
     }()
