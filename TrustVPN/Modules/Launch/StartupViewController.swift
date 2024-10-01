@@ -13,6 +13,7 @@ final class StartupViewController: UIViewController {
     
     private lazy var centralLogo: UIImageView = {
         let image = UIImageView()
+        //image.image = .loadImage(LoadService.shared.load?.images?.centralLogo) ?? UIImage(named: "centralLogo")
         image.image = .loadImage(LoadService.shared.load?.images?.centralLogo) ?? UIImage(named: "centralLogo")
         image.contentMode = .scaleAspectFit
         image.clipsToBounds = true
