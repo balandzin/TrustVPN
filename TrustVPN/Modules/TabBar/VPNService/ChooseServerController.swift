@@ -6,7 +6,7 @@ final class ChooseServerController: UIViewController {
     private var isConnectVpn: Bool = false
     private let vpnService = VpnService()
     private var vpnItems: [VpnServers] = []
-    private var selectedServers: [VpnServers] = []
+    var selectedServers: [VpnServers] = []
     
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
@@ -76,8 +76,12 @@ final class ChooseServerController: UIViewController {
     
     // MARK: - ObjC Methods
     @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
+            // Передаем выбранные серверы обратно в VPNServiceController
+            if let vpnServiceController = navigationController?.viewControllers.first(where: { $0 is VPNServiceController }) as? VPNServiceController {
+                vpnServiceController.selectedServers = selectedServers
+            }
+            navigationController?.popViewController(animated: true)
+        }
 }
 
 // MARK: - LoadVPNServers

@@ -1,6 +1,9 @@
 import UIKit
 
 final class VPNServiceController: UIViewController {
+    
+    var selectedServers: [VpnServers] = [] // Массив для выбранных серверов
+
         
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
