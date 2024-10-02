@@ -2,8 +2,8 @@ import UIKit
 
 final class VPNServiceController: UIViewController {
     
-    var selectedServers: [VpnServers] = [] // Массив для выбранных серверов
-    
+    // MARK: - Properties
+    var selectedServers: [VpnServers] = []
     
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
@@ -63,7 +63,6 @@ final class VPNServiceController: UIViewController {
         view.addSubview(plusImage)
         view.addSubview(image)
         view.addSubview(selectServerButton)
-        
         setupConstraints()
     }
     

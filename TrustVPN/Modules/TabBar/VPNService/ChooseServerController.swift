@@ -37,16 +37,11 @@ final class ChooseServerController: UIViewController {
         loadVpnServers()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        loadVpnServers()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            guard let vpnServiceController = navigationController?.viewControllers.first as? VPNServiceController else { return }
-            vpnServiceController.selectedServers = selectedServers // Передаем обратно выбранные серверы
-        }
+        super.viewWillDisappear(animated)
+        guard let vpnServiceController = navigationController?.viewControllers.first as? VPNServiceController else { return }
+        vpnServiceController.selectedServers = selectedServers
+    }
     
     // MARK: - Private Methods
     private func setupUI() {
@@ -84,6 +79,20 @@ final class ChooseServerController: UIViewController {
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc private func selectButtonTapped(_ sender: UIButton) {
+        let server = vpnItems[sender.tag]
+        
+        if let index = selectedServers.firstIndex(where: { $0.id == server.id }) {
+            selectedServers.remove(at: index)
+            sender.setTitle("Select", for: .normal)
+            sender.backgroundColor = AppColors.termsAcceptButton
+        } else {
+            selectedServers.append(server)
+            sender.setTitle("Added", for: .normal)
+            sender.backgroundColor = .gray
+        }
+    }
 }
 
 // MARK: - LoadVPNServers
@@ -119,39 +128,18 @@ extension ChooseServerController: UITableViewDelegate, UITableViewDataSource {
         let server = vpnItems[indexPath.row]
         cell.setupCell(model: vpnItems[indexPath.row])
         
-        // Настройка состояния кнопки в зависимости от выбранных серверов
-                if selectedServers.contains(where: { $0.id == server.id }) {
-                    cell.selectButton.setTitle("Added", for: .normal)
-                    cell.selectButton.backgroundColor = .gray // Изменяем цвет на серый
-                } else {
-                    cell.selectButton.setTitle("Select", for: .normal)
-                    cell.selectButton.backgroundColor = AppColors.termsAcceptButton
-                }
-
-                cell.selectButton.tag = indexPath.row // Сохраняем индекс сервера в теге кнопки
-                cell.selectButton.addTarget(self, action: #selector(selectButtonTapped(_:)), for: .touchUpInside)
+        if selectedServers.contains(where: { $0.id == server.id }) {
+            cell.selectButton.setTitle("Added", for: .normal)
+            cell.selectButton.backgroundColor = .gray // Изменяем цвет на серый
+        } else {
+            cell.selectButton.setTitle("Select", for: .normal)
+            cell.selectButton.backgroundColor = AppColors.termsAcceptButton
+        }
         
-        
-        
+        cell.selectButton.tag = indexPath.row // Сохраняем индекс сервера в теге кнопки
+        cell.selectButton.addTarget(self, action: #selector(selectButtonTapped(_:)), for: .touchUpInside)
         return cell
     }
-    
-    
-    @objc private func selectButtonTapped(_ sender: UIButton) {
-            let server = vpnItems[sender.tag]
-
-            if let index = selectedServers.firstIndex(where: { $0.id == server.id }) {
-                // Если сервер уже выбран, удаляем его
-                selectedServers.remove(at: index)
-                sender.setTitle("Select", for: .normal)
-                sender.backgroundColor = AppColors.termsAcceptButton // Возвращаем цвет на оригинальный
-            } else {
-                // Если сервер не выбран, добавляем его
-                selectedServers.append(server)
-                sender.setTitle("Added", for: .normal)
-                sender.backgroundColor = .gray // Меняем цвет на серый
-            }
-        }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 0.0
