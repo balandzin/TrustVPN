@@ -136,16 +136,23 @@ final class SwipeConnectView: UIView {
     }
     
     @objc private func swipeGestureAll(gesture: UISwipeGestureRecognizer) {
-        print("Swipe detected: \(gesture.direction)")
         switch gesture.direction {
         case .right:
             self.type(.on, isAnimate: true)
             self.connected?(true)
+            generateHapticFeedback()
         case .left:
             self.type(.off, isAnimate: true)
             self.connected?(false)
+            generateHapticFeedback()
         default:
             break
         }
+    }
+    
+    private func generateHapticFeedback() {
+            let generator = UIImpactFeedbackGenerator(style: .medium)
+            generator.prepare()
+            generator.impactOccurred()
     }
 }
