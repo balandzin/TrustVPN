@@ -123,7 +123,7 @@ extension ChooseServerController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as? ServerСell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChooseServerСell", for: indexPath) as? ChooseServerСell else { return UITableViewCell() }
         
         let server = vpnItems[indexPath.row]
         cell.setupCell(model: vpnItems[indexPath.row])

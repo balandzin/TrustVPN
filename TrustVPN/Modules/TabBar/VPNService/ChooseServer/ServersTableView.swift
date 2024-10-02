@@ -14,7 +14,7 @@ final class ServersTableView: UITableView {
     
     // MARK: - Private Methods
     private func setupTableView() {
-        register(ServerСell.self, forCellReuseIdentifier: "ServerСell")
+        register(ChooseServerСell.self, forCellReuseIdentifier: "ChooseServerСell")
         
         backgroundColor = .clear
         showsVerticalScrollIndicator = false

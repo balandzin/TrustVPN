@@ -15,7 +15,7 @@
 		D373AAA42CA4585D00DF2EC7 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA32CA4585D00DF2EC7 /* TabBarController.swift */; };
 		D373AAA62CAA97CB00DF2EC7 /* ChooseServerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */; };
 		D373AAA82CAAB4D200DF2EC7 /* ServersTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */; };
-		D373AAAA2CAACA9C00DF2EC7 /* ServerСell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */; };
+		D373AAAA2CAACA9C00DF2EC7 /* ChooseServerСell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAA92CAACA9C00DF2EC7 /* ChooseServerСell.swift */; };
 		D373AAAC2CABE10300DF2EC7 /* VpnService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAAB2CABE10300DF2EC7 /* VpnService.swift */; };
 		D373AAF12CAC17A100DF2EC7 /* CacheSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAB02CAC17A100DF2EC7 /* CacheSerializer.swift */; };
 		D373AAF22CAC17A100DF2EC7 /* DiskStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAB12CAC17A100DF2EC7 /* DiskStorage.swift */; };
@@ -71,6 +71,8 @@
 		D373AB242CAC17A100DF2EC7 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAE92CAC17A100DF2EC7 /* String+MD5.swift */; };
 		D373AB252CAC17A100DF2EC7 /* AnimatedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAEB2CAC17A100DF2EC7 /* AnimatedImageView.swift */; };
 		D373AB262CAC17A100DF2EC7 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AAEC2CAC17A100DF2EC7 /* Indicator.swift */; };
+		D373AB2B2CAD58B000DF2EC7 /* VPNServiceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AB2A2CAD58B000DF2EC7 /* VPNServiceTableView.swift */; };
+		D373AB2D2CAD594C00DF2EC7 /* ServerСell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */; };
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
 		D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupViewController.swift */; };
@@ -109,7 +111,7 @@
 		D373AAA32CA4585D00DF2EC7 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseServerController.swift; sourceTree = "<group>"; };
 		D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServersTableView.swift; sourceTree = "<group>"; };
-		D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerСell.swift"; sourceTree = "<group>"; };
+		D373AAA92CAACA9C00DF2EC7 /* ChooseServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChooseServerСell.swift"; sourceTree = "<group>"; };
 		D373AAAB2CABE10300DF2EC7 /* VpnService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VpnService.swift; sourceTree = "<group>"; };
 		D373AAAD2CAC0A9C00DF2EC7 /* TrustVPN.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TrustVPN.entitlements; sourceTree = "<group>"; };
 		D373AAB02CAC17A100DF2EC7 /* CacheSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CacheSerializer.swift; sourceTree = "<group>"; };
@@ -166,6 +168,8 @@
 		D373AAE92CAC17A100DF2EC7 /* String+MD5.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+MD5.swift"; sourceTree = "<group>"; };
 		D373AAEB2CAC17A100DF2EC7 /* AnimatedImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatedImageView.swift; sourceTree = "<group>"; };
 		D373AAEC2CAC17A100DF2EC7 /* Indicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
+		D373AB2A2CAD58B000DF2EC7 /* VPNServiceTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNServiceTableView.swift; sourceTree = "<group>"; };
+		D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerСell.swift"; sourceTree = "<group>"; };
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -274,10 +278,8 @@
 		D373AA9F2CA4572700DF2EC7 /* VPNService */ = {
 			isa = PBXGroup;
 			children = (
-				D3CC70672CA2E16500D747F5 /* VPNServiceController.swift */,
-				D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */,
-				D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */,
-				D373AAA92CAACA9C00DF2EC7 /* ServerСell.swift */,
+				D373AB282CAD575C00DF2EC7 /* VPNService */,
+				D373AB292CAD581500DF2EC7 /* ChooseServer */,
 			);
 			path = VPNService;
 			sourceTree = "<group>";
@@ -437,6 +439,26 @@
 				D373AAEF2CAC17A100DF2EC7 /* Sources */,
 			);
 			path = Kingfisher;
+			sourceTree = "<group>";
+		};
+		D373AB282CAD575C00DF2EC7 /* VPNService */ = {
+			isa = PBXGroup;
+			children = (
+				D3CC70672CA2E16500D747F5 /* VPNServiceController.swift */,
+				D373AB2A2CAD58B000DF2EC7 /* VPNServiceTableView.swift */,
+				D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */,
+			);
+			path = VPNService;
+			sourceTree = "<group>";
+		};
+		D373AB292CAD581500DF2EC7 /* ChooseServer */ = {
+			isa = PBXGroup;
+			children = (
+				D373AAA52CAA97CB00DF2EC7 /* ChooseServerController.swift */,
+				D373AAA72CAAB4D200DF2EC7 /* ServersTableView.swift */,
+				D373AAA92CAACA9C00DF2EC7 /* ChooseServerСell.swift */,
+			);
+			path = ChooseServer;
 			sourceTree = "<group>";
 		};
 		D3CC701C2CA2999100D747F5 = {
@@ -669,7 +691,7 @@
 				D373AB012CAC17A100DF2EC7 /* Source.swift in Sources */,
 				D373AB182CAC17A100DF2EC7 /* RedirectHandler.swift in Sources */,
 				D373AB0A2CAC17A100DF2EC7 /* GraphicsContext.swift in Sources */,
-				D373AAAA2CAACA9C00DF2EC7 /* ServerСell.swift in Sources */,
+				D373AAAA2CAACA9C00DF2EC7 /* ChooseServerСell.swift in Sources */,
 				D373AAF82CAC17A100DF2EC7 /* ImageView+Kingfisher.swift in Sources */,
 				D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */,
 				D373AB082CAC17A100DF2EC7 /* Filter.swift in Sources */,
@@ -689,6 +711,7 @@
 				D3CC70552CA2A7BB00D747F5 /* Extension + Int.swift in Sources */,
 				D373AB152CAC17A100DF2EC7 /* ImageDownloaderDelegate.swift in Sources */,
 				D373AB232CAC17A100DF2EC7 /* SizeExtensions.swift in Sources */,
+				D373AB2D2CAD594C00DF2EC7 /* ServerСell.swift in Sources */,
 				D373AAA82CAAB4D200DF2EC7 /* ServersTableView.swift in Sources */,
 				D373AAF12CAC17A100DF2EC7 /* CacheSerializer.swift in Sources */,
 				D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */,
@@ -701,6 +724,7 @@
 				D373AA922CA43F0700DF2EC7 /* InfoView.swift in Sources */,
 				D373AB252CAC17A100DF2EC7 /* AnimatedImageView.swift in Sources */,
 				D373AB212CAC17A100DF2EC7 /* Result.swift in Sources */,
+				D373AB2B2CAD58B000DF2EC7 /* VPNServiceTableView.swift in Sources */,
 				D373AB042CAC17A100DF2EC7 /* Kingfisher.swift in Sources */,
 				D3CC70682CA2E16500D747F5 /* VPNServiceController.swift in Sources */,
 				D373AAF32CAC17A100DF2EC7 /* FormatIndicatedCacheSerializer.swift in Sources */,

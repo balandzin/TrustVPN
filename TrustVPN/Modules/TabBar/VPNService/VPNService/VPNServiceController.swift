@@ -41,6 +41,8 @@ final class VPNServiceController: UIViewController {
         return button
     }()
     
+    private let vpnServersTableView = VPNServiceTableView()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +65,10 @@ final class VPNServiceController: UIViewController {
         view.addSubview(plusImage)
         view.addSubview(image)
         view.addSubview(selectServerButton)
+        
+        vpnServersTableView.dataSource = self
+        vpnServersTableView.delegate = self
+        
         setupConstraints()
     }
     
@@ -92,5 +98,17 @@ final class VPNServiceController: UIViewController {
             make.height.equalTo(44)
             make.centerX.equalToSuperview()
         }
+    }
+}
+
+extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return selectedServers.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
+        
+        return cell
     }
 }

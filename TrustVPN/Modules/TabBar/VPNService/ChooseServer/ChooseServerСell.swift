@@ -1,6 +1,6 @@
 import UIKit
 
-final class ServerСell: UITableViewCell {
+final class ChooseServerСell: UITableViewCell {
     
     // MARK: - GUI Variables
     private lazy var containerView: UIView = {
