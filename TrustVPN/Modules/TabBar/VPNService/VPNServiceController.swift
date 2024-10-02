@@ -52,6 +52,7 @@ final class VPNServiceController: UIViewController {
     // MARK: - ObjC Methods
     @objc private func buttonTapped() {
         let chooseServerController = ChooseServerController()
+        chooseServerController.selectedServers = self.selectedServers // Передача массива серверов
         chooseServerController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chooseServerController, animated: false)
     }

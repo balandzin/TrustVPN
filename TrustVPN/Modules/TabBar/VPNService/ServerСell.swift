@@ -31,7 +31,6 @@ final class ServerСell: UITableViewCell {
         button.backgroundColor = AppColors.termsAcceptButton
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.layer.cornerRadius = 20
-        button.addTarget(self, action: #selector(selectButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -49,11 +48,6 @@ final class ServerСell: UITableViewCell {
     func setupCell(model: VpnServers) {
         flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
         serverName.text = model.countryName
-    }
-    
-    // MARK: - ObjC Methods
-    @objc private func selectButtonTapped() {
-        
     }
     
     // MARK: - Private Methods
