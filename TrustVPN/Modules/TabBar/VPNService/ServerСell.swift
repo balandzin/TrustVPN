@@ -24,7 +24,7 @@ final class ServerСell: UITableViewCell {
         return label
     }()
     
-    private lazy var selectButton: UIButton = {
+    lazy var selectButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Select", for: .normal)
         button.setTitleColor(AppColors.almostWhite, for: .normal)

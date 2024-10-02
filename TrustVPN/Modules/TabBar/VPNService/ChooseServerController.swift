@@ -76,33 +76,29 @@ final class ChooseServerController: UIViewController {
     
     // MARK: - ObjC Methods
     @objc private func backButtonTapped() {
-            // Передаем выбранные серверы обратно в VPNServiceController
-            if let vpnServiceController = navigationController?.viewControllers.first(where: { $0 is VPNServiceController }) as? VPNServiceController {
-                vpnServiceController.selectedServers = selectedServers
-            }
-            navigationController?.popViewController(animated: true)
-        }
+        navigationController?.popViewController(animated: true)
+    }
 }
 
 // MARK: - LoadVPNServers
 extension ChooseServerController {
-
-        private func loadVpnServers() {
-            guard var servers = LoadService.shared.load?.vpnServers else { return }
-            vpnItems.removeAll()
     
-            for (index, var server) in servers.enumerated() {
-                if index < 2 {
-                    server.isPay = false
-                } else {
-                    server.isPay = false
-                }
-                servers[index] = server
-                vpnItems.append(server)
+    private func loadVpnServers() {
+        guard var servers = LoadService.shared.load?.vpnServers else { return }
+        vpnItems.removeAll()
+        
+        for (index, var server) in servers.enumerated() {
+            if index < 2 {
+                server.isPay = false
+            } else {
+                server.isPay = false
             }
-            
-            serversTableView.reloadData()
+            servers[index] = server
+            vpnItems.append(server)
         }
+        
+        serversTableView.reloadData()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
