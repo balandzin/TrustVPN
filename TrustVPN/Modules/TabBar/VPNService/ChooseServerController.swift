@@ -85,12 +85,12 @@ final class ChooseServerController: UIViewController {
         
         if let index = selectedServers.firstIndex(where: { $0.id == server.id }) {
             selectedServers.remove(at: index)
-            sender.setTitle("Select", for: .normal)
+            sender.setTitle(AppText.select, for: .normal)
             sender.backgroundColor = AppColors.termsAcceptButton
         } else {
             selectedServers.append(server)
-            sender.setTitle("Added", for: .normal)
-            sender.backgroundColor = .gray
+            sender.setTitle(AppText.added, for: .normal)
+            sender.backgroundColor = AppColors.dataSecurityLabel
         }
     }
 }
@@ -129,14 +129,14 @@ extension ChooseServerController: UITableViewDelegate, UITableViewDataSource {
         cell.setupCell(model: vpnItems[indexPath.row])
         
         if selectedServers.contains(where: { $0.id == server.id }) {
-            cell.selectButton.setTitle("Added", for: .normal)
-            cell.selectButton.backgroundColor = .gray // Изменяем цвет на серый
+            cell.selectButton.setTitle(AppText.added, for: .normal)
+            cell.selectButton.backgroundColor = AppColors.dataSecurityLabel
         } else {
-            cell.selectButton.setTitle("Select", for: .normal)
+            cell.selectButton.setTitle(AppText.select, for: .normal)
             cell.selectButton.backgroundColor = AppColors.termsAcceptButton
         }
         
-        cell.selectButton.tag = indexPath.row // Сохраняем индекс сервера в теге кнопки
+        cell.selectButton.tag = indexPath.row
         cell.selectButton.addTarget(self, action: #selector(selectButtonTapped(_:)), for: .touchUpInside)
         return cell
     }

@@ -20,5 +20,6 @@ final class AppText {
     static var selectServer: String = "Select server"
     static var vpnServers: String = "VPN Servers"
     static var select: String = "Select"
+    static var added: String = "Added"
 
 }

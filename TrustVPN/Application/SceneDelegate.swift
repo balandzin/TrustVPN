@@ -19,10 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let startupViewController = StartupViewController()
         let navigationController = UINavigationController(rootViewController: startupViewController)
         
-        // Скрываем навигационную строку
         navigationController.isNavigationBarHidden = true
         
-        // Установка rootViewController
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
