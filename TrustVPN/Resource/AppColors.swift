@@ -8,4 +8,6 @@ final class AppColors {
     static var termsView: UIColor = .init(hex: "#262626")
     static var almostWhite: UIColor = .init(hex: "#FAFAFA")
     static var termsAcceptButton: UIColor = .init(hex: "#0093E5")
+    static var dropRed: UIColor = .init(hex: "#D52B1E")
+    static var swipeBackground: UIColor = .init(hex: "#303030")
 }

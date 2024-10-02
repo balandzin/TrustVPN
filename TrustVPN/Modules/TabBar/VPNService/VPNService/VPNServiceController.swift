@@ -26,7 +26,7 @@ final class VPNServiceController: UIViewController {
     
     private lazy var image: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "serverNotSelected")
+        image.image =  .loadImage(LoadService.shared.load?.images?.serverNotSelected) ?? UIImage(named: "serverNotSelected")
         return image
     }()
     
@@ -83,6 +83,7 @@ final class VPNServiceController: UIViewController {
         view.addSubview(image)
         view.addSubview(selectServerButton)
         view.addSubview(vpnServersTableView)
+        
 
         vpnServersTableView.dataSource = self
         vpnServersTableView.delegate = self
@@ -121,7 +122,8 @@ final class VPNServiceController: UIViewController {
             make.top.equalTo(headerLabel.snp.bottom).offset(24)
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
-        }}
+        }
+    }
 }
 
 extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {

@@ -35,8 +35,12 @@ struct Images : Codable {
     let optionsSelected: String?
     let shield: String?
     let сhooseServerBackButton: String?
-    
-    
+    let dots: String?
+    let serverNotSelected: String?
+    let connectedImage: String?
+    let disconnectedImage: String?
+    let swipeToConnect: String?
+    let swipeToDisconnect: String?
     
     
     let aboutApOptionIMG : String?
