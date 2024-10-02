@@ -28,6 +28,7 @@ final class ChooseServerController: UIViewController {
         return label
     }()
     
+    // MARK: - Properties
     private let serversTableView = ServersTableView()
     
     // MARK: - Lifecycle

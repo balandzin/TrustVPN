@@ -41,6 +41,7 @@ final class VPNServiceController: UIViewController {
         return button
     }()
     
+    // MARK: - Properties
     private let vpnServersTableView = VPNServiceTableView()
     
     // MARK: - Lifecycle
@@ -51,10 +52,26 @@ final class VPNServiceController: UIViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if selectedServers.isEmpty {
+            image.isHidden = false
+            selectServerButton.isHidden = false
+            vpnServersTableView.isHidden = true
+        } else {
+            image.isHidden = true
+            selectServerButton.isHidden = true
+            vpnServersTableView.isHidden = false
+          
+            vpnServersTableView.reloadData()
+        }
+    }
+    
     // MARK: - ObjC Methods
     @objc private func buttonTapped() {
         let chooseServerController = ChooseServerController()
-        chooseServerController.selectedServers = self.selectedServers // Передача массива серверов
+        chooseServerController.selectedServers = self.selectedServers
         chooseServerController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chooseServerController, animated: false)
     }
@@ -65,7 +82,8 @@ final class VPNServiceController: UIViewController {
         view.addSubview(plusImage)
         view.addSubview(image)
         view.addSubview(selectServerButton)
-        
+        view.addSubview(vpnServersTableView)
+
         vpnServersTableView.dataSource = self
         vpnServersTableView.delegate = self
         
@@ -98,7 +116,12 @@ final class VPNServiceController: UIViewController {
             make.height.equalTo(44)
             make.centerX.equalToSuperview()
         }
-    }
+        
+        vpnServersTableView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(24)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }}
 }
 
 extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
