@@ -1,9 +1,12 @@
 import UIKit
+import AVVPNService
 
 final class VPNServiceController: UIViewController {
     
     // MARK: - Properties
     var selectedServers: [VpnServers] = []
+    private let vpnService = VpnService()
+    private var isConnectVpn: Bool = false
     
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
@@ -91,6 +94,29 @@ final class VPNServiceController: UIViewController {
         setupConstraints()
     }
     
+    private func connectToCountryVPN(_ isActivateVpn: Bool, server: VpnServers) {
+        let model = server
+                
+        if isActivateVpn {
+            vpnService.disconnectToVPN()
+            
+            let creditianal = AVVPNCredentials.IPSec(
+                title: "TrustVPN",
+                server: model.ip ?? "",
+                username: model.username ?? "",
+                password: model.password ?? "",
+                shared: model.ipsecPsk ?? ""
+            )
+            
+            vpnService.connect(credentials: creditianal) {
+                
+                
+            } complitionError: {}
+        } else {
+            vpnService.disconnectToVPN()
+        }
+    }
+    
     private func setupConstraints() {
         headerLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
@@ -133,14 +159,16 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
-        
         let server = selectedServers[indexPath.row]
         
         cell.swipeConnectView.connected = { isConnect in
             if isConnect {
                 cell.setupCell(model: server, isConnect: true)
+                self.isConnectVpn = true
+                self.connectToCountryVPN(self.isConnectVpn, server: server)
             } else {
                 cell.setupCell(model: server, isConnect: false)
+                self.vpnService.disconnectToVPN()
             }
         }
         return cell
