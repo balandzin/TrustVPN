@@ -67,7 +67,7 @@ final class ServerСell: UITableViewCell {
         return image
     }()
     
-    private lazy var swipeConnectView: SwipeConnectView = {
+    lazy var swipeConnectView: SwipeConnectView = {
         let view = SwipeConnectView(type: .off)
         view.layer.cornerRadius = 36
         view.backgroundColor = AppColors.swipeBackground
@@ -89,10 +89,18 @@ final class ServerСell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setupCell(model: VpnServers) {
+    func setupCell(model: VpnServers, isConnect: Bool) {
         flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
         countryName.text = model.countryName
         serverName.text = generateRandomServerName()
+        
+        if isConnect {
+            statusLabel.text = AppText.connected
+            dropView.backgroundColor = AppColors.loadingIndicator
+        } else {
+            statusLabel.text = AppText.disconnected
+            dropView.backgroundColor = AppColors.dropRed
+        }
     }
     
     // MARK: - Private Methods

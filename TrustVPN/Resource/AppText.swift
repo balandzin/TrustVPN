@@ -21,7 +21,6 @@ final class AppText {
     static var vpnServers: String = "VPN Servers"
     static var select: String = "Select"
     static var added: String = "Added"
-    static var swipeToConnect: String = "Swipe to connect"
-    static var swipeToDisconnect: String = "Swipe to disconnect"
-
+    static var connected: String = "Connected"
+    static var disconnected: String = "Disconnected"
 }
