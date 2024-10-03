@@ -74,6 +74,18 @@ final class ServerСell: UITableViewCell {
         return view
     }()
     
+    private var serverNames = [
+        "Server Fx-01y29x", 
+        "Server Zt-32a7m",
+        "Server Lx-84b2k",
+        "Server Py-59t4j",
+        "Server Gr-11v8x",
+        "Server Qn-73w6z"
+    ]
+    
+    private var selectedServerNames: [String] = []
+    
+    
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -88,7 +100,16 @@ final class ServerСell: UITableViewCell {
         print("dotsButtonTapped")
     }
     
+    // MARK: - Methods
+    func setupCell(model: VpnServers) {
+        flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
+        countryName.text = model.countryName
+        serverName.text = generateRandomServerName()
+    }
+    
     // MARK: - Private Methods
+    
+    
     private func setupCell() {
         selectionStyle = .none
         backgroundColor = .clear
@@ -104,6 +125,29 @@ final class ServerСell: UITableViewCell {
         contentView.addSubview(swipeConnectView)
         
         setupConstraints()
+    }
+    
+    private func generateRandomServerName() -> String {
+        let fixedWord = "Server"
+        
+        let uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let randomUppercaseLetter = uppercaseLetters.randomElement()!
+        
+        let lowercaseLetters = "abcdefghijklmnopqrstuvwxyz"
+        let randomLowercaseLetter = lowercaseLetters.randomElement()!
+        
+        let digits = "0123456789"
+        let randomDigits = String((0..<2).map { _ in digits.randomElement()! })
+        
+        let additionalLowercaseLetter = lowercaseLetters.randomElement()!
+        
+        let lastTwoDigits = String((0..<2).map { _ in digits.randomElement()! })
+        
+        let finalLowercaseLetter = lowercaseLetters.randomElement()!
+        
+        let randomServerName = "\(fixedWord) \(randomUppercaseLetter)\(randomLowercaseLetter)-\(randomDigits)\(additionalLowercaseLetter)\(lastTwoDigits)\(finalLowercaseLetter)"
+        
+        return randomServerName
     }
     
     private func setupConstraints() {

@@ -134,6 +134,9 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
         
+        let server = selectedServers[indexPath.row]
+        cell.setupCell(model: server)
+        
         return cell
     }
 }

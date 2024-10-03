@@ -127,7 +127,7 @@ extension ChooseServerController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ChooseServerСell", for: indexPath) as? ChooseServerСell else { return UITableViewCell() }
         
         let server = vpnItems[indexPath.row]
-        cell.setupCell(model: vpnItems[indexPath.row])
+        cell.setupCell(model: server)
         
         if selectedServers.contains(where: { $0.id == server.id }) {
             cell.selectButton.setTitle(AppText.added, for: .normal)
