@@ -86,7 +86,7 @@ final class ServerСell: UITableViewCell {
     }
     
     // MARK: - Methods
-    func setupCell(model: VpnServers, isConnect: Bool) {
+    func updateCell(model: VpnServers, isConnect: Bool) {
         flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
         countryName.text = model.countryName
         
@@ -100,7 +100,7 @@ final class ServerСell: UITableViewCell {
     }
     
     // MARK: - Private Methods
-    private func setupCell() {
+    func setupCell() {
         serverName.text = generateRandomServerName()
         
         selectionStyle = .none

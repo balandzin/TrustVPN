@@ -7,7 +7,7 @@ struct ConfigureModel : Codable {
     let texts : Texts?
 }
 
-struct VpnServers : Codable {
+struct VpnServers : Codable, Equatable {
     let id : String?
     let countryName : String?
     let countryImageMax : String?

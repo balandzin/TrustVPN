@@ -7,8 +7,8 @@ final class VPNServiceController: UIViewController {
     var selectedServers: [VpnServers] = []
     private let vpnService = VpnService()
     private var isConnectVpn: Bool = false
-    private var currentConnectedServerIndex: Int? = nil
-    private var previousIndex: Int? = nil
+    private var currentlyConnectedServerIndex: Int? = nil
+    private var currentlyConnectedServer: VpnServers? = nil
     
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
@@ -59,7 +59,7 @@ final class VPNServiceController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         if selectedServers.isEmpty {
             image.isHidden = false
             selectServerButton.isHidden = false
@@ -68,7 +68,7 @@ final class VPNServiceController: UIViewController {
             image.isHidden = true
             selectServerButton.isHidden = true
             vpnServersTableView.isHidden = false
-          
+            
             vpnServersTableView.reloadData()
         }
     }
@@ -89,7 +89,7 @@ final class VPNServiceController: UIViewController {
         view.addSubview(selectServerButton)
         view.addSubview(vpnServersTableView)
         
-
+        
         vpnServersTableView.dataSource = self
         vpnServersTableView.delegate = self
         
@@ -98,7 +98,7 @@ final class VPNServiceController: UIViewController {
     
     private func connectToCountryVPN(_ isActivateVpn: Bool, server: VpnServers) {
         let model = server
-                
+        
         if isActivateVpn {
             vpnService.disconnectToVPN()
             
@@ -116,6 +116,16 @@ final class VPNServiceController: UIViewController {
             } complitionError: {}
         } else {
             vpnService.disconnectToVPN()
+        }
+    }
+    
+    private func resetOtherServers(from index1: Int) {
+        for (index, _) in selectedServers.enumerated() {
+            if index != index1 {
+                let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
+                cell?.updateCell(model: selectedServers[index], isConnect: false)
+                cell?.swipeConnectView.type(.off, isAnimate: true)
+            }
         }
     }
     
@@ -162,19 +172,99 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
         let server = selectedServers[indexPath.row]
-        cell.setupCell(model: server, isConnect: false)
         
+         //Обновляем состояние ячейки
+        if let connectedIndex = currentlyConnectedServerIndex, connectedIndex != indexPath.row {
+            // Этот сервер не подключен, устанавливаем состояние в отключено
+            cell.updateCell(model: server, isConnect: false)
+            cell.swipeConnectView.type(.off, isAnimate: false)
+        } else {
+            cell.updateCell(model: server, isConnect: (currentlyConnectedServerIndex == indexPath.row))
+        }
+
         cell.swipeConnectView.connected = { isConnect in
             if isConnect {
-                cell.setupCell(model: server, isConnect: true)
+                // Если пользователь подключился к этому серверу
+                self.currentlyConnectedServerIndex = indexPath.row
+                self.currentlyConnectedServer = self.selectedServers[indexPath.row]
+                
+                print("----------------->", self.currentlyConnectedServerIndex)
+                
+                // Сброс состояний всех остальных серверов
+                self.resetOtherServers(from: indexPath.row)
+                
+                cell.updateCell(model: server, isConnect: true)
                 self.isConnectVpn = true
                 self.connectToCountryVPN(self.isConnectVpn, server: server)
             } else {
-                cell.setupCell(model: server, isConnect: false)
+                // Отключаем от VPN
+                self.currentlyConnectedServerIndex = nil // Обнуляем индекс
+                cell.updateCell(model: server, isConnect: false)
                 self.isConnectVpn = false
                 self.vpnService.disconnectToVPN()
             }
+            
+            // Релоад таблицы, чтобы обновить состояния ячеек
+            self.vpnServersTableView.reloadData()
         }
         return cell
     }
+    
+    
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
+    //        let server = selectedServers[indexPath.row]
+    //
+    //        // Обновляем состояние ячейки
+    //        if let connectedIndex = currentlyConnectedServerIndex, connectedIndex != indexPath.row {
+    //            // Этот сервер не подключен, устанавливаем состояние в отключено
+    //            cell.setupCell(model: server, isConnect: false)
+    //            cell.swipeConnectView.type(.off, isAnimate: true)
+    //        } else {
+    //            cell.setupCell(model: server, isConnect: (currentlyConnectedServerIndex == indexPath.row))
+    //        }
+    //
+    //        cell.swipeConnectView.connected = { isConnect in
+    //            if isConnect {
+    //                // Если пользователь подключился к этому серверу
+    //                self.currentlyConnectedServerIndex = indexPath.row
+    //
+    //                // Сброс состояний всех остальных серверов
+    //                self.resetOtherServers(from: indexPath.row)
+    //
+    //                cell.setupCell(model: server, isConnect: true)
+    //                self.isConnectVpn = true
+    //                self.connectToCountryVPN(self.isConnectVpn, server: server)
+    //            } else {
+    //                // Отключаем от VPN
+    //                self.currentlyConnectedServerIndex = nil // Обнуляем индекс
+    //                cell.setupCell(model: server, isConnect: false)
+    //                self.isConnectVpn = false
+    //                self.vpnService.disconnectToVPN()
+    //            }
+    //
+    //            // Релоад таблицы, чтобы обновить состояния ячеек
+    //            self.vpnServersTableView.reloadData()
+    //        }
+    //        return cell
+    //    }
+    
+    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    //        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
+    //        let server = selectedServers[indexPath.row]
+    //        cell.setupCell(model: server, isConnect: false)
+    //
+    //        cell.swipeConnectView.connected = { isConnect in
+    //            if isConnect {
+    //                cell.setupCell(model: server, isConnect: true)
+    //                self.isConnectVpn = true
+    //                self.connectToCountryVPN(self.isConnectVpn, server: server)
+    //            } else {
+    //                cell.setupCell(model: server, isConnect: false)
+    //                self.isConnectVpn = false
+    //                self.vpnService.disconnectToVPN()
+    //            }
+    //        }
+    //        return cell
+    //    }
 }
