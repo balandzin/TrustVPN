@@ -7,6 +7,8 @@ final class VPNServiceController: UIViewController {
     var selectedServers: [VpnServers] = []
     private let vpnService = VpnService()
     private var isConnectVpn: Bool = false
+    private var currentConnectedServerIndex: Int? = nil
+    private var previousIndex: Int? = nil
     
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
@@ -160,6 +162,7 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
         let server = selectedServers[indexPath.row]
+        cell.setupCell(model: server, isConnect: false)
         
         cell.swipeConnectView.connected = { isConnect in
             if isConnect {
@@ -168,6 +171,7 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
                 self.connectToCountryVPN(self.isConnectVpn, server: server)
             } else {
                 cell.setupCell(model: server, isConnect: false)
+                self.isConnectVpn = false
                 self.vpnService.disconnectToVPN()
             }
         }

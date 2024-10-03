@@ -26,7 +26,7 @@ final class ServerСell: UITableViewCell {
     
     private lazy var statusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Disconnected"
+        label.text = AppText.disconnected
         label.textAlignment = .left
         label.textColor = AppColors.termsView
         label.font = .systemFont(ofSize: 14, weight: .bold)
@@ -37,7 +37,6 @@ final class ServerСell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = AppColors.almostWhite
-        label.text = "Server Fx-01y29x "
         label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
@@ -45,7 +44,6 @@ final class ServerСell: UITableViewCell {
     private lazy var flagImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.image = UIImage(named: "deleteIMG")
         return image
     }()
     
@@ -53,7 +51,6 @@ final class ServerСell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = AppColors.almostWhite
-        label.text = "Netherlands"
         label.font = .systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -92,7 +89,6 @@ final class ServerСell: UITableViewCell {
     func setupCell(model: VpnServers, isConnect: Bool) {
         flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
         countryName.text = model.countryName
-        serverName.text = generateRandomServerName()
         
         if isConnect {
             statusLabel.text = AppText.connected
@@ -105,6 +101,8 @@ final class ServerСell: UITableViewCell {
     
     // MARK: - Private Methods
     private func setupCell() {
+        serverName.text = generateRandomServerName()
+        
         selectionStyle = .none
         backgroundColor = .clear
         

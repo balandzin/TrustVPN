@@ -39,6 +39,7 @@ final class VpnService {
     func vpnStartDelegate() {
         AVVPNService.shared.delegate = self
     }
+    
 }
 
 extension VpnService: AVVPNServiceDelegate {
