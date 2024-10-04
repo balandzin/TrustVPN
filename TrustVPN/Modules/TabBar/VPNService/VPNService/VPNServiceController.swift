@@ -22,7 +22,7 @@ final class VPNServiceController: UIViewController {
     
     private lazy var plusImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "plus")
+        image.image = .loadImage(LoadService.shared.load?.images?.plus) ?? UIImage(named: "plus")
         image.isUserInteractionEnabled = true
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(buttonTapped))
         image.addGestureRecognizer(tapGestureRecognizer)
@@ -69,8 +69,8 @@ final class VPNServiceController: UIViewController {
             selectServerButton.isHidden = true
             vpnServersTableView.isHidden = false
             
-            vpnServersTableView.reloadData()
         }
+        vpnServersTableView.reloadData()
     }
     
     // MARK: - ObjC Methods
@@ -171,108 +171,54 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("----------------->", self.currentlyConnectedServerIndex)
-
-       //let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
         let cell = ServerСell()
         let server = selectedServers[indexPath.row]
         
-         //Обновляем состояние ячейки
         if let connectedIndex = currentlyConnectedServerIndex, connectedIndex != indexPath.row {
-            // Этот сервер не подключен, устанавливаем состояние в отключено
             cell.updateCell(model: server, isConnect: false)
             cell.swipeConnectView.type(.off, isAnimate: false)
         } else {
             cell.updateCell(model: server, isConnect: (currentlyConnectedServerIndex == indexPath.row))
-            cell.swipeConnectView.type(.off, isAnimate: false)
-            if currentlyConnectedServerIndex == indexPath.row {
-                cell.swipeConnectView.type(.on, isAnimate: false)
+            cell.swipeConnectView.type(.on, isAnimate: false)
+            
+            if let index = selectedServers.firstIndex(where: { $0 == currentlyConnectedServer }) {
+                currentlyConnectedServerIndex = index
+                
+                if isConnectVpn {
+                    
+                    cell.swipeConnectView.type(.on, isAnimate: false)
+                    resetOtherServers(from: index)
+                }
+            } else {
+                currentlyConnectedServerIndex = nil
+                currentlyConnectedServer = nil
+                cell.updateCell(model: server, isConnect: false)
+                cell.swipeConnectView.type(.off, isAnimate: false)
+                
+                self.vpnService.disconnectToVPN()
+                self.isConnectVpn = false
             }
         }
 
         cell.swipeConnectView.connected = { isConnect in
             if isConnect {
-                // Если пользователь подключился к этому серверу
                 self.currentlyConnectedServerIndex = indexPath.row
                 self.currentlyConnectedServer = self.selectedServers[indexPath.row]
-                
-                print("----------------->", self.currentlyConnectedServerIndex)
-                
-                // Сброс состояний всех остальных серверов
+                                
                 self.resetOtherServers(from: indexPath.row)
                 
                 cell.updateCell(model: server, isConnect: true)
                 self.isConnectVpn = true
                 self.connectToCountryVPN(self.isConnectVpn, server: server)
             } else {
-                // Отключаем от VPN
                 self.currentlyConnectedServerIndex = nil // Обнуляем индекс
                 cell.updateCell(model: server, isConnect: false)
                 self.isConnectVpn = false
                 self.vpnService.disconnectToVPN()
             }
             
-            // Релоад таблицы, чтобы обновить состояния ячеек
-            //self.vpnServersTableView.reloadData()
+            self.vpnServersTableView.reloadData()
         }
         return cell
     }
-    
-    
-    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    //        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
-    //        let server = selectedServers[indexPath.row]
-    //
-    //        // Обновляем состояние ячейки
-    //        if let connectedIndex = currentlyConnectedServerIndex, connectedIndex != indexPath.row {
-    //            // Этот сервер не подключен, устанавливаем состояние в отключено
-    //            cell.setupCell(model: server, isConnect: false)
-    //            cell.swipeConnectView.type(.off, isAnimate: true)
-    //        } else {
-    //            cell.setupCell(model: server, isConnect: (currentlyConnectedServerIndex == indexPath.row))
-    //        }
-    //
-    //        cell.swipeConnectView.connected = { isConnect in
-    //            if isConnect {
-    //                // Если пользователь подключился к этому серверу
-    //                self.currentlyConnectedServerIndex = indexPath.row
-    //
-    //                // Сброс состояний всех остальных серверов
-    //                self.resetOtherServers(from: indexPath.row)
-    //
-    //                cell.setupCell(model: server, isConnect: true)
-    //                self.isConnectVpn = true
-    //                self.connectToCountryVPN(self.isConnectVpn, server: server)
-    //            } else {
-    //                // Отключаем от VPN
-    //                self.currentlyConnectedServerIndex = nil // Обнуляем индекс
-    //                cell.setupCell(model: server, isConnect: false)
-    //                self.isConnectVpn = false
-    //                self.vpnService.disconnectToVPN()
-    //            }
-    //
-    //            // Релоад таблицы, чтобы обновить состояния ячеек
-    //            self.vpnServersTableView.reloadData()
-    //        }
-    //        return cell
-    //    }
-    
-    //    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    //        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
-    //        let server = selectedServers[indexPath.row]
-    //        cell.setupCell(model: server, isConnect: false)
-    //
-    //        cell.swipeConnectView.connected = { isConnect in
-    //            if isConnect {
-    //                cell.setupCell(model: server, isConnect: true)
-    //                self.isConnectVpn = true
-    //                self.connectToCountryVPN(self.isConnectVpn, server: server)
-    //            } else {
-    //                cell.setupCell(model: server, isConnect: false)
-    //                self.isConnectVpn = false
-    //                self.vpnService.disconnectToVPN()
-    //            }
-    //        }
-    //        return cell
-    //    }
 }

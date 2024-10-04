@@ -41,6 +41,7 @@ struct Images : Codable {
     let disconnectedImage: String?
     let swipeToConnect: String?
     let swipeToDisconnect: String?
+    let plus: String?
     
     
     let aboutApOptionIMG : String?
