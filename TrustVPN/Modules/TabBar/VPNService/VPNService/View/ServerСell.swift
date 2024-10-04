@@ -89,6 +89,7 @@ final class ServerСell: UITableViewCell {
     func updateCell(model: VpnServers, isConnect: Bool) {
         flagImage.image = .loadImage(model.countryImageMin) ?? UIImage(named: "deleteIMG")
         countryName.text = model.countryName
+        serverName.text = model.serverName
         
         if isConnect {
             statusLabel.text = AppText.connected
@@ -101,7 +102,6 @@ final class ServerСell: UITableViewCell {
     
     // MARK: - Private Methods
     func setupCell() {
-        serverName.text = generateRandomServerName()
         
         selectionStyle = .none
         backgroundColor = .clear
@@ -117,29 +117,6 @@ final class ServerСell: UITableViewCell {
         contentView.addSubview(swipeConnectView)
         
         setupConstraints()
-    }
-    
-    private func generateRandomServerName() -> String {
-        let fixedWord = "Server"
-        
-        let uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        let randomUppercaseLetter = uppercaseLetters.randomElement()!
-        
-        let lowercaseLetters = "abcdefghijklmnopqrstuvwxyz"
-        let randomLowercaseLetter = lowercaseLetters.randomElement()!
-        
-        let digits = "0123456789"
-        let randomDigits = String((0..<2).map { _ in digits.randomElement()! })
-        
-        let additionalLowercaseLetter = lowercaseLetters.randomElement()!
-        
-        let lastTwoDigits = String((0..<2).map { _ in digits.randomElement()! })
-        
-        let finalLowercaseLetter = lowercaseLetters.randomElement()!
-        
-        let randomServerName = "\(fixedWord) \(randomUppercaseLetter)\(randomLowercaseLetter)-\(randomDigits)\(additionalLowercaseLetter)\(lastTwoDigits)\(finalLowercaseLetter)"
-        
-        return randomServerName
     }
     
     private func setupConstraints() {

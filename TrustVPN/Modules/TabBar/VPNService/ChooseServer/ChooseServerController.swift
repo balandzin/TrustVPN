@@ -110,10 +110,38 @@ extension ChooseServerController {
                 server.isPay = false
             }
             servers[index] = server
+            if server.persistentServerName == nil {
+                server.persistentServerName = generateRandomServerName()
+            }
+            
+            server.serverName = server.persistentServerName
             vpnItems.append(server)
         }
         
         serversTableView.reloadData()
+    }
+    
+    private func generateRandomServerName() -> String {
+        let fixedWord = "Server"
+        
+        let uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        let randomUppercaseLetter = uppercaseLetters.randomElement()!
+        
+        let lowercaseLetters = "abcdefghijklmnopqrstuvwxyz"
+        let randomLowercaseLetter = lowercaseLetters.randomElement()!
+        
+        let digits = "0123456789"
+        let randomDigits = String((0..<2).map { _ in digits.randomElement()! })
+        
+        let additionalLowercaseLetter = lowercaseLetters.randomElement()!
+        
+        let lastTwoDigits = String((0..<2).map { _ in digits.randomElement()! })
+        
+        let finalLowercaseLetter = lowercaseLetters.randomElement()!
+        
+        let randomServerName = "\(fixedWord) \(randomUppercaseLetter)\(randomLowercaseLetter)-\(randomDigits)\(additionalLowercaseLetter)\(lastTwoDigits)\(finalLowercaseLetter)"
+        
+        return randomServerName
     }
 }
 
