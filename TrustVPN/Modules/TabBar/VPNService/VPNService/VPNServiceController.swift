@@ -125,6 +125,7 @@ final class VPNServiceController: UIViewController {
                 let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
                 cell?.updateCell(model: selectedServers[index], isConnect: false)
                 cell?.swipeConnectView.type(.off, isAnimate: true)
+                self.vpnServersTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
             }
         }
     }
@@ -170,7 +171,10 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
+        print("----------------->", self.currentlyConnectedServerIndex)
+
+       //let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
+        let cell = ServerСell()
         let server = selectedServers[indexPath.row]
         
          //Обновляем состояние ячейки
@@ -180,6 +184,10 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
             cell.swipeConnectView.type(.off, isAnimate: false)
         } else {
             cell.updateCell(model: server, isConnect: (currentlyConnectedServerIndex == indexPath.row))
+            cell.swipeConnectView.type(.off, isAnimate: false)
+            if currentlyConnectedServerIndex == indexPath.row {
+                cell.swipeConnectView.type(.on, isAnimate: false)
+            }
         }
 
         cell.swipeConnectView.connected = { isConnect in
@@ -205,7 +213,7 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
             }
             
             // Релоад таблицы, чтобы обновить состояния ячеек
-            self.vpnServersTableView.reloadData()
+            //self.vpnServersTableView.reloadData()
         }
         return cell
     }
