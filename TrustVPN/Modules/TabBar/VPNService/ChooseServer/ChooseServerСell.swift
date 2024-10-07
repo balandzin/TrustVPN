@@ -90,3 +90,74 @@ final class ChooseServerСell: UITableViewCell {
         }
     }
 }
+
+
+
+class ViewController: UIViewController {
+    
+    var popupView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Создание кнопки с тремя точками
+        let dotsButton = UIButton(frame: CGRect(x: 100, y: 100, width: 40, height: 40))
+        dotsButton.setImage(UIImage(named: "threeDots"), for: .normal) // Замените "threeDots" на ваше изображение
+        dotsButton.addTarget(self, action: #selector(showPopup), for: .touchUpInside)
+        self.view.addSubview(dotsButton)
+        
+        // Создание всплывающего окна
+        setupPopupView()
+    }
+    
+    @objc func showPopup() {
+        self.popupView.isHidden.toggle() // Показываем или скрываем окно
+    }
+    
+    func setupPopupView() {
+        let popupWidth: CGFloat = 184
+        let popupHeight: CGFloat = 145
+        
+        popupView = UIView(frame: CGRect(x: 100, y: 150, width: popupWidth, height: popupHeight))
+        popupView.backgroundColor = .white
+        popupView.layer.borderColor = UIColor.black.cgColor
+        popupView.layer.borderWidth = 1
+        popupView.layer.cornerRadius = 10
+        
+        // Кнопка "Rename Server"
+        let renameButton = UIButton(frame: CGRect(x: 10, y: 20, width: popupWidth - 20, height: 40))
+        renameButton.setTitle("Rename Server", for: .normal)
+        renameButton.setTitleColor(.blue, for: .normal)
+        renameButton.addTarget(self, action: #selector(renameServer), for: .touchUpInside)
+        
+        // Кнопка "Remove from List"
+        let removeButton = UIButton(frame: CGRect(x: 10, y: 80, width: popupWidth - 20, height: 40))
+        removeButton.setTitle("Remove from List", for: .normal)
+        removeButton.setTitleColor(.red, for: .normal)
+        removeButton.addTarget(self, action: #selector(removeFromList), for: .touchUpInside)
+        
+        popupView.addSubview(renameButton)
+        popupView.addSubview(removeButton)
+        popupView.isHidden = true // Скрываем окно по умолчанию
+
+        self.view.addSubview(popupView)
+        
+        // Добавление жеста для скрытия
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func renameServer() {
+        print("Rename Server tapped")
+        popupView.isHidden = true
+    }
+    
+    @objc func removeFromList() {
+        print("Remove from List tapped")
+        popupView.isHidden = true
+    }
+    
+    @objc func dismissPopup() {
+        popupView.isHidden = true
+    }
+}

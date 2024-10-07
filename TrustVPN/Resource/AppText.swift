@@ -23,4 +23,7 @@ final class AppText {
     static var added: String = "Added"
     static var connected: String = "Connected"
     static var disconnected: String = "Disconnected"
+    static var renameServer: String = "Rename server"
+    static var removeServer: String = "Remove from list"
+    
 }

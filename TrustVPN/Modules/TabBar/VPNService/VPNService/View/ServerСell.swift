@@ -71,6 +71,8 @@ final class ServerСell: UITableViewCell {
         return view
     }()
     
+    let popupView = PopupView()
+    
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -82,7 +84,7 @@ final class ServerСell: UITableViewCell {
     }
     
     @objc private func dotsButtonTapped() {
-        print("dotsButtonTapped")
+        popupView.isHidden.toggle()
     }
     
     // MARK: - Methods
@@ -114,8 +116,9 @@ final class ServerСell: UITableViewCell {
         containerView.addSubview(flagImage)
         containerView.addSubview(countryName)
         contentView.addSubview(dots)
+        containerView.addSubview(popupView)
         contentView.addSubview(swipeConnectView)
-        
+        popupView.isHidden = true
         setupConstraints()
     }
     
@@ -148,6 +151,11 @@ final class ServerСell: UITableViewCell {
         dots.snp.makeConstraints { make in
             make.centerY.equalTo(statusView)
             make.trailing.equalTo(containerView).inset(20)
+        }
+        
+        popupView.snp.makeConstraints { make in
+            make.top.equalTo(dots.snp.bottom).offset(20)
+            make.trailing.equalToSuperview()
         }
         
         serverName.snp.makeConstraints { make in

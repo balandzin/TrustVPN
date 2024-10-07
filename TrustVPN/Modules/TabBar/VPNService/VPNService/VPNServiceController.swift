@@ -45,6 +45,15 @@ final class VPNServiceController: UIViewController {
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
+        
+    // MARK: - Initialization
+    init() {
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     // MARK: - Properties
     private let vpnServersTableView = VPNServiceTableView()
@@ -79,6 +88,14 @@ final class VPNServiceController: UIViewController {
         chooseServerController.selectedServers = self.selectedServers
         chooseServerController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chooseServerController, animated: false)
+    }
+    
+    @objc func renameButtonTapped() {
+        print("renameButtonTapped")
+    }
+    
+    @objc func removeButtonTapped() {
+        print("removeButtonTapped")
     }
     
     // MARK: - Private Methods
@@ -171,35 +188,9 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = ServerСell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
         let server = selectedServers[indexPath.row]
         
-        if let connectedIndex = currentlyConnectedServerIndex, connectedIndex != indexPath.row {
-            cell.updateCell(model: server, isConnect: false)
-            cell.swipeConnectView.type(.off, isAnimate: false)
-        } else {
-            cell.updateCell(model: server, isConnect: (currentlyConnectedServerIndex == indexPath.row))
-            cell.swipeConnectView.type(.on, isAnimate: false)
-            
-            if let index = selectedServers.firstIndex(where: { $0 == currentlyConnectedServer }) {
-                currentlyConnectedServerIndex = index
-                
-                if isConnectVpn {
-                    
-                    cell.swipeConnectView.type(.on, isAnimate: false)
-                    resetOtherServers(from: index)
-                }
-            } else {
-                currentlyConnectedServerIndex = nil
-                currentlyConnectedServer = nil
-                cell.updateCell(model: server, isConnect: false)
-                cell.swipeConnectView.type(.off, isAnimate: false)
-                
-                self.vpnService.disconnectToVPN()
-                self.isConnectVpn = false
-            }
-        }
-
         cell.swipeConnectView.connected = { isConnect in
             if isConnect {
                 self.currentlyConnectedServerIndex = indexPath.row
@@ -211,7 +202,7 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
                 self.isConnectVpn = true
                 self.connectToCountryVPN(self.isConnectVpn, server: server)
             } else {
-                self.currentlyConnectedServerIndex = nil // Обнуляем индекс
+                self.currentlyConnectedServerIndex = nil
                 cell.updateCell(model: server, isConnect: false)
                 self.isConnectVpn = false
                 self.vpnService.disconnectToVPN()
@@ -219,6 +210,22 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
             
             self.vpnServersTableView.reloadData()
         }
+        
+        cell.popupView.renameButton.addTarget(self, action: #selector(renameButtonTapped), for: .touchUpInside)
+        cell.popupView.removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+        
+        cell.selectionStyle = .none
         return cell
     }
 }
+
+
+
+
+
+
+
+
+
+
+
