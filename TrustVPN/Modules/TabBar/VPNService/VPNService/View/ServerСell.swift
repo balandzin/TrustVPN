@@ -3,6 +3,21 @@ import UIKit
 final class ServerСell: UITableViewCell {
     
     // MARK: - GUI Variables
+    lazy var serverName: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = AppColors.almostWhite
+        label.font = .systemFont(ofSize: 20, weight: .bold)
+        return label
+    }()
+    
+    lazy var swipeConnectView: SwipeConnectView = {
+        let view = SwipeConnectView(type: .off)
+        view.layer.cornerRadius = 36
+        view.backgroundColor = AppColors.swipeBackground
+        return view
+    }()
+    
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.termsView
@@ -33,14 +48,6 @@ final class ServerСell: UITableViewCell {
         return label
     }()
     
-    private lazy var serverName: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.textColor = AppColors.almostWhite
-        label.font = .systemFont(ofSize: 20, weight: .bold)
-        return label
-    }()
-    
     private lazy var flagImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
@@ -62,13 +69,6 @@ final class ServerСell: UITableViewCell {
         image.isUserInteractionEnabled = true
         image.addGestureRecognizer(tapGestureRecognizer)
         return image
-    }()
-    
-    lazy var swipeConnectView: SwipeConnectView = {
-        let view = SwipeConnectView(type: .off)
-        view.layer.cornerRadius = 36
-        view.backgroundColor = AppColors.swipeBackground
-        return view
     }()
     
     let popupView = PopupView()

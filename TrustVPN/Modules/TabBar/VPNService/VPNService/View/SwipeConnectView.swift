@@ -151,8 +151,8 @@ final class SwipeConnectView: UIView {
     }
     
     private func generateHapticFeedback() {
-            let generator = UIImpactFeedbackGenerator(style: .medium)
-            generator.prepare()
-            generator.impactOccurred()
+        let generator = UIImpactFeedbackGenerator(style: .medium)
+        generator.prepare()
+        generator.impactOccurred()
     }
 }

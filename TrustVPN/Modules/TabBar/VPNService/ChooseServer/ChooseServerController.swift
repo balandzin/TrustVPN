@@ -104,21 +104,19 @@ extension ChooseServerController {
         vpnItems.removeAll()
         
         for (index, var server) in servers.enumerated() {
+            if let savedName = UserDefaults.standard.string(forKey: "ServerName_\(index)") {
+                server.serverName = savedName
+            } else {
+                server.serverName = generateRandomServerName()
+            }
+            
+            
             if index < 2 {
                 server.isPay = false
             } else {
                 server.isPay = false
             }
             servers[index] = server
-            if server.persistentServerName == nil {
-                if let savedName = UserDefaults.standard.string(forKey: "LastGeneratedServerName") {
-                    server.persistentServerName = savedName
-                } else {
-                    server.persistentServerName = generateRandomServerName()
-                }
-            }
-            
-            server.serverName = server.persistentServerName
             vpnItems.append(server)
         }
         

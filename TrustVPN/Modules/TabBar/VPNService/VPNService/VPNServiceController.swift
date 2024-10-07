@@ -7,7 +7,7 @@ final class VPNServiceController: UIViewController {
     var selectedServers: [VpnServers] = []
     private let vpnService = VpnService()
     private var isConnectVpn: Bool = false
-    private var currentlyConnectedServerIndex: Int? = nil
+    private var currentlyRenamedServerIndex: Int? = nil
     private var currentlyConnectedServer: VpnServers? = nil
     private var activeSwipeCell: ServerСell? = nil
     
@@ -48,7 +48,7 @@ final class VPNServiceController: UIViewController {
         button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         return button
     }()
-        
+    
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -96,8 +96,28 @@ final class VPNServiceController: UIViewController {
     @objc func renameButtonTapped(sender: UIButton) {
         renameView.isHidden = false
         let index = sender.tag
+        currentlyRenamedServerIndex = index
         let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
         cell?.popupView.isHidden = true
+    }
+    
+    @objc func saveButtonTapped(sender: UIButton) {
+        guard let index = currentlyRenamedServerIndex else { return }
+        let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
+        
+        let newName = renameView.renameTextField.text ?? ""
+        
+        UserDefaults.standard.set(newName, forKey: "ServerName_\(index)")
+        
+        if index  < selectedServers.count {
+            selectedServers[index].serverName = newName
+        }
+        
+        cell?.popupView.isHidden = true
+        renameView.isHidden = true
+        
+        currentlyRenamedServerIndex = nil
+        vpnServersTableView.reloadData()
     }
     
     @objc func cancelButtonTapped(sender: UIButton) {
@@ -130,7 +150,7 @@ final class VPNServiceController: UIViewController {
         view.addSubview(renameView)
         
         renameView.isHidden = true
-
+        
         vpnServersTableView.dataSource = self
         vpnServersTableView.delegate = self
         
@@ -261,19 +281,9 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
         cell.popupView.removeButton.tag = indexPath.row
         cell.popupView.renameButton.addTarget(self, action: #selector(renameButtonTapped), for:.touchUpInside)
         cell.popupView.removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
-                
+        
+        renameView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         //cell.selectionStyle = .none
         return cell
     }
 }
-
-
-
-
-
-
-
-
-
-
-

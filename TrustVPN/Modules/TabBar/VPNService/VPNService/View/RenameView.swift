@@ -1,6 +1,6 @@
 import UIKit
 
-final class RenameView: UIView {
+final class RenameView: UIView, UITextFieldDelegate {
     
     // MARK: - GUI Variables
     lazy var closeButton: UIImageView = {
@@ -9,7 +9,25 @@ final class RenameView: UIView {
         return button
     }()
     
-    private lazy var renameTextField: UITextField = {
+    lazy var cancelButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle(AppText.cancel, for: .normal)
+        button.setTitleColor(AppColors.almostWhite, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        return button
+    }()
+    
+    lazy var saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle(AppText.save, for: .normal)
+        button.setTitleColor(AppColors.almostWhite, for: .normal)
+        button.backgroundColor = AppColors.loadingIndicator
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.layer.cornerRadius = 22
+        return button
+    }()
+    
+    lazy var renameTextField: UITextField = {
         let textField = PaddedTextField()
         textField.placeholder = AppText.renameServerPlaceholder
         textField.placeHolderColor = AppColors.dataSecurityLabel
@@ -44,34 +62,32 @@ final class RenameView: UIView {
         return label
     }()
     
-    lazy var cancelButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(AppText.cancel, for: .normal)
-        button.setTitleColor(AppColors.almostWhite, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        return button
-    }()
-    
-    private lazy var saveButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(AppText.save, for: .normal)
-        button.setTitleColor(AppColors.almostWhite, for: .normal)
-        button.backgroundColor = AppColors.loadingIndicator
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.layer.cornerRadius = 22
-        return button
-    }()
-    
     // MARK: - Initialization
     init() {
         super.init(frame: .zero)
         
-        
+        backgroundColor = .clear
         setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        updateSaveButtonState()
+        return true
+    }
+    
+    // MARK: - Private Methods
+    private func updateSaveButtonState() {
+        if let text = renameTextField.text, !text.isEmpty {
+            saveButton.isEnabled = true
+            saveButton.alpha = 1.0
+        } else {
+            saveButton.isEnabled = false
+            saveButton.alpha = 0.5
+        }
     }
     
     // MARK: - Private Methods
@@ -84,6 +100,8 @@ final class RenameView: UIView {
         containerView.addSubview(cancelButton)
         containerView.addSubview(saveButton)
         
+        renameTextField.delegate = self
+        updateSaveButtonState()
         setupConstraints()
     }
     
