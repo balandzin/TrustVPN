@@ -9,8 +9,11 @@ final class VPNServiceController: UIViewController {
     private var isConnectVpn: Bool = false
     private var currentlyConnectedServerIndex: Int? = nil
     private var currentlyConnectedServer: VpnServers? = nil
+    private var activeSwipeCell: ServerСell? = nil
     
     // MARK: - GUI Variables
+    let renameView = RenameView()
+    
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
         label.text = AppText.vpnService
@@ -90,12 +93,31 @@ final class VPNServiceController: UIViewController {
         navigationController?.pushViewController(chooseServerController, animated: false)
     }
     
-    @objc func renameButtonTapped() {
-        print("renameButtonTapped")
+    @objc func renameButtonTapped(sender: UIButton) {
+        renameView.isHidden = false
+        let index = sender.tag
+        let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
+        cell?.popupView.isHidden = true
     }
     
-    @objc func removeButtonTapped() {
-        print("removeButtonTapped")
+    @objc func cancelButtonTapped(sender: UIButton) {
+        renameView.isHidden = true
+        vpnServersTableView.reloadData()
+    }
+    
+    @objc func removeButtonTapped(sender: UIButton) {
+        let index = sender.tag
+        selectedServers.remove(at: index)
+        
+        let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
+        cell?.popupView.isHidden = true
+        vpnServersTableView.reloadData()
+        
+        if selectedServers.isEmpty {
+            image.isHidden = false
+            selectServerButton.isHidden = false
+            vpnServersTableView.isHidden = true
+        }
     }
     
     // MARK: - Private Methods
@@ -105,12 +127,19 @@ final class VPNServiceController: UIViewController {
         view.addSubview(image)
         view.addSubview(selectServerButton)
         view.addSubview(vpnServersTableView)
+        view.addSubview(renameView)
         
-        
+        renameView.isHidden = true
+
         vpnServersTableView.dataSource = self
         vpnServersTableView.delegate = self
         
         setupConstraints()
+        
+        renameView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
+        renameView.closeButton.addGestureRecognizer(recognizer)
+        renameView.closeButton.isUserInteractionEnabled = true
     }
     
     private func connectToCountryVPN(_ isActivateVpn: Bool, server: VpnServers) {
@@ -136,9 +165,9 @@ final class VPNServiceController: UIViewController {
         }
     }
     
-    private func resetOtherServers(from index1: Int) {
+    private func resetOtherServers(from currentIndex: Int) {
         for (index, _) in selectedServers.enumerated() {
-            if index != index1 {
+            if index != currentIndex {
                 let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
                 cell?.updateCell(model: selectedServers[index], isConnect: false)
                 cell?.swipeConnectView.type(.off, isAnimate: true)
@@ -179,6 +208,10 @@ final class VPNServiceController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+        
+        renameView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 
@@ -191,30 +224,45 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ServerСell", for: indexPath) as! ServerСell
         let server = selectedServers[indexPath.row]
         
-        cell.swipeConnectView.connected = { isConnect in
-            if isConnect {
-                self.currentlyConnectedServerIndex = indexPath.row
-                self.currentlyConnectedServer = self.selectedServers[indexPath.row]
-                                
-                self.resetOtherServers(from: indexPath.row)
-                
-                cell.updateCell(model: server, isConnect: true)
-                self.isConnectVpn = true
-                self.connectToCountryVPN(self.isConnectVpn, server: server)
-            } else {
-                self.currentlyConnectedServerIndex = nil
-                cell.updateCell(model: server, isConnect: false)
-                self.isConnectVpn = false
+        if let currentlyConnectedServer = self.currentlyConnectedServer {
+            if !selectedServers.contains(currentlyConnectedServer) {
                 self.vpnService.disconnectToVPN()
+                print("disconnectToVPN")
             }
-            
-            self.vpnServersTableView.reloadData()
         }
         
-        cell.popupView.renameButton.addTarget(self, action: #selector(renameButtonTapped), for: .touchUpInside)
-        cell.popupView.removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+        if isConnectVpn && server == currentlyConnectedServer {
+            cell.swipeConnectView.type(.on, isAnimate: false)
+            cell.updateCell(model: server, isConnect: true)
+        } else {
+            cell.swipeConnectView.type(.off, isAnimate: false)
+            cell.updateCell(model: server, isConnect: false)
+        }
         
-        cell.selectionStyle = .none
+        cell.swipeConnectView.connected = { [weak self] isConnect in
+            if isConnect {
+                cell.updateCell(model: server, isConnect: true)
+                self?.connectToCountryVPN(true, server: server)
+                self?.isConnectVpn = true
+                self?.activeSwipeCell = cell
+                self?.currentlyConnectedServer = server
+                self?.resetOtherServers(from: indexPath.row)
+                
+            } else {
+                cell.updateCell(model: server, isConnect: false)
+                self?.vpnService.disconnectToVPN()
+                self?.isConnectVpn = false
+                self?.activeSwipeCell = nil
+                self?.currentlyConnectedServer = nil
+            }
+        }
+        
+        cell.popupView.renameButton.tag = indexPath.row
+        cell.popupView.removeButton.tag = indexPath.row
+        cell.popupView.renameButton.addTarget(self, action: #selector(renameButtonTapped), for:.touchUpInside)
+        cell.popupView.removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
+                
+        //cell.selectionStyle = .none
         return cell
     }
 }

@@ -75,6 +75,8 @@
 		D373AB2D2CAD594C00DF2EC7 /* ServerСell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */; };
 		D373AB302CAD7D7E00DF2EC7 /* SwipeConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AB2F2CAD7D7E00DF2EC7 /* SwipeConnectView.swift */; };
 		D3A017F82CB3D19A006238E1 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A017F72CB3D19A006238E1 /* PopupView.swift */; };
+		D3A017FA2CB3FF03006238E1 /* RenameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A017F92CB3FF03006238E1 /* RenameView.swift */; };
+		D3A017FC2CB40B35006238E1 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A017FB2CB40B35006238E1 /* PaddedTextField.swift */; };
 		D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC70282CA2999100D747F5 /* AppDelegate.swift */; };
 		D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */; };
 		D3CC702D2CA2999100D747F5 /* StartupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3CC702C2CA2999100D747F5 /* StartupViewController.swift */; };
@@ -174,6 +176,8 @@
 		D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerСell.swift"; sourceTree = "<group>"; };
 		D373AB2F2CAD7D7E00DF2EC7 /* SwipeConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeConnectView.swift; sourceTree = "<group>"; };
 		D3A017F72CB3D19A006238E1 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
+		D3A017F92CB3FF03006238E1 /* RenameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameView.swift; sourceTree = "<group>"; };
+		D3A017FB2CB40B35006238E1 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
 		D3CC70252CA2999100D747F5 /* TrustVPN.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrustVPN.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3CC70282CA2999100D747F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -469,6 +473,8 @@
 			isa = PBXGroup;
 			children = (
 				D3A017F72CB3D19A006238E1 /* PopupView.swift */,
+				D3A017F92CB3FF03006238E1 /* RenameView.swift */,
+				D3A017FB2CB40B35006238E1 /* PaddedTextField.swift */,
 				D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */,
 				D373AB2F2CAD7D7E00DF2EC7 /* SwipeConnectView.swift */,
 			);
@@ -679,6 +685,7 @@
 			files = (
 				D373AB0D2CAC17A100DF2EC7 /* ImageFormat.swift in Sources */,
 				D373AAFB2CAC17A100DF2EC7 /* TVMonogramView+Kingfisher.swift in Sources */,
+				D3A017FA2CB3FF03006238E1 /* RenameView.swift in Sources */,
 				D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */,
 				D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */,
 				D3CC706E2CA2F1F300D747F5 /* TermsOfUseViewController.swift in Sources */,
@@ -767,6 +774,7 @@
 				D373AB192CAC17A100DF2EC7 /* RequestModifier.swift in Sources */,
 				D373AB102CAC17A100DF2EC7 /* ImageTransition.swift in Sources */,
 				D373AB052CAC17A100DF2EC7 /* KingfisherError.swift in Sources */,
+				D3A017FC2CB40B35006238E1 /* PaddedTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

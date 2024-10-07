@@ -25,5 +25,9 @@ final class AppText {
     static var disconnected: String = "Disconnected"
     static var renameServer: String = "Rename server"
     static var removeServer: String = "Remove from list"
+    static var renameServerPlaceholder: String = "App Name Server"
+    static var cancel: String = "Cancel"
+    static var save: String = "Save"
+    
     
 }

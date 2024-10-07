@@ -111,7 +111,11 @@ extension ChooseServerController {
             }
             servers[index] = server
             if server.persistentServerName == nil {
-                server.persistentServerName = generateRandomServerName()
+                if let savedName = UserDefaults.standard.string(forKey: "LastGeneratedServerName") {
+                    server.persistentServerName = savedName
+                } else {
+                    server.persistentServerName = generateRandomServerName()
+                }
             }
             
             server.serverName = server.persistentServerName
@@ -140,6 +144,8 @@ extension ChooseServerController {
         let finalLowercaseLetter = lowercaseLetters.randomElement()!
         
         let randomServerName = "\(fixedWord) \(randomUppercaseLetter)\(randomLowercaseLetter)-\(randomDigits)\(additionalLowercaseLetter)\(lastTwoDigits)\(finalLowercaseLetter)"
+        
+        UserDefaults.standard.set(randomServerName, forKey: "LastGeneratedServerName")
         
         return randomServerName
     }

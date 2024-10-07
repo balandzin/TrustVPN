@@ -18,8 +18,7 @@ struct VpnServers : Codable, Equatable {
     let password : String?
     var isPay: Bool? = false
     var serverName: String?
-    var persistentServerName: String? // Постоянное имя сервера
-
+    var persistentServerName: String?
 }
 
 struct Images : Codable {
@@ -45,6 +44,7 @@ struct Images : Codable {
     let swipeToConnect: String?
     let swipeToDisconnect: String?
     let plus: String?
+    let closeButton: String?
     
     
     let aboutApOptionIMG : String?
