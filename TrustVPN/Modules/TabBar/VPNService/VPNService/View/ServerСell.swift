@@ -3,6 +3,8 @@ import UIKit
 final class ServerСell: UITableViewCell {
     
     // MARK: - GUI Variables
+    let popupView = PopupView()
+    
     lazy var serverName: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -70,9 +72,7 @@ final class ServerСell: UITableViewCell {
         image.addGestureRecognizer(tapGestureRecognizer)
         return image
     }()
-    
-    let popupView = PopupView()
-    
+        
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
