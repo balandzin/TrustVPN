@@ -85,6 +85,13 @@ final class ChooseServerController: UIViewController {
         }
     }
     
+    private func showServerAddedView() {
+        let controller = ServerAddedViewController()
+        controller.panToDismissEnabled = false
+        controller.preferredSheetSizing = UIScreen.height
+        present(controller, animated: true)
+    }
+    
     // MARK: - ObjC Methods
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
@@ -106,6 +113,7 @@ final class ChooseServerController: UIViewController {
                 serverAddedView.isHidden = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.serverAddedView.isHidden = true
+                    self.showServerAddedView()
                 }
             }
         }

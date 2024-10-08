@@ -46,6 +46,7 @@ struct Images : Codable {
     let plus: String?
     let closeButton: String?
     let vpnServerAdded: String?
+    let server: String?
     
     
     let aboutApOptionIMG : String?
