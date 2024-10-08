@@ -31,6 +31,7 @@ final class AppText {
     static var dataIsSecure: String = "Your data is secure. We don’t save or share it"
     static var great: String = "Great! Server added"
     static var permission: String = "When you connect to the VPN, your device will ask for permission to complete the setup process. Please enter your device's password when prompted."
+    static var connectionTo: String = "Connection to:"
     
     
 }

@@ -24,6 +24,7 @@ final class ChooseServerController: UIViewController {
         label.text = AppText.vpnServers
         label.textColor = AppColors.almostWhite
         label.textAlignment = .center
+        label.textAlignment = .center
         label.font = .systemFont(ofSize: 26, weight: .bold)
         return label
     }()
@@ -87,7 +88,7 @@ final class ChooseServerController: UIViewController {
     
     private func showServerAddedView() {
         let controller = ServerAddedViewController()
-        controller.panToDismissEnabled = false
+        controller.panToDismissEnabled = true
         controller.preferredSheetSizing = UIScreen.height
         present(controller, animated: true)
     }
@@ -111,7 +112,7 @@ final class ChooseServerController: UIViewController {
             
             if selectedServers.count == 1 {
                 serverAddedView.isHidden = false
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                     self.serverAddedView.isHidden = true
                     self.showServerAddedView()
                 }

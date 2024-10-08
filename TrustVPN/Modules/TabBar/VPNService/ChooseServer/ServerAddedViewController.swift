@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class ServerAddedViewController: BottomSheetController {
+final class ServerAddedViewController: BottomSheetController {
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
@@ -34,7 +34,7 @@ class ServerAddedViewController: BottomSheetController {
     }()
     
     private lazy var shieldView: UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 24, height: 24))
+        let image = UIImageView()
         image.image = .loadImage(LoadService.shared.load?.images?.shield) ?? UIImage(named: "shield")
         image.contentMode = .scaleAspectFit
         return image
@@ -118,13 +118,17 @@ class ServerAddedViewController: BottomSheetController {
         }
         
         cancelView.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview().inset(30)
+            make.top.trailing.equalToSuperview().inset(20)
             make.width.height.equalTo(24)
         }
         
         topLabelStackView.snp.makeConstraints { make in
-            make.top.equalTo(cancelView).offset(20)
+            make.top.equalTo(cancelView).offset(30)
             make.leading.trailing.equalToSuperview().inset(20)
+        }
+        
+        shieldView.snp.makeConstraints { make in
+            make.width.height.equalTo(24)
         }
         
         serverAddedView.snp.makeConstraints { make in
