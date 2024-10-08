@@ -72,11 +72,12 @@ final class ServerСell: UITableViewCell {
         image.addGestureRecognizer(tapGestureRecognizer)
         return image
     }()
-        
+    
     // MARK: - Initialization
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCell()
+        addDismissGesture()
     }
     
     required init?(coder: NSCoder) {
@@ -85,6 +86,19 @@ final class ServerСell: UITableViewCell {
     
     @objc private func dotsButtonTapped() {
         popupView.isHidden.toggle()
+    }
+    
+    private func addDismissGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
+        tapGesture.cancelsTouchesInView = false
+        contentView.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc private func dismissPopup(_ gesture: UITapGestureRecognizer) {
+        let touchLocation = gesture.location(in: contentView)
+        if !popupView.frame.contains(touchLocation) {
+            popupView.isHidden = true
+        }
     }
     
     // MARK: - Methods
