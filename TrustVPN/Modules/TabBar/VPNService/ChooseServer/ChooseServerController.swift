@@ -28,8 +28,9 @@ final class ChooseServerController: UIViewController {
         return label
     }()
     
-    // MARK: - Properties
     private let serversTableView = ServersTableView()
+    
+    private let serverAddedView = ServerAddedView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -50,6 +51,8 @@ final class ChooseServerController: UIViewController {
         view.addSubview(backButton)
         view.addSubview(chooseServerLabel)
         view.addSubview(serversTableView)
+        view.addSubview(serverAddedView)
+        serverAddedView.isHidden = true
         
         serversTableView.dataSource = self
         serversTableView.delegate = self
@@ -74,6 +77,12 @@ final class ChooseServerController: UIViewController {
             make.leading.trailing.equalToSuperview().inset(16)
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(80)
         }
+        
+        serverAddedView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
+            make.leading.equalToSuperview().inset(45)
+            make.trailing.equalToSuperview().inset(45)
+        }
     }
     
     // MARK: - ObjC Methods
@@ -92,6 +101,13 @@ final class ChooseServerController: UIViewController {
             selectedServers.append(server)
             sender.setTitle(AppText.added, for: .normal)
             sender.backgroundColor = AppColors.dataSecurityLabel
+            
+            if selectedServers.count == 1 {
+                serverAddedView.isHidden = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.serverAddedView.isHidden = true
+                }
+            }
         }
     }
 }

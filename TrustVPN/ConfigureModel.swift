@@ -45,6 +45,7 @@ struct Images : Codable {
     let swipeToDisconnect: String?
     let plus: String?
     let closeButton: String?
+    let vpnServerAdded: String?
     
     
     let aboutApOptionIMG : String?

@@ -13,6 +13,7 @@ final class VPNServiceController: UIViewController {
     
     // MARK: - GUI Variables
     let renameView = RenameView()
+    private let vpnServersTableView = VPNServiceTableView()
     
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
@@ -57,9 +58,6 @@ final class VPNServiceController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    // MARK: - Properties
-    private let vpnServersTableView = VPNServiceTableView()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -116,13 +114,15 @@ final class VPNServiceController: UIViewController {
         cell?.popupView.isHidden = true
         renameView.isHidden = true
         
-        currentlyRenamedServerIndex = nil
         vpnServersTableView.reloadData()
+        currentlyRenamedServerIndex = nil
+        renameView.renameTextField.resignFirstResponder()
     }
     
     @objc func cancelButtonTapped(sender: UIButton) {
         renameView.isHidden = true
         vpnServersTableView.reloadData()
+        renameView.renameTextField.resignFirstResponder()
     }
     
     @objc func removeButtonTapped(sender: UIButton) {
