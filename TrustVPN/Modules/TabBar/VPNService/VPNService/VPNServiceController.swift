@@ -14,6 +14,7 @@ final class VPNServiceController: UIViewController {
     // MARK: - GUI Variables
     let renameView = RenameView()
     private let vpnServersTableView = VPNServiceTableView()
+    private let serverRenamedView = ServerRenamedView()
     
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
@@ -117,6 +118,11 @@ final class VPNServiceController: UIViewController {
         vpnServersTableView.reloadData()
         currentlyRenamedServerIndex = nil
         renameView.renameTextField.resignFirstResponder()
+        
+        serverRenamedView.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.serverRenamedView.isHidden = true
+        }
     }
     
     @objc func cancelButtonTapped(sender: UIButton) {
@@ -148,6 +154,8 @@ final class VPNServiceController: UIViewController {
         view.addSubview(selectServerButton)
         view.addSubview(vpnServersTableView)
         view.addSubview(renameView)
+        view.addSubview(serverRenamedView)
+        serverRenamedView.isHidden = true
         
         renameView.isHidden = true
         
@@ -231,6 +239,12 @@ final class VPNServiceController: UIViewController {
         
         renameView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        serverRenamedView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
+            make.leading.equalToSuperview().inset(45)
+            make.trailing.equalToSuperview().inset(45)
         }
     }
     

@@ -3,10 +3,10 @@ import UIKit
 final class ChooseServerController: UIViewController {
     
     // MARK: - Properties
+    var selectedServers: [VpnServers] = []
     private var isConnectVpn: Bool = false
     private let vpnService = VpnService()
     private var vpnItems: [VpnServers] = []
-    var selectedServers: [VpnServers] = []
     
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
@@ -30,7 +30,6 @@ final class ChooseServerController: UIViewController {
     }()
     
     private let serversTableView = ServersTableView()
-    
     private let serverAddedView = ServerAddedView()
     
     // MARK: - Lifecycle
@@ -112,7 +111,7 @@ final class ChooseServerController: UIViewController {
             
             if selectedServers.count == 1 {
                 serverAddedView.isHidden = false
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     self.serverAddedView.isHidden = true
                     self.showServerAddedView()
                 }
