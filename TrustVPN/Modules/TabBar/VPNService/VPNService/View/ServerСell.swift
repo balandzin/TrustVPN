@@ -46,6 +46,7 @@ final class ServerСell: UITableViewCell {
         label.text = AppText.disconnected
         label.textAlignment = .left
         label.textColor = AppColors.termsView
+        label.adjustsFontSizeToFitWidth = true
         label.font = .systemFont(ofSize: 14, weight: .bold)
         return label
     }()
@@ -147,7 +148,7 @@ final class ServerСell: UITableViewCell {
             make.top.equalTo(containerView).offset(20)
             make.leading.equalTo(containerView).offset(20)
             make.height.equalTo(38)
-            make.width.equalTo(118)
+            make.width.equalTo(125)
         }
         
         dropView.snp.makeConstraints { make in
@@ -157,9 +158,9 @@ final class ServerСell: UITableViewCell {
         }
         
         statusLabel.snp.makeConstraints { make in
-            make.leading.equalTo(dropView.snp.trailing).offset(10)
+            make.leading.equalTo(dropView.snp.trailing).offset(5)
             make.centerY.equalTo(dropView)
-            make.trailing.equalTo(statusView).inset(5)
+            make.trailing.equalTo(statusView).inset(10)
         }
         
         dots.snp.makeConstraints { make in

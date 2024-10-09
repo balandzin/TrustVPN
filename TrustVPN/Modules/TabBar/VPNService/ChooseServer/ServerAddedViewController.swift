@@ -80,7 +80,7 @@ final class ServerAddedViewController: BottomSheetController {
         button.setTitle(AppText.continueButton, for: .normal)
         button.setTitleColor(AppColors.almostWhite, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.backgroundColor = AppColors.termsAcceptButton
+        button.backgroundColor = AppColors.almostWhite
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         
@@ -123,7 +123,7 @@ final class ServerAddedViewController: BottomSheetController {
         }
         
         topLabelStackView.snp.makeConstraints { make in
-            make.top.equalTo(cancelView).offset(30)
+            make.top.equalToSuperview().offset(61)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
@@ -144,7 +144,7 @@ final class ServerAddedViewController: BottomSheetController {
         }
         
         permissionLabel.snp.makeConstraints { make in
-            make.top.equalTo(greatLabel.snp.bottom).offset(30)
+            make.top.equalTo(greatLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         
