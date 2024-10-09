@@ -17,6 +17,8 @@ final class AppText {
     static var deviceSearch: String = "Device search"
     static var passwordSecurity: String = "Password security"
     static var options: String = "Options"
+    static var serverNotSelected: String = "Server not selected"
+    static var serverNotSelectedDescription: String = "Please select a server to connect to the VPN"
     static var selectServer: String = "Select server"
     static var vpnServers: String = "VPN Servers"
     static var select: String = "Select"

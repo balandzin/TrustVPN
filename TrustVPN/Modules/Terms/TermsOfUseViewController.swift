@@ -108,7 +108,7 @@ final class TermsOfUseViewController: UIViewController {
             make.top.equalTo(shield.snp.bottom).offset(24)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalTo(acceptButton.snp.top).offset(-24)
+            make.bottom.equalTo(acceptButton.snp.top).offset(-50)
         }
         
         scrollView.snp.makeConstraints { make in
@@ -128,7 +128,7 @@ final class TermsOfUseViewController: UIViewController {
         }
         
         termsLabel.snp.makeConstraints { make in
-            make.top.equalTo(termsHeaderLabel.snp.bottom).offset(24)
+            make.top.equalTo(termsHeaderLabel.snp.bottom).offset(10)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().inset(24)
@@ -138,7 +138,7 @@ final class TermsOfUseViewController: UIViewController {
             make.height.equalTo(52)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(35.vertical)
+            make.bottom.equalToSuperview().inset(68)
         }
     }
 }

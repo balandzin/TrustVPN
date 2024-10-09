@@ -80,7 +80,7 @@ final class OnboardViewController: UIViewController {
             make.height.equalTo(52)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(35.vertical)
+            make.bottom.equalToSuperview().inset(68)
         }
     }
     

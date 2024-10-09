@@ -6,6 +6,7 @@ final class VPNServiceController: UIViewController {
     // MARK: - Properties
     var selectedServers: [VpnServers] = []
     private let vpnService = VpnService()
+    private let serverNotSelectedView = ServerNotSelectedView()
     private var isConnectVpn: Bool = false
     private var currentlyRenamedServerIndex: Int? = nil
     private var currentlyRemovedServerIndex: Int? = nil
@@ -136,19 +137,6 @@ final class VPNServiceController: UIViewController {
     @objc func removeButtonTapped(sender: UIButton) {
         currentlyRemovedServerIndex = sender.tag
         removeView.isHidden = false
-        
-        //        let index = sender.tag
-        //        selectedServers.remove(at: index)
-        //
-        //        let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
-        //        cell?.popupView.isHidden = true
-        //        vpnServersTableView.reloadData()
-        //
-        //        if selectedServers.isEmpty {
-        //            image.isHidden = false
-        //            selectServerButton.isHidden = false
-        //            vpnServersTableView.isHidden = true
-        //        }
     }
     
     @objc func removeServerTapped() {
