@@ -1,12 +1,19 @@
 import UIKit
 import AVVPNService
+import SnapKit
 
 final class VPNServiceController: UIViewController {
     
     // MARK: - Properties
     var selectedServers: [VpnServers] = []
     private let vpnService = VpnService()
-    private let serverNotSelectedView = ServerNotSelectedView()
+    
+    private lazy var serverNotSelectedView: UIView =  {
+        let view = ServerNotSelectedView()
+        view.selectServerButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        return view
+    }()
+    
     private var isConnectVpn: Bool = false
     private var currentlyRenamedServerIndex: Int? = nil
     private var currentlyRemovedServerIndex: Int? = nil
@@ -37,23 +44,6 @@ final class VPNServiceController: UIViewController {
         return image
     }()
     
-    private lazy var image: UIImageView = {
-        let image = UIImageView()
-        image.image =  .loadImage(LoadService.shared.load?.images?.serverNotSelected) ?? UIImage(named: "serverNotSelected")
-        return image
-    }()
-    
-    private lazy var selectServerButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(AppText.selectServer, for: .normal)
-        button.setTitleColor(AppColors.almostWhite, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.backgroundColor = AppColors.termsAcceptButton
-        button.layer.cornerRadius = 22
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-        return button
-    }()
-    
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -66,7 +56,7 @@ final class VPNServiceController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        view.backgroundColor = .gradientColor
         self.navigationController?.isNavigationBarHidden = true
         setupUI()
     }
@@ -75,20 +65,83 @@ final class VPNServiceController: UIViewController {
         super.viewWillAppear(animated)
         
         if selectedServers.isEmpty {
-            image.isHidden = false
-            selectServerButton.isHidden = false
+            serverNotSelectedView.isHidden = false
             vpnServersTableView.isHidden = true
         } else {
-            image.isHidden = true
-            selectServerButton.isHidden = true
+            serverNotSelectedView.isHidden = true
             vpnServersTableView.isHidden = false
-            
         }
         vpnServersTableView.reloadData()
     }
     
+    // MARK: - Private Methods
+    private func setupUI() {
+        view.addSubview(headerLabel)
+        view.addSubview(plusImage)
+        view.addSubview(serverNotSelectedView)
+        view.addSubview(vpnServersTableView)
+        view.addSubview(renameView)
+        view.addSubview(serverRenamedView)
+        view.addSubview(removeView)
+        
+        serverRenamedView.isHidden = true
+        renameView.isHidden = true
+        removeView.isHidden = true
+        
+        vpnServersTableView.dataSource = self
+        vpnServersTableView.delegate = self
+        
+        addTargets()
+        setupConstraints()
+    }
+    
+    private func connectToCountryVPN(_ isActivateVpn: Bool, server: VpnServers) {
+        let model = server
+        
+        if isActivateVpn {
+            vpnService.disconnectToVPN()
+            
+            let creditianal = AVVPNCredentials.IPSec(
+                title: "TrustVPN",
+                server: model.ip ?? "",
+                username: model.username ?? "",
+                password: model.password ?? "",
+                shared: model.ipsecPsk ?? ""
+            )
+            
+            vpnService.connect(credentials: creditianal) {
+                
+                
+            } complitionError: {}
+        } else {
+            vpnService.disconnectToVPN()
+        }
+    }
+    
+    private func resetOtherServers(from currentIndex: Int) {
+        for (index, _) in selectedServers.enumerated() {
+            if index != currentIndex {
+                let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
+                cell?.updateCell(model: selectedServers[index], isConnect: false)
+                cell?.swipeConnectView.type(.off, isAnimate: true)
+                self.vpnServersTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+            }
+        }
+    }
+    
+    private func showConnectionToView(server: VpnServers) {
+        let connectionToView = ConnectionToViewController()
+        connectionToView.setupView(server: server)
+        connectionToView.modalPresentationStyle = .overFullScreen
+        self.present(connectionToView, animated: false)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            connectionToView.dismiss(animated: false)
+        }
+    }
+    
     // MARK: - ObjC Methods
     @objc private func buttonTapped() {
+        print("buttonTapped")
         let chooseServerController = ChooseServerController()
         chooseServerController.selectedServers = self.selectedServers
         chooseServerController.hidesBottomBarWhenPushed = true
@@ -150,8 +203,7 @@ final class VPNServiceController: UIViewController {
         vpnServersTableView.reloadData()
         
         if selectedServers.isEmpty {
-            image.isHidden = false
-            selectServerButton.isHidden = false
+            serverNotSelectedView.isHidden = false
             vpnServersTableView.isHidden = true
         }
         currentlyRemovedServerIndex = nil
@@ -162,132 +214,6 @@ final class VPNServiceController: UIViewController {
         let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
         cell?.popupView.isHidden = true
         removeView.isHidden = true
-    }
-    
-    
-    // MARK: - Private Methods
-    private func setupUI() {
-        view.addSubview(headerLabel)
-        view.addSubview(plusImage)
-        view.addSubview(image)
-        view.addSubview(selectServerButton)
-        view.addSubview(vpnServersTableView)
-        view.addSubview(renameView)
-        view.addSubview(serverRenamedView)
-        view.addSubview(removeView)
-        
-        serverRenamedView.isHidden = true
-        renameView.isHidden = true
-        removeView.isHidden = true
-        
-        vpnServersTableView.dataSource = self
-        vpnServersTableView.delegate = self
-        
-        removeView.removeButton.addTarget(self, action: #selector(removeServerTapped), for: .touchUpInside)
-        removeView.cancelButton.addTarget(self, action: #selector(canselRemoveTapped), for: .touchUpInside)
-        let recognizerRemove = UITapGestureRecognizer(target: self, action: #selector(canselRemoveTapped))
-        removeView.closeButton.addGestureRecognizer(recognizerRemove)
-        removeView.closeButton.isUserInteractionEnabled = true
-        
-        
-        setupConstraints()
-        
-        renameView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        let recognizerRename = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
-        renameView.closeButton.addGestureRecognizer(recognizerRename)
-        renameView.closeButton.isUserInteractionEnabled = true
-    }
-    
-    private func connectToCountryVPN(_ isActivateVpn: Bool, server: VpnServers) {
-        let model = server
-        
-        if isActivateVpn {
-            vpnService.disconnectToVPN()
-            
-            let creditianal = AVVPNCredentials.IPSec(
-                title: "TrustVPN",
-                server: model.ip ?? "",
-                username: model.username ?? "",
-                password: model.password ?? "",
-                shared: model.ipsecPsk ?? ""
-            )
-            
-            vpnService.connect(credentials: creditianal) {
-                
-                
-            } complitionError: {}
-        } else {
-            vpnService.disconnectToVPN()
-        }
-    }
-    
-    private func resetOtherServers(from currentIndex: Int) {
-        for (index, _) in selectedServers.enumerated() {
-            if index != currentIndex {
-                let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
-                cell?.updateCell(model: selectedServers[index], isConnect: false)
-                cell?.swipeConnectView.type(.off, isAnimate: true)
-                self.vpnServersTableView.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
-            }
-        }
-    }
-    
-    private func setupConstraints() {
-        headerLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
-            make.leading.trailing.equalToSuperview().inset(24)
-        }
-        
-        plusImage.snp.makeConstraints { make in
-            make.centerY.equalTo(headerLabel)
-            make.trailing.equalToSuperview().inset(24)
-            make.width.equalTo(44)
-            make.height.equalTo(44)
-        }
-        
-        image.snp.makeConstraints { make in
-            make.top.equalTo(headerLabel.snp.bottom).offset(80)
-            make.leading.equalToSuperview().inset(24)
-            make.trailing.equalToSuperview().inset(24)
-            make.height.equalTo(267)
-        }
-        
-        selectServerButton.snp.makeConstraints { make in
-            make.top.equalTo(image.snp.bottom).offset(24)
-            make.width.equalTo(174)
-            make.height.equalTo(44)
-            make.centerX.equalToSuperview()
-        }
-        
-        vpnServersTableView.snp.makeConstraints { make in
-            make.top.equalTo(headerLabel.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-        }
-        
-        renameView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-        
-        serverRenamedView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
-            make.leading.equalToSuperview().inset(45)
-            make.trailing.equalToSuperview().inset(45)
-        }
-        
-        removeView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
-    }
-    
-    private func showConnectionToView(server: VpnServers) {
-        let connectionToView = ConnectionToViewController()
-        connectionToView.setupView(server: server)
-        connectionToView.modalPresentationStyle = .overFullScreen
-        self.present(connectionToView, animated: false)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            connectionToView.dismiss(animated: false)
-        }
     }
 }
 
@@ -340,8 +266,68 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
         cell.popupView.removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
         
         renameView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
-        //cell.selectionStyle = .none
+        cell.selectionStyle = .none
         return cell
+    }
+}
+
+// MARK: - Setup Constraints
+extension VPNServiceController {
+    private func setupConstraints() {
+        headerLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
+            make.leading.trailing.equalToSuperview().inset(24)
+        }
+        
+        plusImage.snp.makeConstraints { make in
+            make.centerY.equalTo(headerLabel)
+            make.trailing.equalToSuperview().inset(24)
+            make.width.equalTo(44)
+            make.height.equalTo(44)
+        }
+        
+        vpnServersTableView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(24)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        serverNotSelectedView.snp.makeConstraints { make in
+            make.top.equalTo(headerLabel.snp.bottom).offset(80)
+            make.leading.equalToSuperview().inset(24)
+            make.trailing.equalToSuperview().inset(24)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
+        
+        renameView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        serverRenamedView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(5)
+            make.leading.equalToSuperview().inset(45)
+            make.trailing.equalToSuperview().inset(45)
+        }
+        
+        removeView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+}
+
+// MARK: - Add Targets
+extension VPNServiceController {
+    private func addTargets() {
+        removeView.removeButton.addTarget(self, action: #selector(removeServerTapped), for: .touchUpInside)
+        removeView.cancelButton.addTarget(self, action: #selector(canselRemoveTapped), for: .touchUpInside)
+        let recognizerRemove = UITapGestureRecognizer(target: self, action: #selector(canselRemoveTapped))
+        removeView.closeButton.addGestureRecognizer(recognizerRemove)
+        removeView.closeButton.isUserInteractionEnabled = true
+        
+        renameView.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+        let recognizerRename = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
+        renameView.closeButton.addGestureRecognizer(recognizerRename)
+        renameView.closeButton.isUserInteractionEnabled = true
     }
 }
 

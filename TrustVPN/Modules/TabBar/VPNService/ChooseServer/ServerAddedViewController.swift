@@ -51,7 +51,7 @@ final class ServerAddedViewController: BottomSheetController {
     
     private lazy var serverAddedView: UIImageView = {
         let view = UIImageView()
-        view.image = .loadImage(LoadService.shared.load?.images?.server) ?? UIImage(named: "server")
+        view.image = .loadImage(LoadService.shared.load?.images?.server) ?? UIImage(named: "serverNotSelected")
         view.contentMode = .scaleAspectFit
         return view
     }()

@@ -3,6 +3,16 @@ import SnapKit
 
 final class ServerNotSelectedView: UIView {
     // MARK: - GUI Variables
+    lazy var selectServerButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle(AppText.selectServer, for: .normal)
+        button.setTitleColor(AppColors.almostWhite, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 16)
+        button.backgroundColor = AppColors.termsAcceptButton
+        button.layer.cornerRadius = 22
+        return button
+    }()
+    
     private lazy var image: UIImageView = {
         let image = UIImageView()
         image.image =  .loadImage(LoadService.shared.load?.images?.serverNotSelected) ?? UIImage(named: "serverNotSelected")
@@ -27,16 +37,6 @@ final class ServerNotSelectedView: UIView {
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
-    }()
-    
-    private lazy var selectServerButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(AppText.selectServer, for: .normal)
-        button.setTitleColor(AppColors.almostWhite, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.backgroundColor = AppColors.termsAcceptButton
-        button.layer.cornerRadius = 22
-        return button
     }()
     
     // MARK: - Initialization
