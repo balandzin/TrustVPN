@@ -124,6 +124,7 @@ final class ServerСell: UITableViewCell {
         backgroundColor = .clear
         
         contentView.addSubview(containerView)
+        containerView.addSubview(swipeConnectView)
         containerView.addSubview(statusView)
         statusView.addSubview(dropView)
         statusView.addSubview(statusLabel)
@@ -132,7 +133,6 @@ final class ServerСell: UITableViewCell {
         containerView.addSubview(countryName)
         contentView.addSubview(dots)
         containerView.addSubview(popupView)
-        contentView.addSubview(swipeConnectView)
         popupView.isHidden = true
         setupConstraints()
     }

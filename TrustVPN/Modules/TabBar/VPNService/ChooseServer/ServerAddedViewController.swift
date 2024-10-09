@@ -80,7 +80,7 @@ final class ServerAddedViewController: BottomSheetController {
         button.setTitle(AppText.continueButton, for: .normal)
         button.setTitleColor(AppColors.almostWhite, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.backgroundColor = AppColors.almostWhite
+        button.backgroundColor = AppColors.loadingIndicator
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         

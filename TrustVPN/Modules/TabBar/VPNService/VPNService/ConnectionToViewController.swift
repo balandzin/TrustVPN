@@ -27,26 +27,12 @@ final class ConnectionToViewController: UIViewController {
     
     private lazy var connectionToLabel: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = AppColors.almostWhite
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.textAlignment = .left
+        label.textColor = AppColors.dataSecurityLabel
+        label.font = .systemFont(ofSize: 16)
         label.text = AppText.connectionTo
+        label.adjustsFontSizeToFitWidth = true
         return label
-    }()
-    
-    private lazy var countryStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.alignment = .center
-        stackView.distribution = .fill
-        stackView.spacing = 10
-        return stackView
-    }()
-    
-    private lazy var flagImage: UIImageView = {
-        let image = UIImageView()
-        image.contentMode = .scaleAspectFit
-        return image
     }()
     
     private lazy var countryName: UILabel = {
@@ -54,7 +40,8 @@ final class ConnectionToViewController: UIViewController {
         label.textAlignment = .left
         label.textColor = AppColors.almostWhite
         label.adjustsFontSizeToFitWidth = true
-        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.font = .systemFont(ofSize: 18)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -88,9 +75,7 @@ final class ConnectionToViewController: UIViewController {
         view.addSubview(containerView)
         containerView.addSubview(closeButton)
         containerView.addSubview(connectionToLabel)
-        containerView.addSubview(countryStackView)
-        countryStackView.addArrangedSubview(flagImage)
-        countryStackView.addArrangedSubview(countryName)
+        containerView.addSubview(countryName)
         containerView.addSubview(loadingBar)
         loadingBar.addSubview(loadingIndicator)
         
@@ -104,41 +89,36 @@ final class ConnectionToViewController: UIViewController {
         
         containerView.snp.makeConstraints { make in
             make.centerX.centerY.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(40)
-            make.height.equalTo(210)
+            make.leading.trailing.equalToSuperview().inset(24)
+            make.height.equalTo(115)
         }
         
         closeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(20)
-            make.trailing.equalToSuperview().inset(20)
+            make.top.trailing.equalToSuperview().inset(20)
             make.width.height.equalTo(24)
         }
         
         connectionToLabel.snp.makeConstraints { make in
-            make.top.equalTo(closeButton.snp.bottom).offset(5)
-            make.centerX.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(closeButton.snp.bottom)
+            make.leading.equalToSuperview().inset(20)
+            make.width.equalTo(109)
         }
         
-        countryStackView.snp.makeConstraints { make in
-            make.top.equalTo(connectionToLabel.snp.bottom).offset(20)
-            make.centerX.equalToSuperview()
-        }
-        
-        flagImage.snp.makeConstraints { make in
-            make.width.height.equalTo(40)
+        countryName.snp.makeConstraints { make in
+            make.bottom.equalTo(connectionToLabel.snp.bottom)
+            make.leading.equalTo(connectionToLabel.snp.trailing).offset(5)
+            make.trailing.equalToSuperview().inset(20)
         }
         
         loadingBar.snp.makeConstraints { make in
-            make.top.equalTo(countryStackView.snp.bottom).offset(30)
-            make.width.equalTo(110)
+            make.top.equalTo(connectionToLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(6)
-            make.centerX.equalToSuperview()
         }
         
         loadingIndicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.width.equalTo(24)
+            make.width.equalTo(54)
             make.height.equalTo(6)
         }
     }
@@ -146,7 +126,6 @@ final class ConnectionToViewController: UIViewController {
     
     func setupView(server: VpnServers) {
         countryName.text = server.countryName
-        flagImage.image = .loadImage(server.countryImageMin) ?? UIImage(named: "deleteIMG")
     }
     
     @objc private func closeButtonTapped() {

@@ -51,6 +51,7 @@ final class PopupView: UIView {
         popupView.addSubview(removeButton)
         
         setupConstraints()
+        setupShadow()
     }
     
     private func setupConstraints() {
@@ -76,5 +77,12 @@ final class PopupView: UIView {
             make.leading.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().inset(30)
         }
+    }
+    
+    private func setupShadow() {
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5).cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowOpacity = 1
+        layer.shadowRadius = 10
     }
 }
