@@ -124,17 +124,17 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     
     // Данные для таблицы
         let titles = [
-            "1. Как создать надежный пароль?",
-            "2. Почему безопасность паролей важна?",
-            "3. Как работает наш инструмент?",
-            "4. Типы атак на пароли"
+            AppText.howToCreateStrongPasswords,
+            AppText.whyIsPasswordSecurityImportant,
+            AppText.howOurToolWorks,
+            AppText.typesOfPasswordAttacks
         ]
         
         let contents = [
-            "Пароль должен содержать как минимум 12 символов. Используйте комбинацию букв, цифр и специальных символов для усиления безопасности.",
-            "Слабые пароли могут привести к взлому аккаунта и утечке личных данных. Важно использовать сильные и уникальные пароли.",
-            "Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.",
-            "Существует множество типов атак, таких как фишинг, атаки методом перебора и социальной инженерии. Узнайте, как защититься от них."
+            AppText.howToCreateStrongPasswordsDescription,
+            AppText.whyIsPasswordSecurityImportantDescription,
+            AppText.howOurToolWorksDescription,
+            AppText.typesOfPasswordAttacksDescription
         ]
         
         // Переменные для отслеживания раскрытия секций
