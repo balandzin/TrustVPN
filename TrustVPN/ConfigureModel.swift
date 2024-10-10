@@ -48,6 +48,10 @@ struct Images : Codable {
     let vpnServerAdded: String?
     let vpnServerRenamed: String?
     let server: String?
+    let eye: String?
+    let unsecurePassword: String?
+    let mediumPassword: String?
+    let strongPassword: String?
     
     
     let aboutApOptionIMG : String?

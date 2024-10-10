@@ -36,6 +36,10 @@ final class AppText {
     static var great: String = "Great! Server added"
     static var permission: String = "When you connect to the VPN, your device will ask for permission to complete the setup process. Please enter your device's password when prompted."
     static var connectionTo: String = "Connection to:"
-    
-    
+    static var typePassword: String = "Type a password"
+    static var tips: String = "Password security tips"
+    static var unsecurePassword: String = "Unsecure password"
+    static var mediumPassword: String = "Medium password"
+    static var strongPassword: String = "Strong password"
+    static var crackedDescriptionLabel: String = "Your password can be cracked in"
 }

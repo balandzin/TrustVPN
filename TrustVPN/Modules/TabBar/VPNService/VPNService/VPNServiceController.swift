@@ -118,11 +118,11 @@ final class VPNServiceController: UIViewController {
                 activeSwipeCell = nil
                 isConnectVpn = false
                 currentlyConnectedServer = nil
-                Default.shared.isConnectVpn = true
+                Default.shared.isConnectVpn = false
             case .connecting, .connected:
                 activeSwipeCell?.updateStatus(for: true)
                 activeSwipeCell?.swipeConnectView.type(.on, isAnimate: true)
-                Default.shared.isConnectVpn = false
+                Default.shared.isConnectVpn = true
             default:
                 return
             }

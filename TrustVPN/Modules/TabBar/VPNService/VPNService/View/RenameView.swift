@@ -36,6 +36,8 @@ final class RenameView: UIView, UITextFieldDelegate {
         textField.textColor = AppColors.almostWhite
         textField.layer.cornerRadius = 10
         textField.keyboardAppearance = .dark
+        textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.backgroundColor = AppColors.textFieldBackground
         return textField
     }()

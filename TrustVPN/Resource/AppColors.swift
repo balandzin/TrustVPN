@@ -11,4 +11,7 @@ final class AppColors {
     static var dropRed: UIColor = .init(hex: "#D52B1E")
     static var swipeBackground: UIColor = .init(hex: "#303030")
     static var textFieldBackground: UIColor = .init(hex: "#3A3A3A")
+    static var unsecurePassword: UIColor = .init(hex: "#F53333")
+    static var mediumPassword: UIColor = .init(hex: "#E7B14")
+    static var strongPassword: UIColor = .init(hex: "##2ECC71")
 }
