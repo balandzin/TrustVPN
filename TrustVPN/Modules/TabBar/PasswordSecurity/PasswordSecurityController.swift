@@ -1,6 +1,6 @@
 import UIKit
 
-final class PasswordSecurityController: UIViewController {
+final class PasswordSecurityController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
@@ -122,6 +122,31 @@ final class PasswordSecurityController: UIViewController {
         return label
     }()
     
+    // Данные для таблицы
+        let titles = [
+            "1. Как создать надежный пароль?",
+            "2. Почему безопасность паролей важна?",
+            "3. Как работает наш инструмент?",
+            "4. Типы атак на пароли"
+        ]
+        
+        let contents = [
+            "Пароль должен содержать как минимум 12 символов. Используйте комбинацию букв, цифр и специальных символов для усиления безопасности.",
+            "Слабые пароли могут привести к взлому аккаунта и утечке личных данных. Важно использовать сильные и уникальные пароли.",
+            "Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.",
+            "Существует множество типов атак, таких как фишинг, атаки методом перебора и социальной инженерии. Узнайте, как защититься от них."
+        ]
+        
+        // Переменные для отслеживания раскрытия секций
+        var expandedSections = Set<Int>()
+        
+        // Таблица
+        let tableView: UITableView = {
+            let tableView = UITableView(frame: .zero, style: .grouped)
+            tableView.translatesAutoresizingMaskIntoConstraints = false
+            return tableView
+        }()
+    
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -207,15 +232,82 @@ final class PasswordSecurityController: UIViewController {
             make.width.height.equalTo(24)
         }
         
-        
-        
-        
-        
-        
-        
         tipsLabel.snp.makeConstraints { make in
             make.top.equalTo(progressStackView.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(24)
         }
+        
+        
+        // Настройка таблицы
+                view.addSubview(tableView)
+                tableView.delegate = self
+                tableView.dataSource = self
+                tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+                
+                // Устанавливаем ограничения для таблицы
+                NSLayoutConstraint.activate([
+                    tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                    tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                    tableView.topAnchor.constraint(equalTo: tipsLabel.bottomAnchor, constant: 30),
+                    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                ])
     }
+    
+    // Количество секций
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return titles.count
+        }
+        
+        // Количество строк в секции (одна строка для контента)
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return expandedSections.contains(section) ? 1 : 0
+        }
+        
+        // Ячейки с контентом
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.textLabel?.text = contents[indexPath.section]
+            cell.textLabel?.numberOfLines = 0 // Делаем текст многострочным
+            return cell
+        }
+        
+        // Заголовок для каждой секции
+        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+            let headerButton = UIButton(type: .system)
+            headerButton.setTitle(titles[section], for: .normal)
+            headerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            headerButton.contentHorizontalAlignment = .left
+            headerButton.backgroundColor = .darkGray
+            headerButton.setTitleColor(.white, for: .normal)
+            headerButton.tag = section
+            headerButton.addTarget(self, action: #selector(didTapHeader(_:)), for: .touchUpInside)
+            
+            return headerButton
+        }
+        
+        // Высота заголовка секции
+        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+            return 50
+        }
+        
+        // Динамическая высота ячеек
+        func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+            return UITableView.automaticDimension
+        }
+        
+        // Действие при нажатии на заголовок секции
+        @objc func didTapHeader(_ sender: UIButton) {
+            let section = sender.tag
+            
+            if expandedSections.contains(section) {
+                expandedSections.remove(section) // Скрываем секцию, если она раскрыта
+            } else {
+                expandedSections.insert(section) // Раскрываем секцию
+            }
+            
+            // Обновляем секцию с анимацией
+            tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+        }
+    
+    
 }
