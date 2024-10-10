@@ -96,9 +96,33 @@ final class VPNServiceController: UIViewController {
             case .invalid, .disconnected, .disconnecting:
                 activeSwipeCell?.updateStatus(for: false)
                 activeSwipeCell?.swipeConnectView.type(.off, isAnimate: true)
+                activeSwipeCell = nil
+                isConnectVpn = false
+                currentlyConnectedServer = nil
+                Default.shared.isConnectVpn = true
             case .connecting, .connected:
                 activeSwipeCell?.updateStatus(for: true)
                 activeSwipeCell?.swipeConnectView.type(.on, isAnimate: true)
+                Default.shared.isConnectVpn = false
+            default:
+                return
+            }
+        }
+        
+        vpnService.stateConnect = { [weak self] type in
+            guard let self = self else { return }
+            switch type {
+            case .invalid, .disconnected, .disconnecting:
+                activeSwipeCell?.updateStatus(for: false)
+                activeSwipeCell?.swipeConnectView.type(.off, isAnimate: true)
+                activeSwipeCell = nil
+                isConnectVpn = false
+                currentlyConnectedServer = nil
+                Default.shared.isConnectVpn = true
+            case .connecting, .connected:
+                activeSwipeCell?.updateStatus(for: true)
+                activeSwipeCell?.swipeConnectView.type(.on, isAnimate: true)
+                Default.shared.isConnectVpn = false
             default:
                 return
             }
@@ -125,6 +149,8 @@ final class VPNServiceController: UIViewController {
         addTargets()
         setupConstraints()
         addedNotificationCenter()
+        
+        vpnService.vpnStartDelegate()
     }
     
     private func connectToCountryVPN(_ isActivateVpn: Bool, server: VpnServers) {
@@ -247,6 +273,7 @@ final class VPNServiceController: UIViewController {
         let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
         cell?.popupView.isHidden = true
         removeView.isHidden = true
+        currentlyRemovedServerIndex = nil
     }
 }
 
