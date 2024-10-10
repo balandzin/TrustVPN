@@ -510,12 +510,12 @@
 			isa = PBXGroup;
 			children = (
 				D373AB2A2CAD58B000DF2EC7 /* VPNServiceTableView.swift */,
+				D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */,
 				D36506132CB6AC45003AF26C /* ServerNotSelectedView.swift */,
 				D3A017F72CB3D19A006238E1 /* PopupView.swift */,
 				D3A017F92CB3FF03006238E1 /* RenameView.swift */,
 				D365060F2CB66C64003AF26C /* RemoveView.swift */,
 				D3A017FB2CB40B35006238E1 /* PaddedTextField.swift */,
-				D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */,
 				D373AB2F2CAD7D7E00DF2EC7 /* SwipeConnectView.swift */,
 				D365060D2CB664B1003AF26C /* ServerRenamedView.swift */,
 			);

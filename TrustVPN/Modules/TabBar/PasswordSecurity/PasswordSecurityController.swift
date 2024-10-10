@@ -133,7 +133,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         let contents = [
             "Пароль должен содержать как минимум 12 символов. Используйте комбинацию букв, цифр и специальных символов для усиления безопасности.",
             "Слабые пароли могут привести к взлому аккаунта и утечке личных данных. Важно использовать сильные и уникальные пароли.",
-            "Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.",
+            "Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.Наш инструмент помогает создавать, сохранять и управлять паролями, что повышает вашу безопасность в интернете.",
             "Существует множество типов атак, таких как фишинг, атаки методом перебора и социальной инженерии. Узнайте, как защититься от них."
         ]
         
@@ -240,6 +240,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         
         // Настройка таблицы
                 view.addSubview(tableView)
+        tableView.backgroundColor = .clear
                 tableView.delegate = self
                 tableView.dataSource = self
                 tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -268,6 +269,8 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             cell.textLabel?.text = contents[indexPath.section]
             cell.textLabel?.numberOfLines = 0 // Делаем текст многострочным
+            cell.backgroundColor = .clear
+            cell.textLabel?.textColor = .white
             return cell
         }
         
