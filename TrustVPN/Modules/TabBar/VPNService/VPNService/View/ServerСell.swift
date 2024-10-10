@@ -108,10 +108,15 @@ final class ServerСell: UITableViewCell {
         countryName.text = model.countryName
         serverName.text = model.serverName
         
-        if isConnect {
+        updateStatus(for: isConnect)
+    }
+    
+    func updateStatus(for isConnect: Bool) {
+        switch isConnect {
+        case true:
             statusLabel.text = AppText.connected
             dropView.backgroundColor = AppColors.loadingIndicator
-        } else {
+        case false:
             statusLabel.text = AppText.disconnected
             dropView.backgroundColor = AppColors.dropRed
         }

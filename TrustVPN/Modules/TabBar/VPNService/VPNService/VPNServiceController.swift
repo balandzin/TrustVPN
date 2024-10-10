@@ -75,7 +75,38 @@ final class VPNServiceController: UIViewController {
     }
     
     // MARK: - Private Methods
+    private func addedNotificationCenter() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(appMovedToForeground),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
+    }
+    
+    @objc private func appMovedToForeground() {
+        setupStyleAllViews()
+    }
+    
+    private func setupStyleAllViews() {
+        AVVPNService.shared.getStatus { [weak self] type in
+            guard let self = self else { return }
+            
+            switch type {
+            case .invalid, .disconnected, .disconnecting:
+                activeSwipeCell?.updateStatus(for: false)
+                activeSwipeCell?.swipeConnectView.type(.off, isAnimate: true)
+            case .connecting, .connected:
+                activeSwipeCell?.updateStatus(for: true)
+                activeSwipeCell?.swipeConnectView.type(.on, isAnimate: true)
+            default:
+                return
+            }
+        }
+    }
+    
     private func setupUI() {
+        vpnService.vpnStartDelegate()
         view.addSubview(headerLabel)
         view.addSubview(plusImage)
         view.addSubview(serverNotSelectedView)
@@ -93,6 +124,7 @@ final class VPNServiceController: UIViewController {
         
         addTargets()
         setupConstraints()
+        addedNotificationCenter()
     }
     
     private func connectToCountryVPN(_ isActivateVpn: Bool, server: VpnServers) {
