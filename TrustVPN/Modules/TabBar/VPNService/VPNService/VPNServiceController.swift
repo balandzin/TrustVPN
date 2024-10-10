@@ -153,6 +153,7 @@ final class VPNServiceController: UIViewController {
         let index = sender.tag
         currentlyRenamedServerIndex = index
         let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
+        renameView.renameTextField.becomeFirstResponder()
         cell?.popupView.isHidden = true
     }
     

@@ -109,10 +109,13 @@ final class ChooseServerController: UIViewController {
             sender.setTitle(AppText.added, for: .normal)
             sender.backgroundColor = AppColors.dataSecurityLabel
             
+            serverAddedView.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.serverAddedView.isHidden = true
+            }
+            
             if selectedServers.count == 1 {
-                serverAddedView.isHidden = false
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.serverAddedView.isHidden = true
                     self.showServerAddedView()
                 }
             }

@@ -35,6 +35,7 @@ final class RenameView: UIView, UITextFieldDelegate {
         textField.padding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         textField.textColor = AppColors.almostWhite
         textField.layer.cornerRadius = 10
+        textField.keyboardAppearance = .dark
         textField.backgroundColor = AppColors.textFieldBackground
         return textField
     }()
@@ -102,6 +103,7 @@ final class RenameView: UIView, UITextFieldDelegate {
         renameTextField.delegate = self
         updateSaveButtonState()
         setupConstraints()
+        
     }
     
     private func setupConstraints() {
