@@ -52,6 +52,8 @@ struct Images : Codable {
     let unsecurePassword: String?
     let mediumPassword: String?
     let strongPassword: String?
+    let passwordSecurityDown: String?
+    let passwordSecurityUp: String?
     
     
     let aboutApOptionIMG : String?
