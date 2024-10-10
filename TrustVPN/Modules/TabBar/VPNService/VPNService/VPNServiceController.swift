@@ -148,7 +148,7 @@ final class VPNServiceController: UIViewController {
         navigationController?.pushViewController(chooseServerController, animated: false)
     }
     
-    @objc func renameButtonTapped(sender: UIButton) {
+    @objc func popupButtonTapped(sender: UIButton) {
         renameView.isHidden = false
         let index = sender.tag
         currentlyRenamedServerIndex = index
@@ -263,7 +263,7 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
         
         cell.popupView.renameButton.tag = indexPath.row
         cell.popupView.removeButton.tag = indexPath.row
-        cell.popupView.renameButton.addTarget(self, action: #selector(renameButtonTapped), for:.touchUpInside)
+        cell.popupView.renameButton.addTarget(self, action: #selector(popupButtonTapped), for:.touchUpInside)
         cell.popupView.removeButton.addTarget(self, action: #selector(removeButtonTapped), for: .touchUpInside)
         
         renameView.saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
