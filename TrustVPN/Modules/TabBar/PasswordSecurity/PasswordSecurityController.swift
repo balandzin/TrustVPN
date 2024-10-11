@@ -123,31 +123,26 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     }()
     
     // Данные для таблицы
-        let titles = [
-            AppText.howToCreateStrongPasswords,
-            AppText.whyIsPasswordSecurityImportant,
-            AppText.howOurToolWorks,
-            AppText.typesOfPasswordAttacks
-        ]
-        
-        let contents = [
-            AppText.howToCreateStrongPasswordsDescription,
-            AppText.whyIsPasswordSecurityImportantDescription,
-            AppText.howOurToolWorksDescription,
-            AppText.typesOfPasswordAttacksDescription
-        ]
-        
-        // Переменные для отслеживания раскрытия секций
-        var expandedSections = Set<Int>()
-        
-        // Таблица
-        let tableView: UITableView = {
-            let tableView = UITableView(frame: .zero, style: .grouped)
-            tableView.translatesAutoresizingMaskIntoConstraints = false
-            return tableView
-        }()
+    private let titles = [
+        AppText.howToCreateStrongPasswords,
+        AppText.whyIsPasswordSecurityImportant,
+        AppText.howOurToolWorks,
+        AppText.typesOfPasswordAttacks
+    ]
     
-
+    private let contents = [
+        AppText.howToCreateStrongPasswordsDescription,
+        AppText.whyIsPasswordSecurityImportantDescription,
+        AppText.howOurToolWorksDescription,
+        AppText.typesOfPasswordAttacksDescription
+    ]
+    
+    // Переменные для отслеживания раскрытия секций
+    var expandedSections = Set<Int>()
+    
+    // Таблица
+    let tableView = DropdownTableView()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -155,7 +150,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         setupStyle()
         setupUI()
     }
-   
+    
     // MARK: - Actions
     @objc private func togglePasswordVisibility() {
         passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
@@ -181,7 +176,10 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         successStackView.addArrangedSubview(successImage)
         successStackView.addArrangedSubview(successLabel)
         progressStackView.addArrangedSubview(crackedDescriptionLabel)
-
+        view.addSubview(tableView)
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         setupConstraints()
         
     }
@@ -237,23 +235,16 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
-        
-        // Настройка таблицы
-                view.addSubview(tableView)
-        tableView.backgroundColor = .clear
-                tableView.delegate = self
-                tableView.dataSource = self
-                tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-                
-                // Устанавливаем ограничения для таблицы
-                NSLayoutConstraint.activate([
-                    tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                    tableView.topAnchor.constraint(equalTo: tipsLabel.bottomAnchor, constant: 30),
-                    tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-                ])
+        tableView.snp.makeConstraints { make in
+            make.top.equalTo(tipsLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
+}
+
+extension PasswordSecurityController {
     // Количество секций
         func numberOfSections(in tableView: UITableView) -> Int {
             return titles.count
@@ -263,35 +254,53 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             return expandedSections.contains(section) ? 1 : 0
         }
+    
+    // Заголовок для каждой секции
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownHeaderCell") as! DropdownHeaderCell
+        let resultTitle = "\(section + 1). \(titles[section])"
+        cell.setupCell(title: resultTitle, isSectionOpen: false)
+        cell.openButton.addTarget(self, action: #selector(didTapHeader(_:)), for: .touchUpInside)
+        cell.openButton.tag = section
+        
+        
+        
+        
+//        let headerButton = UIButton(type: .system)
+//        headerButton.setTitle(titles[section], for: .normal)
+//        headerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+//        headerButton.contentHorizontalAlignment = .left
+//        headerButton.backgroundColor = .darkGray
+//        headerButton.setTitleColor(.white, for: .normal)
+//        headerButton.tag = section
+//        headerButton.addTarget(self, action: #selector(didTapHeader(_:)), for: .touchUpInside)
+        
+        //return headerButton
+        return cell
+    }
         
         // Ячейки с контентом
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            cell.textLabel?.text = contents[indexPath.section]
-            cell.textLabel?.numberOfLines = 0 // Делаем текст многострочным
-            cell.backgroundColor = .clear
-            cell.textLabel?.textColor = .white
+            let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell", for: indexPath) as! DropdownCell
+            cell.setupCell(text: contents[indexPath.section])
+            
+            
+            
+            
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+//            cell.textLabel?.text = contents[indexPath.section]
+//            cell.textLabel?.numberOfLines = 0 // Делаем текст многострочным
+//            cell.backgroundColor = .clear
+//            cell.textLabel?.textColor = .white
             return cell
         }
         
-        // Заголовок для каждой секции
-        func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-            let headerButton = UIButton(type: .system)
-            headerButton.setTitle(titles[section], for: .normal)
-            headerButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
-            headerButton.contentHorizontalAlignment = .left
-            headerButton.backgroundColor = .darkGray
-            headerButton.setTitleColor(.white, for: .normal)
-            headerButton.tag = section
-            headerButton.addTarget(self, action: #selector(didTapHeader(_:)), for: .touchUpInside)
-            
-            return headerButton
-        }
+        
         
         // Высота заголовка секции
-        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-            return 50
-        }
+//        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//            return 50
+//        }
         
         // Динамическая высота ячеек
         func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -309,7 +318,8 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             }
             
             // Обновляем секцию с анимацией
-            tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+            //tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+            tableView.reloadData()
         }
     
     

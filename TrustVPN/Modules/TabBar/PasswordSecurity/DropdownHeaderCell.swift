@@ -6,7 +6,7 @@ final class DropdownHeaderCell: UITableViewCell {
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColors.termsView
-        view.layer.cornerRadius = 20
+        view.layer.cornerRadius = 26
         return view
     }()
     
@@ -15,15 +15,15 @@ final class DropdownHeaderCell: UITableViewCell {
         label.text = AppText.passwordSecurity
         label.textAlignment = .left
         label.textColor = AppColors.almostWhite
-        label.font = .systemFont(ofSize: 16, weight: .bold)
-        label.adjustsFontSizeToFitWidth = true
+        label.font = .systemFont(ofSize: 16)
+        label.numberOfLines = 0
         return label
     }()
     
-    private lazy var openButton: UIButton = {
+    lazy var openButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityDown) ?? UIImage(named: "passwordSecurityDown"), for: .normal)
-        button.addTarget(self, action: #selector(openButtonTapped), for: .touchUpInside)
+        button.tintColor = AppColors.dataSecurityLabel
         return button
     }()
     
@@ -39,8 +39,13 @@ final class DropdownHeaderCell: UITableViewCell {
     }
     
     // MARK: - Methods
-    @objc private func openButtonTapped() {
-        print("openButtonTapped")
+    func setupCell(title: String, isSectionOpen: Bool) {
+        if isSectionOpen {
+            openButton.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityUp) ?? UIImage(named: "passwordSecurityUp"), for: .normal)
+        } else {
+            openButton.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityDown) ?? UIImage(named: "passwordSecurityDown"), for: .normal)
+        }
+        titleLabel.text = title
     }
     
     // MARK: - Private Methods
@@ -58,7 +63,7 @@ final class DropdownHeaderCell: UITableViewCell {
     
     private func setupConstraints() {
         containerView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(68)
             make.bottom.equalToSuperview()
@@ -66,8 +71,8 @@ final class DropdownHeaderCell: UITableViewCell {
         
         titleLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
-            make.centerY.equalToSuperview().inset(5)
-            make.trailing.equalTo(openButton.snp.leading).offset(20)
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().inset(40)
         }
         
         openButton.snp.makeConstraints { make in
