@@ -54,6 +54,8 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         textField.layer.cornerRadius = 10
         textField.keyboardAppearance = .dark
         textField.backgroundColor = AppColors.textFieldBackground
+        textField.addTarget(self, action: #selector(passwordTextChanged), for: .editingChanged)
+        
         return textField
     }()
     
@@ -73,11 +75,13 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         return stackView
     }()
     
-    private lazy var progressBar: UIProgressView = {
-        let progressView = UIProgressView()
-        progressView.progress = 0.5
-        progressView.progressTintColor = AppColors.termsView
-        progressView.trackTintColor = AppColors.textFieldBackground
+    private lazy var progressBar: GradientProgressView = {
+        let progressView = GradientProgressView()
+        //progressView.progress = 0
+        progressView.layer.cornerRadius = 4
+        progressView.backgroundColor = AppColors.termsView
+        //progressView.progressTintColor = .clear
+        //progressView.trackTintColor = AppColors.termsView
         return progressView
     }()
     
@@ -147,6 +151,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         
         setupStyle()
         setupUI()
+        addTapGestureToHideKeyboard()
     }
     
     // MARK: - Actions
@@ -154,7 +159,48 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         passwordTextField.isSecureTextEntry = !passwordTextField.isSecureTextEntry
     }
     
+    @objc private func passwordTextChanged() {
+        guard let password = passwordTextField.text else { return }
+        let score = calculatePasswordStrength(password)
+        updatePasswordUI(for: score)
+    }
+    
     // MARK: - Private Methods
+    private func addTapGestureToHideKeyboard() {
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+            tapGesture.cancelsTouchesInView = false
+            view.addGestureRecognizer(tapGesture)
+        }
+    
+    // Обновление UI в зависимости от силы пароля
+    private func updatePasswordUI(for score: Int) {
+        let strength: (color: UIColor, label: String, image: UIImage, progress: Float)
+        
+        switch score {
+        case 0:
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.0)
+        case 1:
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.1)
+        case 2...3:
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.2)
+        case 3...4:
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.3)
+        case 5...6:
+            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.6)
+        case 7...8:
+            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.8)
+        case 9:
+            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.9)
+        default:
+            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 1.0)
+        }
+        
+        successLabel.text = strength.label
+        successLabel.textColor = strength.color
+        successImage.image = strength.image
+        progressBar.setProgress(CGFloat(strength.progress), animated: true)
+    }
+    
     private func setupStyle() {
         view.backgroundColor = .gradientColor
         navigationController?.isNavigationBarHidden = true
@@ -182,7 +228,110 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         setupConstraints()
         
     }
+}
+
+// MARK: - TableView
+extension PasswordSecurityController {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return titles.count
+    }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return expandedSections.contains(section) ? 1 : 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownHeaderCell") as! DropdownHeaderCell
+        let resultTitle = "\(section + 1). \(titles[section])"
+        cell.setupCell(title: resultTitle, isSectionOpen: false)
+        cell.openButton.addTarget(self, action: #selector(didTapHeader(_:)), for: .touchUpInside)
+        cell.openButton.tag = section
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell", for: indexPath) as! DropdownCell
+        cell.setupCell(text: contents[indexPath.section])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    @objc func didTapHeader(_ sender: UIButton) {
+        let section = sender.tag
+        
+        if expandedSections.contains(section) {
+            expandedSections.remove(section)
+        } else {
+            expandedSections.insert(section)
+        }
+        
+        
+        tableView.reloadData()
+    }
+}
+
+extension PasswordSecurityController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension PasswordSecurityController {
+    // Функция расчета силы пароля
+    private func calculatePasswordStrength(_ password: String) -> Int {
+        var score = 0
+        
+        // Длина пароля
+        if password.count >= 8 { score += 1 }
+        if password.count >= 12 { score += 2 }
+        if password.count >= 16 { score += 3 }
+        
+        // Прописные, строчные, цифры и специальные символы
+        let uppercase = CharacterSet.uppercaseLetters
+        let lowercase = CharacterSet.lowercaseLetters
+        let digits = CharacterSet.decimalDigits
+        let special = CharacterSet.punctuationCharacters.union(CharacterSet.symbols)
+        
+        if password.rangeOfCharacter(from: uppercase) != nil { score += 1 }
+        if password.rangeOfCharacter(from: lowercase) != nil { score += 1 }
+        if password.rangeOfCharacter(from: digits) != nil { score += 1 }
+        if password.rangeOfCharacter(from: special) != nil { score += 2 } // Специальные символы более весомы
+        
+        // Последовательности и повторения
+        if hasSequentialCharacters(password) { score -= 1 }
+        if hasRepeatedCharacters(password) { score -= 1 }
+        
+        // Проверка словарных слов (например, популярные пароли)
+        if isDictionaryWord(password) { score -= 1 }
+        print(score)
+        return max(score, 0) // Минимальный балл 0
+    }
+    
+    // Проверка на последовательные символы
+    private func hasSequentialCharacters(_ password: String) -> Bool {
+        let sequentialPatterns = ["1234", "abcd", "qwerty"]
+        return sequentialPatterns.contains { password.contains($0) }
+    }
+    
+    // Проверка на повторяющиеся символы
+    private func hasRepeatedCharacters(_ password: String) -> Bool {
+        let repeatedPatterns = ["aaaa", "1111"]
+        return repeatedPatterns.contains { password.contains($0) }
+    }
+    
+    // Проверка словарных слов
+    private func isDictionaryWord(_ password: String) -> Bool {
+        let commonPasswords = ["password", "admin", "123456"]
+        return commonPasswords.contains(password.lowercased())
+    }
+}
+
+// MARK: - Setup Constraints
+extension PasswordSecurityController {
     private func setupConstraints() {
         headerLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
@@ -237,48 +386,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         tableView.snp.makeConstraints { make in
             make.top.equalTo(tipsLabel.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-    }
-}
-
-extension PasswordSecurityController {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return titles.count
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return expandedSections.contains(section) ? 1 : 0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownHeaderCell") as! DropdownHeaderCell
-        let resultTitle = "\(section + 1). \(titles[section])"
-        cell.setupCell(title: resultTitle, isSectionOpen: false)
-        cell.openButton.addTarget(self, action: #selector(didTapHeader(_:)), for: .touchUpInside)
-        cell.openButton.tag = section
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownCell", for: indexPath) as! DropdownCell
-        cell.setupCell(text: contents[indexPath.section])
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
-    
-    @objc func didTapHeader(_ sender: UIButton) {
-        let section = sender.tag
-        
-        if expandedSections.contains(section) {
-            expandedSections.remove(section)
-        } else {
-            expandedSections.insert(section)
-        }
-        
-        tableView.reloadData()
     }
 }
