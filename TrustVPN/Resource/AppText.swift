@@ -84,4 +84,8 @@ There are several main types of password attacks, with the most common being:
  5.  Phishing: The attacker creates fake websites or sends fraudulent emails to deceive users into entering their passwords. This data is then used to access accounts.
  6.  Credential Stuffing: This method uses already compromised usernames and passwords to attempt to log into other accounts. This approach is effective against users who use the same password across multiple services.
 """
+    
+    static var sec: String = "sec"
+    static var min: String = "min"
+    static var hours: String = "hours"
 }

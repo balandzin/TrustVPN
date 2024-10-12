@@ -111,7 +111,8 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         let label = UILabel()
         label.text = AppText.crackedDescriptionLabel
         label.textColor = AppColors.almostWhite
-        label.font = .systemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: 14)
+        label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -157,8 +158,13 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     }
     
     @objc private func passwordTextChanged() {
-        progressStackView.isHidden = false
         guard let password = passwordTextField.text else { return }
+        if password.isEmpty {
+            updateHideProgressView(isHidden: true)
+            return
+        }
+
+        updateHideProgressView(isHidden: false)
         let score = calculatePasswordStrength(password)
         updatePasswordUI(for: score)
     }
@@ -168,23 +174,23 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
             tapGesture.cancelsTouchesInView = false
             view.addGestureRecognizer(tapGesture)
-        }
+    }
     
     private func updateHideProgressView(isHidden: Bool) {
         if isHidden {
             progressStackView.isHidden = true
-            tipsLabel.snp.makeConstraints { make in
+            tipsLabel.snp.remakeConstraints { make in
                 make.top.equalTo(passwordTextField.snp.bottom).offset(12)
                 make.leading.trailing.equalToSuperview().inset(24)
             }
         } else {
             progressStackView.isHidden = false
             
-            progressStackView.snp.makeConstraints { make in
+            progressStackView.snp.remakeConstraints { make in
                 make.top.equalTo(passwordTextField.snp.bottom).offset(12)
                 make.leading.trailing.equalToSuperview().inset(40)
             }
-            tipsLabel.snp.makeConstraints { make in
+            tipsLabel.snp.remakeConstraints { make in
                 make.top.equalTo(progressStackView.snp.bottom).offset(30)
                 make.leading.trailing.equalToSuperview().inset(24)
             }
@@ -194,36 +200,37 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     
     // Обновление UI в зависимости от силы пароля
     private func updatePasswordUI(for score: Int) {
-        let strength: (color: UIColor, label: String, image: UIImage, progress: Float)
+        let strength: (color: UIColor, label: String, image: UIImage, progress: Float, crackedLabel: String, crackedLong: String)
         
         switch score {
         case 0:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.0)
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.0, crackedLabel: "", crackedLong: "")
         case 1:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.1)
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.1, crackedLabel: "3", crackedLong: AppText.min)
         case 2:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.2)
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.2, crackedLabel: "5", crackedLong: AppText.min)
         case 3:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.3)
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.3, crackedLabel: "23", crackedLong: AppText.min)
         case 4:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.4)
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.4, crackedLabel: "2", crackedLong: AppText.hours)
         case 5:
-            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.5)
+            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.5, crackedLabel: "9", crackedLong: AppText.hours)
         case 6:
-            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.6)
+            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.6, crackedLabel: "112", crackedLong: AppText.hours)
         case 7:
-            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.7)
+            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.7, crackedLabel: "1239", crackedLong: AppText.hours)
         case 8:
-            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.8)
+            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.8, crackedLabel: "67433", crackedLong: AppText.hours)
         case 9:
-            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.9)
+            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.9, crackedLabel: "78565884", crackedLong: AppText.hours)
         default:
-            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 1.0)
+            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 1.0, crackedLabel: "56854456565858545", crackedLong: AppText.hours)
         }
         
         successLabel.text = strength.label
         successLabel.textColor = strength.color
         successImage.image = strength.image
+        crackedDescriptionLabel.text = AppText.crackedDescriptionLabel + " \(strength.crackedLabel)" + " \(strength.crackedLong)"
         progressBar.setProgress(CGFloat(strength.progress), animated: true)
     }
     
@@ -406,7 +413,7 @@ extension PasswordSecurityController {
         }
         
         tipsLabel.snp.makeConstraints { make in
-            make.top.equalTo(progressStackView.snp.bottom).offset(30)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
