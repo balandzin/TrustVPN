@@ -77,11 +77,8 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     
     private lazy var progressBar: GradientProgressView = {
         let progressView = GradientProgressView()
-        //progressView.progress = 0
         progressView.layer.cornerRadius = 4
         progressView.backgroundColor = AppColors.termsView
-        //progressView.progressTintColor = .clear
-        //progressView.trackTintColor = AppColors.termsView
         return progressView
     }()
     
@@ -160,6 +157,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     }
     
     @objc private func passwordTextChanged() {
+        progressStackView.isHidden = false
         guard let password = passwordTextField.text else { return }
         let score = calculatePasswordStrength(password)
         updatePasswordUI(for: score)
@@ -172,6 +170,28 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             view.addGestureRecognizer(tapGesture)
         }
     
+    private func updateHideProgressView(isHidden: Bool) {
+        if isHidden {
+            progressStackView.isHidden = true
+            tipsLabel.snp.makeConstraints { make in
+                make.top.equalTo(passwordTextField.snp.bottom).offset(12)
+                make.leading.trailing.equalToSuperview().inset(24)
+            }
+        } else {
+            progressStackView.isHidden = false
+            
+            progressStackView.snp.makeConstraints { make in
+                make.top.equalTo(passwordTextField.snp.bottom).offset(12)
+                make.leading.trailing.equalToSuperview().inset(40)
+            }
+            tipsLabel.snp.makeConstraints { make in
+                make.top.equalTo(progressStackView.snp.bottom).offset(30)
+                make.leading.trailing.equalToSuperview().inset(24)
+            }
+        }
+        
+    }
+    
     // Обновление UI в зависимости от силы пароля
     private func updatePasswordUI(for score: Int) {
         let strength: (color: UIColor, label: String, image: UIImage, progress: Float)
@@ -181,13 +201,19 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.0)
         case 1:
             strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.1)
-        case 2...3:
+        case 2:
             strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.2)
-        case 3...4:
+        case 3:
             strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.3)
-        case 5...6:
+        case 4:
+            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.4)
+        case 5:
+            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.5)
+        case 6:
             strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.6)
-        case 7...8:
+        case 7:
+            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.7)
+        case 8:
             strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.8)
         case 9:
             strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.9)
@@ -204,6 +230,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     private func setupStyle() {
         view.backgroundColor = .gradientColor
         navigationController?.isNavigationBarHidden = true
+        progressStackView.isHidden = true
     }
     
     private func setupUI() {
