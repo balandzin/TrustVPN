@@ -18,6 +18,8 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         setValue(customTabBar, forKey: "tabBar")
         createViewControllers()
         self.delegate = self
+
+        self.tabBar.tintColor = .clear
         
         guard let vpnService, let vpnServiceSelected else { return }
         updateTabBarImages(selectedIndex: 0, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
@@ -38,7 +40,6 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             
             switch selectedIndex {
             case 0:
-                
                 updateTabBarImages(selectedIndex: selectedIndex, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
             case 1:
                 updateTabBarImages(selectedIndex: selectedIndex, selectedImage: deviceSearchSelected, unselectedImage: deviceSearch)

@@ -88,4 +88,8 @@ There are several main types of password attacks, with the most common being:
     static var sec: String = "sec"
     static var min: String = "min"
     static var hours: String = "hours"
+    static var startScanning: String = "Start scanning"
+    static var stop: String = "Stop"
+    static var indicator: String = "When a device is detected, the indicator's values will change: the closer you get to the device, the higher the values."
+    
 }

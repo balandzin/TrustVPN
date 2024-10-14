@@ -131,30 +131,4 @@ extension OnboardViewController {
         newNavigationController.modalTransitionStyle = .crossDissolve
         navigationController?.present(newNavigationController, animated: false)
     }
-     
-//    //ДОБАВИТЬ ЛОКАЛИЗАЦИЮ TITLE
-//    private func createViewControllers(_ tabBarController: TabBarController) {
-//        tabBarController.viewControllers = [
-//            UIViewController.createNavController(
-//                for: VPNServiceController(),
-//                image: (.loadImage(LoadService.shared.load?.images?.vpnService) ?? UIImage(named: "vpnService")) ?? UIImage(),
-//                tag: 0
-//            ),
-//            UIViewController.createNavController(
-//                for: DeviceSearchController(),
-//                image: (.loadImage(LoadService.shared.load?.images?.deviceSearch) ?? UIImage(named: "deviceSearch")) ?? UIImage(),
-//                tag: 1
-//            ),
-//            UIViewController.createNavController(
-//                for: PasswordSecurityController(),
-//                image: (.loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? UIImage(named: "passwordSecurity")) ?? UIImage(),
-//                tag: 2
-//            ),
-//            UIViewController.createNavController(
-//                for: OptionsController(),
-//                image: (.loadImage(LoadService.shared.load?.images?.options) ?? UIImage(named: "options")) ?? UIImage(),
-//                tag: 3
-//            )
-//        ]
-//    }
 }

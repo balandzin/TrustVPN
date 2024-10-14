@@ -4,13 +4,20 @@ import SnapKit
 
 class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
 
-    // MARK: - UI Elements
+    // MARK: - GUI Variables
     private let circularProgressLayer = CAShapeLayer()
     private let gradientLayer = CAGradientLayer()
     private let arrowLayer = CAShapeLayer()
     private let proximityLabel = UILabel()
     private let searchButton = UIButton()
     private let descriptionLabel = UILabel()
+    private lazy var pointView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 16
+        view.layer.masksToBounds = true
+        view.backgroundColor = AppColors.almostWhite
+        return view
+    }()
 
     // Степень близости устройства (от 0 до 1)
     private var proximity: CGFloat = 0 {
@@ -18,6 +25,8 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
             updateProximityUI()
         }
     }
+    
+    private var isScanning = false
 
     // Таймер для завершения поиска
     private var searchTimer: Timer?
@@ -42,7 +51,7 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
 
     // MARK: - Setup UI
     private func setupUI() {
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.gradientColor
 
         // Настройка полукруглого индикатора
         setupCircularProgress()
@@ -58,35 +67,47 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
 
         // Настройка кнопки поиска устройства
         setupSearchButton()
+        
+        setupConstraints()
     }
 
     private func setupCircularProgress() {
         let center = CGPoint(x: view.bounds.midX, y: view.bounds.midY - 100)
         indicatorCenter = center // Сохраняем центр для дальнейшего использования
         let radius: CGFloat = 120
+        
 
         // Полукруг (дуга)
         let circularPath = UIBezierPath(arcCenter: center,
                                         radius: radius,
-                                        startAngle: CGFloat.pi * 3 / 4,  // 225 градусов (слева)
-                                        endAngle: CGFloat.pi * 9 / 4,    // 315 градусов (справа)
+                                        startAngle: CGFloat.pi * 3 / 4,
+                                        endAngle: CGFloat.pi * 9 / 4,
                                         clockwise: true)
 
         circularProgressLayer.path = circularPath.cgPath
-        circularProgressLayer.lineWidth = 15
+        circularProgressLayer.lineWidth = 22
         circularProgressLayer.fillColor = UIColor.clear.cgColor
         circularProgressLayer.strokeColor = UIColor.black.cgColor
         circularProgressLayer.lineCap = .round
 
         // Настройка градиента для шкалы
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [UIColor.cyan.cgColor, UIColor.blue.cgColor, UIColor.purple.cgColor]
+        gradientLayer.colors = [AppColors.aaa.cgColor, AppColors.bbb.cgColor, AppColors.ccc.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)  // Центр
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)    // Внешний радиус
         gradientLayer.type = .conic
         gradientLayer.mask = circularProgressLayer
 
         view.layer.addSublayer(gradientLayer)
+        setupPointView(center: center, radius: radius)
+    }
+    
+    private func setupPointView(center: CGPoint, radius: CGFloat) {
+        pointView.frame = CGRect(x: 0, y: 0, width: 32, height: 32)
+        pointView.center = center
+        pointView.layer.borderWidth = 2
+        pointView.layer.borderColor = UIColor.black.cgColor
+        view.addSubview(pointView)
     }
 
     private func setupArrow() {
@@ -117,50 +138,28 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         proximityLabel.text = "00 μТ"
         proximityLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(proximityLabel)
-
-        // Используем SnapKit для задания констрейнтов
-        proximityLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(view.snp.centerY).offset(20)
-        }
     }
 
     private func setupDescriptionLabel() {
         descriptionLabel.font = UIFont.systemFont(ofSize: 16, weight: .regular)
-        descriptionLabel.textColor = .gray
+        descriptionLabel.textColor = AppColors.dataSecurityLabel
         descriptionLabel.textAlignment = .center
-        descriptionLabel.text = "When a device is detected, the indicator's values will change: the closer you get to the device, the higher the values."
+        descriptionLabel.text = AppText.indicator
         descriptionLabel.numberOfLines = 0
         descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(descriptionLabel)
-
-        // Используем SnapKit для задания констрейнтов
-        descriptionLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(proximityLabel.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-        }
     }
 
     private func setupSearchButton() {
-        searchButton.setTitle("Start scanning", for: .normal)
-        searchButton.backgroundColor = .systemBlue
-        searchButton.setTitleColor(.white, for: .normal)
-        searchButton.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        searchButton.setTitle(AppText.startScanning, for: .normal)
+        searchButton.backgroundColor = AppColors.loadingIndicator
+        searchButton.setTitleColor(AppColors.almostWhite, for: .normal)
+        searchButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         searchButton.layer.cornerRadius = 25
         searchButton.translatesAutoresizingMaskIntoConstraints = false
-        searchButton.addTarget(self, action: #selector(startSearch), for: .touchUpInside)
+        searchButton.addTarget(self, action: #selector(startOrStopSearch), for: .touchUpInside)
 
         view.addSubview(searchButton)
-
-        // Используем SnapKit для задания констрейнтов
-        searchButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-30)
-            make.width.equalTo(200)
-            make.height.equalTo(50)
-        }
     }
 
     // MARK: - Update Proximity UI
@@ -181,39 +180,46 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     }
 
     // MARK: - Search Logic
-    @objc private func startSearch() {
-        // Останавливаем предыдущий поиск, если он был запущен
-        stopSearch()
+       @objc private func startOrStopSearch() {
+           if isScanning {
+               stopSearch()
+           } else {
+               startSearch()
+           }
+       }
 
-        // Проверка состояния Bluetooth
-        if centralManager.state != .poweredOn {
-            showBluetoothAlert()
-            return
-        }
+       @objc private func startSearch() {
+           // Проверка состояния Bluetooth
+           if centralManager.state != .poweredOn {
+               showBluetoothAlert()
+               return
+           }
 
-        // Запускаем поиск устройств по Bluetooth
-        centralManager.scanForPeripherals(withServices: nil, options: nil)
+           // Запускаем поиск устройств по Bluetooth
+           centralManager.scanForPeripherals(withServices: nil, options: nil)
 
-        // Таймер для остановки поиска через 30 секунд
-        searchTimer = Timer.scheduledTimer(timeInterval: searchDuration, target: self, selector: #selector(stopSearch), userInfo: nil, repeats: false)
+           // Таймер для остановки поиска через 30 секунд
+           searchTimer = Timer.scheduledTimer(timeInterval: searchDuration, target: self, selector: #selector(stopSearch), userInfo: nil, repeats: false)
 
-        // Меняем текст кнопки на "Stop"
-        searchButton.setTitle("Stop scanning", for: .normal)
-    }
+           // Меняем текст кнопки на "Stop"
+           searchButton.setTitle("Stop", for: .normal)
+           isScanning = true
+       }
 
-    @objc private func stopSearch() {
-        searchTimer?.invalidate()
-        searchTimer = nil
+       @objc private func stopSearch() {
+           searchTimer?.invalidate()
+           searchTimer = nil
 
-        // Останавливаем сканирование Bluetooth
-        centralManager.stopScan()
+           // Останавливаем сканирование Bluetooth
+           centralManager.stopScan()
 
-        // Меняем текст кнопки обратно на "Start scanning"
-        searchButton.setTitle("Start scanning", for: .normal)
+           // Меняем текст кнопки обратно на "Start scanning"
+           searchButton.setTitle("Start scanning", for: .normal)
+           isScanning = false
 
-        // Когда поиск завершен, можно сбросить индикатор (опционально)
-        updateProximity(to: 0.0)
-    }
+           // Когда поиск завершен, можно сбросить индикатор (опционально)
+           updateProximity(to: 0.0)
+       }
 
     // Функция для обновления уровня близости устройства
     private func updateProximity(to newValue: CGFloat) {
@@ -266,6 +272,29 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         alert.addAction(openSettingsAction)
         alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension DeviceSearchController {
+    private func setupConstraints() {
+        proximityLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.snp.centerY).offset(20)
+        }
+        
+        descriptionLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(proximityLabel.snp.bottom).offset(40)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
+        }
+        
+        searchButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-40)
+            make.leading.equalToSuperview().offset(24)
+            make.trailing.equalToSuperview().offset(-24)
+            make.height.equalTo(52)
+        }
     }
 }
 
