@@ -4,6 +4,7 @@ final class Default {
     
     enum KeyId: String {
         case isShowOnboard
+        case isShowDeviceSearchInfo
         case linkItems
         case countScan
         case wifiScan
@@ -78,6 +79,11 @@ final class Default {
     var isShowOnboard: Bool {
         get { getFlag(.isShowOnboard) as? Bool ?? false }
         set { setFlag(newValue, key: .isShowOnboard) }
+    }
+    
+    var isShowDeviceSearchInfo: Bool {
+        get { getFlag(.isShowDeviceSearchInfo) as? Bool ?? false }
+        set { setFlag(newValue, key: .isShowDeviceSearchInfo) }
     }
     
     private lazy var userDefaults = UserDefaults(suiteName: "application")

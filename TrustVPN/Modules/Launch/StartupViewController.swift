@@ -192,53 +192,17 @@ extension StartupViewController {
     private func showTerms() {
         let controller = TermsOfUseViewController()
         navigationController?.pushViewController(controller, animated: false)
-        
-        
-        
-        //        let scene = OnboardScene()
-        //        let newNavigationView = UINavigationController(rootViewController: scene)
-        //        newNavigationView.modalPresentationStyle = .overFullScreen
-        //        newNavigationView.modalTransitionStyle = .crossDissolve
-        //        navigationController?.present(OnboardScene(), animated: false)
+        Default.shared.isShowOnboard = true
     }
     
-//    private func showTabBarController() {
-//        let tabBarController = TabBarScene()
-//        let newNavigationController = UINavigationController(rootViewController: tabBarController)
-//        //createViewControllers(tabBarController)
-//        newNavigationController.modalPresentationStyle = .overFullScreen
-//        newNavigationController.modalTransitionStyle = .crossDissolve
-//        navigationController?.present(newNavigationController, animated: false)
-//    }
-    
-    //    private func createViewControllers(_ tabBarController: TabBarScene) {
-    //        tabBarController.viewControllers = [
-    //            UIViewController.createNavController(
-    //                for: VpnServiceScene(),
-    //                image: .loadImage(LoadService.shared.load?.images?.vpnTabBarIMG),
-    //                title: "tab_bar_vpn".localized,
-    //                tag: 0
-    //            ),
-    //            UIViewController.createNavController(
-    //                for: LinkVaultScene(),
-    //                image: .loadImage(LoadService.shared.load?.images?.vaultTabBarIMG),
-    //                title: "tab_bar_vault".localized,
-    //                tag: 1
-    //            ),
-    //            UIViewController.createNavController(
-    //                for: StatisticsScene(),
-    //                image: .loadImage(LoadService.shared.load?.images?.statisticTabBarIMG),
-    //                title: "tab_bar_statisctics".localized,
-    //                tag: 2
-    //            ),
-    //            UIViewController.createNavController(
-    //                for: OptionsScene(),
-    //                image: .loadImage(LoadService.shared.load?.images?.settingTabBarIMG),
-    //                title: "tab_bar_options".localized,
-    //                tag: 3
-    //            )
-    //        ]
-    //    }
+    private func showTabBarController() {
+        let tabBarController = TabBarController()
+        let newNavigationController = UINavigationController(rootViewController: tabBarController)
+        newNavigationController.isNavigationBarHidden = true
+        newNavigationController.modalPresentationStyle = .fullScreen
+        newNavigationController.modalTransitionStyle = .crossDissolve
+        navigationController?.present(newNavigationController, animated: false)
+    }
 }
 
 extension Bundle {

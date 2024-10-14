@@ -52,6 +52,10 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     // MARK: - Setup UI
     private func setupUI() {
         view.backgroundColor = UIColor.gradientColor
+        
+        if !Default.shared.isShowDeviceSearchInfo {
+            
+        }
 
         // Настройка полукруглого индикатора
         setupCircularProgress()
@@ -160,6 +164,7 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         searchButton.addTarget(self, action: #selector(startOrStopSearch), for: .touchUpInside)
 
         view.addSubview(searchButton)
+
     }
 
     // MARK: - Update Proximity UI
@@ -170,7 +175,7 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
 
         // Углы для стрелки: от 225 градусов (5π/4, слева) до 315 градусов (7π/4, справа)
         let minAngle = 5 * CGFloat.pi / 4  // 225 градусов (слева)
-        let maxAngle = 7 * CGFloat.pi / 4  // 315 градусов (справа)
+        let maxAngle = 11 * CGFloat.pi / 4  // 315 градусов (справа)
 
         // Вычисляем угол поворота на основе близости (proximity)
         let angle = minAngle + (maxAngle - minAngle) * proximity // Линейное преобразование угла
