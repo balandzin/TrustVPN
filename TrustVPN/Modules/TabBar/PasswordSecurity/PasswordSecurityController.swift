@@ -198,7 +198,6 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         
     }
     
-    // Обновление UI в зависимости от силы пароля
     private func updatePasswordUI(for score: Int) {
         let strength: (color: UIColor, label: String, image: UIImage, progress: Float, crackedLabel: String, crackedLong: String)
         
@@ -302,7 +301,6 @@ extension PasswordSecurityController {
             expandedSections.insert(section)
         }
         
-        
         tableView.reloadData()
     }
 }
@@ -315,16 +313,13 @@ extension PasswordSecurityController: UITextFieldDelegate {
 }
 
 extension PasswordSecurityController {
-    // Функция расчета силы пароля
     private func calculatePasswordStrength(_ password: String) -> Int {
         var score = 0
         
-        // Длина пароля
         if password.count >= 8 { score += 1 }
         if password.count >= 12 { score += 2 }
         if password.count >= 16 { score += 3 }
         
-        // Прописные, строчные, цифры и специальные символы
         let uppercase = CharacterSet.uppercaseLetters
         let lowercase = CharacterSet.lowercaseLetters
         let digits = CharacterSet.decimalDigits
@@ -333,31 +328,26 @@ extension PasswordSecurityController {
         if password.rangeOfCharacter(from: uppercase) != nil { score += 1 }
         if password.rangeOfCharacter(from: lowercase) != nil { score += 1 }
         if password.rangeOfCharacter(from: digits) != nil { score += 1 }
-        if password.rangeOfCharacter(from: special) != nil { score += 2 } // Специальные символы более весомы
+        if password.rangeOfCharacter(from: special) != nil { score += 2 }
         
-        // Последовательности и повторения
         if hasSequentialCharacters(password) { score -= 1 }
         if hasRepeatedCharacters(password) { score -= 1 }
         
-        // Проверка словарных слов (например, популярные пароли)
         if isDictionaryWord(password) { score -= 1 }
         print(score)
-        return max(score, 0) // Минимальный балл 0
+        return max(score, 0)
     }
     
-    // Проверка на последовательные символы
     private func hasSequentialCharacters(_ password: String) -> Bool {
         let sequentialPatterns = ["1234", "abcd", "qwerty"]
         return sequentialPatterns.contains { password.contains($0) }
     }
     
-    // Проверка на повторяющиеся символы
     private func hasRepeatedCharacters(_ password: String) -> Bool {
         let repeatedPatterns = ["aaaa", "1111"]
         return repeatedPatterns.contains { password.contains($0) }
     }
     
-    // Проверка словарных слов
     private func isDictionaryWord(_ password: String) -> Bool {
         let commonPasswords = ["password", "admin", "123456"]
         return commonPasswords.contains(password.lowercased())
