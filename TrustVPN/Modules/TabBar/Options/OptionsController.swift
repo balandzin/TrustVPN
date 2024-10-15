@@ -1,4 +1,5 @@
 import UIKit
+import Network
 
 final class OptionsController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -128,7 +129,13 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         setupUI()
         setupConnectionInfo()
         setupData()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(vpnStatusChanged), name: .vpnConnectionStatusChanged, object: nil)
     }
+    
+    deinit {
+            NotificationCenter.default.removeObserver(self, name: .vpnConnectionStatusChanged, object: nil)
+        }
     
     // MARK: - Private Methods
     private func setupStyle() {
@@ -162,6 +169,10 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         
         collectionView.reloadData()
     }
+    
+    @objc private func vpnStatusChanged() {
+            setupConnectionInfo()
+        }
     
     private func setupConnectionInfo() {
         if Default.shared.isConnectVpn {

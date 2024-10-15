@@ -310,6 +310,7 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
                 self?.currentlyConnectedServer = server
                 self?.resetOtherServers(from: indexPath.row)
                 self?.showConnectionToView(server: server)
+                Default.shared.isConnectVpn = true
                 
             } else {
                 cell.updateCell(model: server, isConnect: false)
@@ -317,6 +318,7 @@ extension VPNServiceController: UITableViewDelegate, UITableViewDataSource {
                 self?.isConnectVpn = false
                 self?.activeSwipeCell = nil
                 self?.currentlyConnectedServer = nil
+                Default.shared.isConnectVpn = false
             }
         }
         
