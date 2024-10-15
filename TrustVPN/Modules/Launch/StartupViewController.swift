@@ -182,7 +182,7 @@ extension StartupViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if Default.shared.isShowOnboard {
-                self.showTerms()  // ПОМЕНЯТЬ НА showTabBarController()
+                self.showTabBarController()
             } else {
                 self.showTerms()
             }

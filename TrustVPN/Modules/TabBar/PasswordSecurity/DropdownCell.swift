@@ -15,7 +15,6 @@ final class DropdownCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         setupUI()
-        
     }
     
     required init?(coder: NSCoder) {

@@ -24,6 +24,7 @@ final class DropdownHeaderCell: UITableViewCell {
         let button = UIButton(type: .system)
         button.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityDown) ?? UIImage(named: "passwordSecurityDown"), for: .normal)
         button.tintColor = AppColors.dataSecurityLabel
+        button.touchAreaInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)
         return button
     }()
     

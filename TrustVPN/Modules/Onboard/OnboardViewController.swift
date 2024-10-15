@@ -65,9 +65,9 @@ final class OnboardViewController: UIViewController {
     private func setupConstraints() {
         imageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(15.vertical)
-            make.height.equalTo(410)
-            make.leading.equalTo(view.snp.leading).inset(24)
-            make.trailing.equalTo(view.snp.trailing).inset(24)
+            make.height.equalTo(420.vertical)
+            make.centerX.equalTo(view.safeAreaLayoutGuide)
+            make.width.equalTo(327.horizontal)
         }
         
         infoView.snp.makeConstraints { make in
