@@ -120,6 +120,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     
     // MARK: - Properties
     private var items: [CollectionItemModel] = []
+    private var monitor: NWPathMonitor?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -129,13 +130,15 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         setupUI()
         setupConnectionInfo()
         setupData()
+        startMonitoringNetwork()
         
         NotificationCenter.default.addObserver(self, selector: #selector(vpnStatusChanged), name: .vpnConnectionStatusChanged, object: nil)
     }
     
     deinit {
-            NotificationCenter.default.removeObserver(self, name: .vpnConnectionStatusChanged, object: nil)
-        }
+        NotificationCenter.default.removeObserver(self, name: .vpnConnectionStatusChanged, object: nil)
+        stopMonitoringNetwork()
+    }
     
     // MARK: - Private Methods
     private func setupStyle() {
@@ -171,8 +174,8 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     @objc private func vpnStatusChanged() {
-            setupConnectionInfo()
-        }
+        setupConnectionInfo()
+    }
     
     private func setupConnectionInfo() {
         if Default.shared.isConnectVpn {
@@ -184,32 +187,65 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         }
     }
     
-    // MARK: - UICollectionViewDataSource
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return items.count
-        }
+    private func startMonitoringNetwork() {
+        monitor = NWPathMonitor()
+        let queue = DispatchQueue.global(qos: .background)
         
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else {
-                return UICollectionViewCell()
+        monitor?.pathUpdateHandler = { [weak self] path in
+            if path.status == .satisfied {
+                if path.usesInterfaceType(.wifi) {
+                    DispatchQueue.main.async {
+                        self?.connectionType.text = "Wi-Fi"
+                    }
+                } else if path.usesInterfaceType(.cellular) {
+                    DispatchQueue.main.async {
+                        self?.connectionType.text = "Cellular"
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self?.connectionType.text = "Internet"
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self?.connectionType.text = "No Internet Connection"
+                }
             }
-            let item = items[indexPath.item]
-            cell.configure(with: item)
-            return cell
         }
         
-        // MARK: - UICollectionViewDelegate
-        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let selectedItem = items[indexPath.item]
-            let destinationVC = selectedItem.destinationVC
-            navigationController?.isNavigationBarHidden = false
-            navigationController?.pushViewController(destinationVC, animated: true)
+        monitor?.start(queue: queue)
+    }
+    
+    private func stopMonitoringNetwork() {
+        monitor?.cancel()
+    }
+    
+    // MARK: - UICollectionViewDataSource
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return items.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else {
+            return UICollectionViewCell()
         }
-        
-        // MARK: - UICollectionViewDelegateFlowLayout
-        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 156, height: 92)
-        }
+        let item = items[indexPath.item]
+        cell.configure(with: item)
+        return cell
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let selectedItem = items[indexPath.item]
+        let destinationVC = selectedItem.destinationVC
+        navigationController?.isNavigationBarHidden = false
+        navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
+    // MARK: - UICollectionViewDelegateFlowLayout
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 156, height: 92)
+    }
     
     
     @objc private func moreButtonTapped() {
