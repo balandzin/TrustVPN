@@ -1,7 +1,7 @@
 import UIKit
 
-final class OptionsController: UIViewController {
-
+final class OptionsController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
@@ -48,7 +48,7 @@ final class OptionsController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
-        
+    
     private lazy var dropView: UIView = {
         let image = UIView()
         image.backgroundColor = AppColors.dropRed
@@ -103,12 +103,31 @@ final class OptionsController: UIViewController {
         return label
     }()
     
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 16
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(CustomCollectionViewCell.self, forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
+        return collectionView
+    }()
+    
+    // MARK: - Properties
+    private var items: [CollectionItemModel] = []
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupStyle()
         setupUI()
+        setupConnectionInfo()
+        setupData()
     }
     
     // MARK: - Private Methods
@@ -129,8 +148,57 @@ final class OptionsController: UIViewController {
         connectionTypeView.addSubview(connectionTypeLabel)
         connectionTypeView.addSubview(connectionType)
         view.addSubview(additionalSettingsLabel)
+        view.addSubview(collectionView)
         setupConstraints()
     }
+    
+    private func setupData() {
+        items = [
+            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.changeIcon) ?? UIImage(named: "changeIcon") ?? UIImage(), title: AppText.changeIcon, destinationVC: ChangeIconController()),
+            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.support) ?? UIImage(named: "support") ?? UIImage(), title: AppText.supportAndFAQ, destinationVC: SupportController()),
+            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.privatePolicy) ?? UIImage(named: "privatePolicy") ?? UIImage(), title: AppText.privatePolicy, destinationVC: PrivacyPolicyController()),
+            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.termsOfUse) ?? UIImage(named: "termsOfUse") ?? UIImage(), title: AppText.termsOfUse, destinationVC: TermsOfUseController())
+        ]
+        
+        collectionView.reloadData()
+    }
+    
+    private func setupConnectionInfo() {
+        if Default.shared.isConnectVpn {
+            dropView.backgroundColor = AppColors.loadingIndicator
+            statusLabel.text = AppText.connected
+        } else {
+            dropView.backgroundColor = AppColors.dropRed
+            statusLabel.text = AppText.disconnected
+        }
+    }
+    
+    // MARK: - UICollectionViewDataSource
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return items.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            let item = items[indexPath.item]
+            cell.configure(with: item)
+            return cell
+        }
+        
+        // MARK: - UICollectionViewDelegate
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let selectedItem = items[indexPath.item]
+            let destinationVC = selectedItem.destinationVC
+            navigationController?.isNavigationBarHidden = false
+            navigationController?.pushViewController(destinationVC, animated: true)
+        }
+        
+        // MARK: - UICollectionViewDelegateFlowLayout
+        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+            return CGSize(width: 156, height: 92)
+        }
     
     
     @objc private func moreButtonTapped() {
@@ -205,6 +273,12 @@ extension OptionsController {
             make.top.equalTo(connectionTypeView.snp.bottom).offset(50)
             make.leading.equalToSuperview().inset(20)
             make.trailing.equalToSuperview().inset(20)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(additionalSettingsLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.height.equalTo(92)
         }
     }
 }

@@ -58,7 +58,9 @@ final class Default {
     
     var isConnectVpn: Bool {
         get { getFlag(.isConnectVpn ) as? Bool ?? false }
-        set { setFlag(newValue, key: .isConnectVpn) }
+        set { setFlag(newValue, key: .isConnectVpn)
+            
+        }
     }
     
     var dailyLimitSecond: Int {

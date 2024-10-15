@@ -14,9 +14,11 @@ final class  CustomCollectionViewCell: UICollectionViewCell {
         label.textColor = AppColors.almostWhite
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
-        label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.font = UIFont.systemFont(ofSize: 18)
         return label
     }()
+    
+    static let identifier = "CustomCollectionViewCell"
     
     
     // MARK: - Initialization
@@ -52,13 +54,15 @@ final class  CustomCollectionViewCell: UICollectionViewCell {
     }
     
     private func setupConstraints() {
+        
         iconImageView.snp.makeConstraints { make in
             make.top.leading.equalToSuperview().offset(20)
             make.height.width.equalTo(24)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.bottom.leading.equalToSuperview().offset(20)
+            make.top.equalTo(iconImageView.snp.bottom).offset(10)
+            make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().inset(5)
         }
     }

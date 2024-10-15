@@ -54,7 +54,7 @@ If your password strength rating was not satisfactory, it’s time to create new
  •  Avoid Common Passwords: Never use "password" or simple repetitive patterns like "aaaa" or "1111" as your password.
 """
     static var whyIsPasswordSecurityImportant: String = "Why is password security important?"
-    static var whyIsPasswordSecurityImportantDescription: String = 
+    static var whyIsPasswordSecurityImportantDescription: String =
 """
 Inadequate password security can lead to serious consequences, including but not limited to:
  •  Data Theft: Hackers who gain access to a user’s credentials can log into their accounts to steal personally identifiable information (PII), such as names, addresses, and bank account details. This information can be used to steal money directly or to commit identity theft, which may result in further financial losses or complications in securing loans and employment.
@@ -74,7 +74,7 @@ Uniqueness: The password must not contain repeating characters, instead it must 
 Using these criteria, the tool calculates a score for each password, which is then translated into the estimated time it would take a computer to crack the password. For example, a password such as “f0JB^B5sjmXl” would take approximately 34 years to crack.
 """
     static var typesOfPasswordAttacks: String = "Types of password attacks"
-    static var typesOfPasswordAttacksDescription: String = 
+    static var typesOfPasswordAttacksDescription: String =
 """
 There are several main types of password attacks, with the most common being:
  1.  Brute Force Attack: This technique involves trying all possible combinations of characters to crack a password. For example, if a password is two characters long, the attack will try combinations in the following order: "aa", "ab", "ac", and so on, until all possible variations are exhausted. This method requires significant computational resources and time, especially for long and complex passwords, but it guarantees that the password will be cracked if enough time and resources are available.
@@ -97,4 +97,9 @@ There are several main types of password attacks, with the most common being:
     static var connectionType: String = "Connection type"
     
     static var additionalSettings: String = "Additional settings"
+    static var changeIcon: String = "Change icon"
+    static var supportAndFAQ = "Support & FAQ"
+    static var privatePolicy: String = "Private policy"
+    static var termsOfUse: String = "Terms of Use"
 }
+
