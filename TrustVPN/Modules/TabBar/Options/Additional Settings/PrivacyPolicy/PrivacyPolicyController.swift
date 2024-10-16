@@ -1,6 +1,6 @@
 import UIKit
 
-final class TermsOfUseController: UIViewController {
+final class PrivacyPolicyController: UIViewController {
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
         let button = UIImageView()
@@ -14,7 +14,7 @@ final class TermsOfUseController: UIViewController {
     
     private lazy var headerLabel: UILabel = {
         let label = UILabel()
-        label.text = AppText.termsView
+        label.text = AppText.privatePolicyCapital
         label.textColor = AppColors.almostWhite
         label.textAlignment = .center
         label.textAlignment = .center
@@ -57,7 +57,7 @@ final class TermsOfUseController: UIViewController {
         let label = UILabel()
         label.textColor = AppColors.dataSecurityLabel
         label.textAlignment = .left
-        label.text = AppText.termsLabel
+        label.text = AppText.privatePolicyDescription
         label.numberOfLines = 0
         label.font = .systemFont(ofSize: 18)
         return label
@@ -86,7 +86,7 @@ final class TermsOfUseController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100) // Нижняя часть
+        gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100)
         if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientView.bounds
         }
@@ -131,7 +131,7 @@ final class TermsOfUseController: UIViewController {
 }
 
 // MARK: - Setup Constraints
-extension TermsOfUseController {
+extension PrivacyPolicyController {
     private func setupConstraints() {
         backButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(20)
@@ -181,4 +181,3 @@ extension TermsOfUseController {
         }
     }
 }
-
