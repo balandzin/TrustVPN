@@ -33,6 +33,7 @@
 		D36506392CBEA4C6003AF26C /* CustomContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506382CBEA4C6003AF26C /* CustomContainerView.swift */; };
 		D365063B2CBF90EE003AF26C /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365063A2CBF90EE003AF26C /* CustomLabel.swift */; };
 		D365063D2CBF9B78003AF26C /* NetworkInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */; };
+		D36506412CBFA7DC003AF26C /* faqContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506402CBFA7DC003AF26C /* faqContainerView.swift */; };
 		D373AA922CA43F0700DF2EC7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA912CA43F0700DF2EC7 /* InfoView.swift */; };
 		D373AA9A2CA456E000DF2EC7 /* DeviceSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */; };
 		D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */; };
@@ -158,6 +159,7 @@
 		D36506382CBEA4C6003AF26C /* CustomContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContainerView.swift; sourceTree = "<group>"; };
 		D365063A2CBF90EE003AF26C /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoFetcher.swift; sourceTree = "<group>"; };
+		D36506402CBFA7DC003AF26C /* faqContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faqContainerView.swift; sourceTree = "<group>"; };
 		D373AA912CA43F0700DF2EC7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSearchController.swift; sourceTree = "<group>"; };
 		D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSecurityController.swift; sourceTree = "<group>"; };
@@ -312,6 +314,7 @@
 			children = (
 				D36506252CBE7B28003AF26C /* CustomCollectionViewCell.swift */,
 				D36506382CBEA4C6003AF26C /* CustomContainerView.swift */,
+				D36506402CBFA7DC003AF26C /* faqContainerView.swift */,
 				D365063A2CBF90EE003AF26C /* CustomLabel.swift */,
 			);
 			path = View;
@@ -328,7 +331,7 @@
 		D36506352CBE9E95003AF26C /* Additional Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D365062D2CBE8AF8003AF26C /* SupportController.swift */,
+				D36506422CBFAE2F003AF26C /* Support&FAQ */,
 				D365062B2CBE8AD8003AF26C /* ChangeIconController.swift */,
 				D365062F2CBE8B13003AF26C /* PrivacyPolicyController.swift */,
 				D36506312CBE8B3D003AF26C /* TermsOfUseController.swift */,
@@ -342,6 +345,25 @@
 				D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */,
 			);
 			path = NetworkInfoFetcher;
+			sourceTree = "<group>";
+		};
+		D365063F2CBFA777003AF26C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D365061B2CB81B39003AF26C /* DropdownTableView.swift */,
+				D365061D2CB81B99003AF26C /* DropdownCell.swift */,
+				D365061F2CB81C9A003AF26C /* DropdownHeaderCell.swift */,
+				D36506212CBA7774003AF26C /* GradientProgressView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D36506422CBFAE2F003AF26C /* Support&FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				D365062D2CBE8AF8003AF26C /* SupportController.swift */,
+			);
+			path = "Support&FAQ";
 			sourceTree = "<group>";
 		};
 		D373AA902CA43ED600DF2EC7 /* Onboard */ = {
@@ -410,10 +432,7 @@
 			isa = PBXGroup;
 			children = (
 				D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */,
-				D365061B2CB81B39003AF26C /* DropdownTableView.swift */,
-				D365061D2CB81B99003AF26C /* DropdownCell.swift */,
-				D365061F2CB81C9A003AF26C /* DropdownHeaderCell.swift */,
-				D36506212CBA7774003AF26C /* GradientProgressView.swift */,
+				D365063F2CBFA777003AF26C /* View */,
 			);
 			path = PasswordSecurity;
 			sourceTree = "<group>";
@@ -897,6 +916,7 @@
 				D3CC70632CA2CEB300D747F5 /* ConfigureModel.swift in Sources */,
 				D373AB062CAC17A100DF2EC7 /* KingfisherManager.swift in Sources */,
 				D373AB1C2CAC17A100DF2EC7 /* SessionDelegate.swift in Sources */,
+				D36506412CBFA7DC003AF26C /* faqContainerView.swift in Sources */,
 				D373AB112CAC17A100DF2EC7 /* Placeholder.swift in Sources */,
 				D373AAF42CAC17A100DF2EC7 /* ImageCache.swift in Sources */,
 				D3CC702B2CA2999100D747F5 /* SceneDelegate.swift in Sources */,

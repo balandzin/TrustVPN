@@ -106,5 +106,19 @@ There are several main types of password attacks, with the most common being:
     static var asn: String = "ASN"
     static var timeZone: String = "Time Zone"
     static var updateInformation: String = "Update information"
+    static let supportText = """
+        We appreciate you choosing our app.
+        
+        If you have any questions about features, problems or bugs, or have suggestions for improvement, we are here to help and take all ideas into consideration.
+        
+        Need help? Email us! support@example.com
+        
+        Thank you for choosing our app!
+        """
+    static let supportEmail = "support@example.com"
+    static let faqLabel = "FAQ"
+    static let howDoesTheDeviceSearchWork = "How does the device search work?"
+    static let howDoesPasswordSecurityWork = "How does password security work?"
+    static let howDoesVpnWork = "How does vpn work?"
 }
 

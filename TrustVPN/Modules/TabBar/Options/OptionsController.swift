@@ -13,6 +13,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         view.addSubview(label)
         return label
     }()
+    
     private lazy var connectionInfoLabel: UILabel = {
         let label = UILabel()
         label.text = AppText.connectionInfo

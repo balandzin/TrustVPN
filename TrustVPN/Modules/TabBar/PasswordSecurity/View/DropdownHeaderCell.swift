@@ -66,7 +66,7 @@ final class DropdownHeaderCell: UITableViewCell {
         containerView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(68)
+            make.height.equalTo(68.vertical)
             make.bottom.equalToSuperview()
         }
         
