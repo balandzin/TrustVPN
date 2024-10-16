@@ -164,9 +164,9 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     
     private func setupData() {
         items = [
-            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.changeIcon) ?? UIImage(named: "changeIcon") ?? UIImage(), title: AppText.changeIcon, destinationVC: ChangeIconController()),
             CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.support) ?? UIImage(named: "support") ?? UIImage(), title: AppText.supportAndFAQ, destinationVC: SupportController()),
             CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.privatePolicy) ?? UIImage(named: "privatePolicy") ?? UIImage(), title: AppText.privatePolicy, destinationVC: PrivacyPolicyController()),
+            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.changeIcon) ?? UIImage(named: "changeIcon") ?? UIImage(), title: AppText.changeIcon, destinationVC: ChangeIconController()),
             CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.termsOfUse) ?? UIImage(named: "termsOfUse") ?? UIImage(), title: AppText.termsOfUse, destinationVC: TermsOfUseController())
         ]
         
@@ -249,7 +249,10 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     
     
     @objc private func moreButtonTapped() {
-        print("More button tapped")
+        let controller = MoreController()
+        controller.panToDismissEnabled = true
+        controller.preferredSheetSizing = UIScreen.height
+        present(controller, animated: true)
     }
 }
 

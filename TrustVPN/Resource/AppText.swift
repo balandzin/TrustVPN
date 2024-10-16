@@ -101,5 +101,10 @@ There are several main types of password attacks, with the most common being:
     static var supportAndFAQ = "Support & FAQ"
     static var privatePolicy: String = "Private policy"
     static var termsOfUse: String = "Terms of Use"
+    static var ipAdress: String = "ip addresses"
+    static var versionIVP: String = "Version IVP"
+    static var asn: String = "ASN"
+    static var timeZone: String = "Time Zone"
+    static var updateInformation: String = "Update information"
 }
 
