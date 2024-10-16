@@ -129,7 +129,10 @@ final class SupportController: UIViewController {
     }
     
     @objc private func deviceSearchViewTapped() {
-        print("deviceSearchViewTapped")
+        let controller = SearchBottomSheetController()
+        controller.panToDismissEnabled = true
+        controller.preferredSheetSizing = UIScreen.height
+        present(controller, animated: true)
     }
     
     @objc private func passwordSearchViewTapped() {

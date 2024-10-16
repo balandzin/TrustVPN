@@ -25,10 +25,9 @@ final class OnboardViewController: UIViewController {
         return button
     }()
     
-    // MARK: - Properties
+    // MARK: - Private Properties
     private var currentIndex = 0
     
-    // MARK: - Private Properties
     private var images: [(icon: UIImage, title: String, subTitle: String)] = [(icon: .loadImage(LoadService.shared.load?.images?.onboard1) ?? UIImage(imageLiteralResourceName: "onboard1"), title: AppText.onboard1Title, subTitle: AppText.onboard1SubTitle), (icon: .loadImage(LoadService.shared.load?.images?.onboard2) ?? UIImage(imageLiteralResourceName: "onboard2"), title: AppText.onboard2Title, subTitle: AppText.onboard2SubTitle), (icon: .loadImage(LoadService.shared.load?.images?.onboard3) ?? UIImage(imageLiteralResourceName: "onboard3"), title: AppText.onboard3Title, subTitle: AppText.onboard3SubTitle)]
     
     // MARK: - Lifecycle

@@ -120,5 +120,9 @@ There are several main types of password attacks, with the most common being:
     static let howDoesTheDeviceSearchWork = "How does the device search work?"
     static let howDoesPasswordSecurityWork = "How does password security work?"
     static let howDoesVpnWork = "How does vpn work?"
+    static let welcomeToDeviceSearch = "Welcome to device search"
+    static let informationOnTheIndicator = "Information on the indicator"
+    static let welcomeToPasswordSecurityDescription = "To find nearby devices, simply tap 'Start scanning'. The indicator will show how close you are to a device. You have 2 free uses available"
+    static let indicatorDescription = "The closer you are to a detected device, the higher the value shown on the indicator. Watch the dial move as you approach devices"
+    static let goToUse = "Go to use"
 }
-

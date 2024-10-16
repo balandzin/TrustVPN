@@ -58,6 +58,13 @@ struct Images : Codable {
     let support: String?
     let privatePolicy: String?
     let termsOfUse: String?
+    let welcomeImage: String?
+    let indicatorRight: String?
+    let indicatorLeft: String?
+    let searchIndicator: String?
+    
+    
+    
     
     
     let aboutApOptionIMG : String?
