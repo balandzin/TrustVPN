@@ -328,8 +328,8 @@
 		D36506352CBE9E95003AF26C /* Additional Settings */ = {
 			isa = PBXGroup;
 			children = (
-				D365062B2CBE8AD8003AF26C /* ChangeIconController.swift */,
 				D365062D2CBE8AF8003AF26C /* SupportController.swift */,
+				D365062B2CBE8AD8003AF26C /* ChangeIconController.swift */,
 				D365062F2CBE8B13003AF26C /* PrivacyPolicyController.swift */,
 				D36506312CBE8B3D003AF26C /* TermsOfUseController.swift */,
 			);

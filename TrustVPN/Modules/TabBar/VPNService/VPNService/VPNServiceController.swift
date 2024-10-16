@@ -200,7 +200,6 @@ final class VPNServiceController: UIViewController {
     
     // MARK: - ObjC Methods
     @objc private func buttonTapped() {
-        print("buttonTapped")
         let chooseServerController = ChooseServerController()
         chooseServerController.selectedServers = self.selectedServers
         chooseServerController.hidesBottomBarWhenPushed = true

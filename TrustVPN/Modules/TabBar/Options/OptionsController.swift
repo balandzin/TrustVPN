@@ -238,7 +238,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedItem = items[indexPath.item]
         let destinationVC = selectedItem.destinationVC
-        navigationController?.isNavigationBarHidden = false
+        destinationVC.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(destinationVC, animated: true)
     }
     
