@@ -45,10 +45,9 @@ final class TermsOfUseController: UIViewController {
     private lazy var gradientView: UIView = {
         let gradientView = UIView()
 
-        // Настройка градиентного слоя
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.9).cgColor]
-        gradientLayer.locations = [0.0, 1.0] // Переход от прозрачного к черному
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
+        gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
         
         return gradientView
@@ -89,7 +88,7 @@ final class TermsOfUseController: UIViewController {
         super.viewDidLayoutSubviews()
 
         // Обновляем фрейм для градиентного слоя
-        gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY - 100, width: view.bounds.width, height: 100) // Нижняя часть
+        gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100) // Нижняя часть
         if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientView.bounds
         }
@@ -164,8 +163,8 @@ extension TermsOfUseController {
         
         gradientView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(continueButton.snp.top).offset(-20) // прижимаем к верху кнопки
-            make.height.equalTo(100) // Высота градиента
+            make.bottom.equalTo(continueButton.snp.top).offset(-20)
+            make.height.equalTo(100)
         }
         
         continueButton.snp.makeConstraints { make in
