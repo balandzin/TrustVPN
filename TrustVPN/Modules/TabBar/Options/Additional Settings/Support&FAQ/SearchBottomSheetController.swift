@@ -1,6 +1,10 @@
 import UIKit
 import Network
 
+protocol SearchBottomSheetDelegate: AnyObject {
+    func didTapContinue(index: Int)
+}
+
 final class SearchBottomSheetController: BottomSheetController {
     // MARK: - GUI Variables
     private let containerView: UIView = {
@@ -11,6 +15,7 @@ final class SearchBottomSheetController: BottomSheetController {
             .layerMinXMinYCorner,
             .layerMaxXMinYCorner
         ]
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -32,6 +37,7 @@ final class SearchBottomSheetController: BottomSheetController {
     private lazy var welcomeImageView: UIImageView = {
         let view = UIImageView(image: images[0].image)
         view.contentMode = .scaleAspectFit
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -67,6 +73,7 @@ final class SearchBottomSheetController: BottomSheetController {
     }()
     
     // MARK: - Properties
+    weak var delegate: SearchBottomSheetDelegate?
     private var currentIndex = 0
     
     private var images: [
@@ -83,7 +90,7 @@ final class SearchBottomSheetController: BottomSheetController {
     // MARK: - Private Methods
     private func setupUI() {
         view.clipsToBounds = true
-        
+        view.isUserInteractionEnabled = true
         view.addSubview(containerView)
         containerView.addSubview(cancelView)
         containerView.addSubview(indicatorImageView)
@@ -93,18 +100,6 @@ final class SearchBottomSheetController: BottomSheetController {
         containerView.addSubview(continueButton)
         
         setupConstraints()
-        addSwiper()
-    }
-    
-    private func addSwiper() {
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-        swipeLeft.direction = .left
-        
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-        swipeRight.direction = .right
-        
-        view.addGestureRecognizer(swipeLeft)
-        view.addGestureRecognizer(swipeRight)
     }
     
     private func updateContent() {
@@ -136,27 +131,13 @@ final class SearchBottomSheetController: BottomSheetController {
         }
     }
     
-    @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
-        if gesture.direction == .left {
-            if currentIndex < images.count - 1 {
-                currentIndex += 1
-                updateContent()
-            }
-        } else if gesture.direction == .right {
-            if currentIndex > 0 {
-                currentIndex -= 1
-                updateContent()
-            }
-        }
-    }
-    
     @objc func continueButtonTapped() {
         if currentIndex < images.count - 1 {
             currentIndex += 1
             updateContent()
         } else {
-            dismiss(animated: true) // Закрытие текущего BottomSheet
-            tabBarController?.selectedIndex = 1
+            dismiss(animated: true)
+            delegate?.didTapContinue(index: 1)
         }
     }
     

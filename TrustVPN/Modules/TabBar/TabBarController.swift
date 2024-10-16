@@ -21,8 +21,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
         self.tabBar.tintColor = .clear
         
-        guard let vpnService, let vpnServiceSelected else { return }
-        updateTabBarImages(selectedIndex: 0, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
+        programUpdate(index: selectedIndex)
     }
     
     private func updateTabBarImages(selectedIndex: Int, selectedImage: UIImage, unselectedImage: UIImage) {
@@ -36,9 +35,13 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         let selectedIndex = tabBarController.selectedIndex
         
+        programUpdate(index: selectedIndex)
+    }
+    
+    func programUpdate(index: Int) {
         if let vpnService , let deviceSearch, let passwordSecurity, let options, let vpnServiceSelected, let deviceSearchSelected, let passwordSecuritySelected, let optionsSelected {
             
-            switch selectedIndex {
+            switch index {
             case 0:
                 updateTabBarImages(selectedIndex: selectedIndex, selectedImage: vpnServiceSelected, unselectedImage: vpnService)
             case 1:

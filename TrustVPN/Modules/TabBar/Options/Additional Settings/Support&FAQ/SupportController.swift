@@ -1,6 +1,13 @@
 import UIKit
 
-final class SupportController: UIViewController {
+final class SupportController: UIViewController, SearchBottomSheetDelegate {
+    func didTapContinue(index: Int) {
+        navigationController?.popViewController(animated: true)
+        guard let tabBarController = tabBarController as? TabBarController else { return }
+        tabBarController.selectedIndex = index
+        tabBarController.programUpdate(index: index)
+    }
+    
     
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
@@ -130,9 +137,10 @@ final class SupportController: UIViewController {
     
     @objc private func deviceSearchViewTapped() {
         let controller = SearchBottomSheetController()
+        controller.delegate = self
         controller.panToDismissEnabled = true
         controller.preferredSheetSizing = UIScreen.height
-        present(controller, animated: true)
+        present(controller, animated: false)
     }
     
     @objc private func passwordSearchViewTapped() {
