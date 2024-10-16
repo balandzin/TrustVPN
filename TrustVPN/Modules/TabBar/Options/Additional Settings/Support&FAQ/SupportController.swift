@@ -1,13 +1,16 @@
 import UIKit
 
-final class SupportController: UIViewController, SearchBottomSheetDelegate {
+protocol SearchRequiredControllerDelegate: AnyObject {
+    func didTapContinue(index: Int)
+}
+
+final class SupportController: UIViewController, SearchRequiredControllerDelegate {
     func didTapContinue(index: Int) {
         navigationController?.popViewController(animated: true)
         guard let tabBarController = tabBarController as? TabBarController else { return }
         tabBarController.selectedIndex = index
         tabBarController.programUpdate(index: index)
     }
-    
     
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
@@ -144,7 +147,11 @@ final class SupportController: UIViewController, SearchBottomSheetDelegate {
     }
     
     @objc private func passwordSearchViewTapped() {
-        print("passwordSearchViewTapped")
+        let controller = PasswordBottomSheetController()
+        controller.delegate = self
+        controller.panToDismissEnabled = true
+        controller.preferredSheetSizing = UIScreen.height
+        present(controller, animated: false)
     }
     
     @objc private func vpnViewTapped() {

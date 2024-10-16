@@ -1,10 +1,6 @@
 import UIKit
 import Network
 
-protocol SearchBottomSheetDelegate: AnyObject {
-    func didTapContinue(index: Int)
-}
-
 final class SearchBottomSheetController: BottomSheetController {
     // MARK: - GUI Variables
     private let containerView: UIView = {
@@ -34,14 +30,14 @@ final class SearchBottomSheetController: BottomSheetController {
         return image
     }()
     
-    private lazy var welcomeImageView: UIImageView = {
+    private lazy var imageView: UIImageView = {
         let view = UIImageView(image: images[0].image)
         view.contentMode = .scaleAspectFit
         view.isUserInteractionEnabled = true
         return view
     }()
     
-    private lazy var welcomeLabel: UILabel = {
+    private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = images[0].title
         label.textColor = AppColors.almostWhite
@@ -50,7 +46,7 @@ final class SearchBottomSheetController: BottomSheetController {
         return label
     }()
     
-    private lazy var descriptionLabel: UILabel = {
+    private lazy var subTitleLabel: UILabel = {
         let label = UILabel()
         label.text = images[0].subTitle
         label.textColor = AppColors.dataSecurityLabel
@@ -73,7 +69,7 @@ final class SearchBottomSheetController: BottomSheetController {
     }()
     
     // MARK: - Properties
-    weak var delegate: SearchBottomSheetDelegate?
+    weak var delegate: SearchRequiredControllerDelegate?
     private var currentIndex = 0
     
     private var images: [
@@ -94,9 +90,9 @@ final class SearchBottomSheetController: BottomSheetController {
         view.addSubview(containerView)
         containerView.addSubview(cancelView)
         containerView.addSubview(indicatorImageView)
-        containerView.addSubview(welcomeImageView)
-        containerView.addSubview(welcomeLabel)
-        containerView.addSubview(descriptionLabel)
+        containerView.addSubview(imageView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(subTitleLabel)
         containerView.addSubview(continueButton)
         
         setupConstraints()
@@ -104,20 +100,20 @@ final class SearchBottomSheetController: BottomSheetController {
     
     private func updateContent() {
         indicatorImageView.image = images[currentIndex].indicator
-        welcomeImageView.image = images[currentIndex].image
-        welcomeLabel.text = images[currentIndex].title
-        descriptionLabel.text = images[currentIndex].subTitle
+        imageView.image = images[currentIndex].image
+        titleLabel.text = images[currentIndex].title
+        subTitleLabel.text = images[currentIndex].subTitle
         
-        UIView.transition(with: welcomeImageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.welcomeImageView.image = self.images[self.currentIndex].image
+        UIView.transition(with: imageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.imageView.image = self.images[self.currentIndex].image
         }, completion: nil)
         
-        UIView.transition(with: welcomeLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.welcomeLabel.text = self.images[self.currentIndex].title
+        UIView.transition(with: titleLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.titleLabel.text = self.images[self.currentIndex].title
         }, completion: nil)
         
-        UIView.transition(with: descriptionLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
-            self.descriptionLabel.text = self.images[self.currentIndex].subTitle
+        UIView.transition(with: subTitleLabel, duration: 0.5, options: .transitionCrossDissolve, animations: {
+            self.subTitleLabel.text = self.images[self.currentIndex].subTitle
         }, completion: nil)
         
         UIView.transition(with: indicatorImageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
@@ -159,20 +155,20 @@ final class SearchBottomSheetController: BottomSheetController {
             make.height.equalTo(4)
         }
         
-        welcomeImageView.snp.makeConstraints { make in
+        imageView.snp.makeConstraints { make in
             make.top.equalTo(indicatorImageView.snp.bottom).offset(20)
             make.centerX.equalToSuperview()
             make.height.equalTo(250)
             make.width.equalTo(338)
         }
         
-        welcomeLabel.snp.makeConstraints { make in
-            make.top.equalTo(welcomeImageView.snp.bottom).offset(40)
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(40)
             make.centerX.equalToSuperview()
         }
         
-        descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(10)
+        subTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(20)
         }
         

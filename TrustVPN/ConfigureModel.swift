@@ -62,6 +62,7 @@ struct Images : Codable {
     let indicatorRight: String?
     let indicatorLeft: String?
     let searchIndicator: String?
+    let passordSecurityImage: String?
     
     
     

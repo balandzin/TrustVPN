@@ -35,6 +35,7 @@
 		D365063D2CBF9B78003AF26C /* NetworkInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */; };
 		D36506412CBFA7DC003AF26C /* faqContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506402CBFA7DC003AF26C /* faqContainerView.swift */; };
 		D36506442CBFAF4A003AF26C /* SearchBottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506432CBFAF4A003AF26C /* SearchBottomSheetController.swift */; };
+		D36506462CBFDFBD003AF26C /* PasswordBottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506452CBFDFBD003AF26C /* PasswordBottomSheetController.swift */; };
 		D373AA922CA43F0700DF2EC7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA912CA43F0700DF2EC7 /* InfoView.swift */; };
 		D373AA9A2CA456E000DF2EC7 /* DeviceSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */; };
 		D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */; };
@@ -162,6 +163,7 @@
 		D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoFetcher.swift; sourceTree = "<group>"; };
 		D36506402CBFA7DC003AF26C /* faqContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faqContainerView.swift; sourceTree = "<group>"; };
 		D36506432CBFAF4A003AF26C /* SearchBottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBottomSheetController.swift; sourceTree = "<group>"; };
+		D36506452CBFDFBD003AF26C /* PasswordBottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordBottomSheetController.swift; sourceTree = "<group>"; };
 		D373AA912CA43F0700DF2EC7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSearchController.swift; sourceTree = "<group>"; };
 		D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSecurityController.swift; sourceTree = "<group>"; };
@@ -365,6 +367,7 @@
 			children = (
 				D365062D2CBE8AF8003AF26C /* SupportController.swift */,
 				D36506432CBFAF4A003AF26C /* SearchBottomSheetController.swift */,
+				D36506452CBFDFBD003AF26C /* PasswordBottomSheetController.swift */,
 			);
 			path = "Support&FAQ";
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				D373AB242CAC17A100DF2EC7 /* String+MD5.swift in Sources */,
 				D3CC70292CA2999100D747F5 /* AppDelegate.swift in Sources */,
 				D373AB0E2CAC17A100DF2EC7 /* ImageProcessor.swift in Sources */,
+				D36506462CBFDFBD003AF26C /* PasswordBottomSheetController.swift in Sources */,
 				D373AB122CAC17A100DF2EC7 /* AuthenticationChallengeResponsable.swift in Sources */,
 				D36506372CBE9EB9003AF26C /* MoreController.swift in Sources */,
 				D373AB002CAC17A100DF2EC7 /* Resource.swift in Sources */,
