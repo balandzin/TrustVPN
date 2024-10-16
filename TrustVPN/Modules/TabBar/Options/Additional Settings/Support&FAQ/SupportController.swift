@@ -155,7 +155,10 @@ final class SupportController: UIViewController, SearchRequiredControllerDelegat
     }
     
     @objc private func vpnViewTapped() {
-        print("vpnViewTapped")
+        let controller = VpnBottomSheetController()
+        controller.panToDismissEnabled = true
+        controller.preferredSheetSizing = UIScreen.height
+        present(controller, animated: false)
     }
 }
 

@@ -126,4 +126,5 @@ There are several main types of password attacks, with the most common being:
     static let indicatorDescription = "The closer you are to a detected device, the higher the value shown on the indicator. Watch the dial move as you approach devices"
     static let goToUse = "Go to use"
     static let passwordSecurityDescription = "The “Password Security” tool checks user passwords using a special algorithm that calculates password strength based on the characters entered"
+    static let vpnDescription = "A VPN (virtual private network) creates a secure, encrypted connection between your device and a remote server. This hides your IP address and encrypts your Internet traffic, making your online activities secure"
 }
