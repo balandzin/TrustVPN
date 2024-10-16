@@ -1,5 +1,9 @@
 import UIKit
 
+protocol TermsOfUseControllerDelegate: AnyObject {
+    func didTapGoToSupport()
+}
+
 final class TermsOfUseController: UIViewController {
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
@@ -63,7 +67,7 @@ final class TermsOfUseController: UIViewController {
         return label
     }()
     
-    private lazy var continueButton: UIButton = {
+    lazy var continueButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle(AppText.goToSupport, for: .normal)
         button.setTitleColor(AppColors.almostWhite, for: .normal)
@@ -74,8 +78,7 @@ final class TermsOfUseController: UIViewController {
         
         return button
     }()
-    
-    
+        
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +90,6 @@ final class TermsOfUseController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        // Обновляем фрейм для градиентного слоя
         gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100) // Нижняя часть
         if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientView.bounds
@@ -113,13 +115,22 @@ final class TermsOfUseController: UIViewController {
         setupConstraints()
     }
     
-    
     @objc private func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: false)
     }
     
     @objc private func goToSupportTapped() {
-        
+        if let viewControllers = navigationController?.viewControllers {
+            for controller in viewControllers {
+                if let optionsController = controller as? OptionsController {
+                    navigationController?.popToViewController(optionsController, animated: false)
+                    let supportController = SupportController()
+                    supportController.hidesBottomBarWhenPushed = true
+                    optionsController.navigationController?.pushViewController(supportController, animated: false)
+                    break
+                }
+            }
+        }
     }
 }
 

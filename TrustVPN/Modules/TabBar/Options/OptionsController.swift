@@ -141,6 +141,8 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         stopMonitoringNetwork()
     }
     
+    
+    
     // MARK: - Private Methods
     private func setupStyle() {
         view.backgroundColor = .gradientColor
@@ -333,3 +335,4 @@ extension OptionsController {
         }
     }
 }
+
