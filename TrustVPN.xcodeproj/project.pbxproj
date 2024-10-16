@@ -340,7 +340,7 @@
 				D36506422CBFAE2F003AF26C /* Support&FAQ */,
 				D365062B2CBE8AD8003AF26C /* ChangeIconController.swift */,
 				D365062F2CBE8B13003AF26C /* PrivacyPolicyController.swift */,
-				D36506312CBE8B3D003AF26C /* TermsOfUseController.swift */,
+				D36506492CBFED8D003AF26C /* TermsOfUse */,
 			);
 			path = "Additional Settings";
 			sourceTree = "<group>";
@@ -373,6 +373,14 @@
 				D36506472CBFEA0B003AF26C /* VpnBottomSheetController.swift */,
 			);
 			path = "Support&FAQ";
+			sourceTree = "<group>";
+		};
+		D36506492CBFED8D003AF26C /* TermsOfUse */ = {
+			isa = PBXGroup;
+			children = (
+				D36506312CBE8B3D003AF26C /* TermsOfUseController.swift */,
+			);
+			path = TermsOfUse;
 			sourceTree = "<group>";
 		};
 		D373AA902CA43ED600DF2EC7 /* Onboard */ = {

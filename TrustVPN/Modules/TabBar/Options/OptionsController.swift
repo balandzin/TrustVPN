@@ -240,7 +240,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         let selectedItem = items[indexPath.item]
         let destinationVC = selectedItem.destinationVC
         destinationVC.hidesBottomBarWhenPushed = true
-        navigationController?.pushViewController(destinationVC, animated: true)
+        navigationController?.pushViewController(destinationVC, animated: false)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
