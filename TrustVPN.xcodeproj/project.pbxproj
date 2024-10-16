@@ -31,6 +31,8 @@
 		D36506342CBE967B003AF26C /* Extension + Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506332CBE967B003AF26C /* Extension + Notification.swift */; };
 		D36506372CBE9EB9003AF26C /* MoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506362CBE9EB9003AF26C /* MoreController.swift */; };
 		D36506392CBEA4C6003AF26C /* CustomContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36506382CBEA4C6003AF26C /* CustomContainerView.swift */; };
+		D365063B2CBF90EE003AF26C /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365063A2CBF90EE003AF26C /* CustomLabel.swift */; };
+		D365063D2CBF9B78003AF26C /* NetworkInfoFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */; };
 		D373AA922CA43F0700DF2EC7 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA912CA43F0700DF2EC7 /* InfoView.swift */; };
 		D373AA9A2CA456E000DF2EC7 /* DeviceSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */; };
 		D373AA9C2CA4570300DF2EC7 /* PasswordSecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */; };
@@ -154,6 +156,8 @@
 		D36506332CBE967B003AF26C /* Extension + Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Notification.swift"; sourceTree = "<group>"; };
 		D36506362CBE9EB9003AF26C /* MoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreController.swift; sourceTree = "<group>"; };
 		D36506382CBEA4C6003AF26C /* CustomContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomContainerView.swift; sourceTree = "<group>"; };
+		D365063A2CBF90EE003AF26C /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
+		D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkInfoFetcher.swift; sourceTree = "<group>"; };
 		D373AA912CA43F0700DF2EC7 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		D373AA992CA456E000DF2EC7 /* DeviceSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSearchController.swift; sourceTree = "<group>"; };
 		D373AA9B2CA4570300DF2EC7 /* PasswordSecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordSecurityController.swift; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 			children = (
 				D36506252CBE7B28003AF26C /* CustomCollectionViewCell.swift */,
 				D36506382CBEA4C6003AF26C /* CustomContainerView.swift */,
+				D365063A2CBF90EE003AF26C /* CustomLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -329,6 +334,14 @@
 				D36506312CBE8B3D003AF26C /* TermsOfUseController.swift */,
 			);
 			path = "Additional Settings";
+			sourceTree = "<group>";
+		};
+		D365063E2CBF9B7D003AF26C /* NetworkInfoFetcher */ = {
+			isa = PBXGroup;
+			children = (
+				D365063C2CBF9B78003AF26C /* NetworkInfoFetcher.swift */,
+			);
+			path = NetworkInfoFetcher;
 			sourceTree = "<group>";
 		};
 		D373AA902CA43ED600DF2EC7 /* Onboard */ = {
@@ -413,6 +426,7 @@
 				D36506352CBE9E95003AF26C /* Additional Settings */,
 				D365062A2CBE7F03003AF26C /* Model */,
 				D36506272CBE7EBA003AF26C /* View */,
+				D365063E2CBF9B7D003AF26C /* NetworkInfoFetcher */,
 			);
 			path = Options;
 			sourceTree = "<group>";
@@ -795,6 +809,7 @@
 				D373AB0D2CAC17A100DF2EC7 /* ImageFormat.swift in Sources */,
 				D373AAFB2CAC17A100DF2EC7 /* TVMonogramView+Kingfisher.swift in Sources */,
 				D36506032CB5114C003AF26C /* ServerAddedView.swift in Sources */,
+				D365063B2CBF90EE003AF26C /* CustomLabel.swift in Sources */,
 				D3A017FA2CB3FF03006238E1 /* RenameView.swift in Sources */,
 				D3CC70592CA2A7BB00D747F5 /* Extension + UserDefaults.swift in Sources */,
 				D3CC70612CA2CDFD00D747F5 /* LoadService.swift in Sources */,
@@ -872,6 +887,7 @@
 				D373AB212CAC17A100DF2EC7 /* Result.swift in Sources */,
 				D373AB2B2CAD58B000DF2EC7 /* VPNServiceTableView.swift in Sources */,
 				D365060C2CB5388F003AF26C /* ConnectionToViewController.swift in Sources */,
+				D365063D2CBF9B78003AF26C /* NetworkInfoFetcher.swift in Sources */,
 				D3A017F82CB3D19A006238E1 /* PopupView.swift in Sources */,
 				D373AB042CAC17A100DF2EC7 /* Kingfisher.swift in Sources */,
 				D3CC70682CA2E16500D747F5 /* VPNServiceController.swift in Sources */,
