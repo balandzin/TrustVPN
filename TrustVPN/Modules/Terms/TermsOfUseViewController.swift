@@ -61,11 +61,30 @@ final class TermsOfUseViewController: UIViewController {
         return button
     }()
     
+    private lazy var gradientView: UIView = {
+        let gradientView = UIView()
+
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientView.layer.addSublayer(gradientLayer)
+        return gradientView
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100)
+        if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
+            gradientLayer.frame = gradientView.bounds
+        }
     }
     
     // MARK: - Private Methods
@@ -83,6 +102,7 @@ final class TermsOfUseViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(termsHeaderLabel)
         contentView.addSubview(termsLabel)
+        scrollView.addSubview(gradientView)
         view.addSubview(acceptButton)
         
         setupConstraints()
@@ -132,6 +152,12 @@ final class TermsOfUseViewController: UIViewController {
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().inset(24)
+        }
+        
+        gradientView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(acceptButton.snp.top).offset(-20)
+            make.height.equalTo(120)
         }
         
         acceptButton.snp.makeConstraints { make in

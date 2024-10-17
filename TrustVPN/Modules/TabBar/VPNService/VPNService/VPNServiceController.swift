@@ -44,6 +44,18 @@ final class VPNServiceController: UIViewController {
         return image
     }()
     
+    private lazy var gradientView: UIView = {
+        let view = UIView()
+        // Настройка градиентного слоя
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.6).cgColor]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+        view.layer.addSublayer(gradientLayer)
+        return view
+    }()
+    
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -72,6 +84,13 @@ final class VPNServiceController: UIViewController {
             vpnServersTableView.isHidden = false
         }
         vpnServersTableView.reloadData()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
+            gradientLayer.frame = gradientView.bounds
+        }
     }
     
     // MARK: - Private Methods
@@ -138,6 +157,7 @@ final class VPNServiceController: UIViewController {
         view.addSubview(renameView)
         view.addSubview(serverRenamedView)
         view.addSubview(removeView)
+        view.addSubview(gradientView)
         
         serverRenamedView.isHidden = true
         renameView.isHidden = true
@@ -373,6 +393,12 @@ extension VPNServiceController {
         
         removeView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        gradientView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.height.equalTo(100)
         }
     }
 }

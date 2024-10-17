@@ -49,7 +49,6 @@ final class PrivacyPolicyController: UIViewController {
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
-        
         return gradientView
     }()
 
@@ -71,7 +70,6 @@ final class PrivacyPolicyController: UIViewController {
         button.backgroundColor = AppColors.loadingIndicator
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(goToSupportTapped), for: .touchUpInside)
-        
         return button
     }()
         
@@ -92,7 +90,6 @@ final class PrivacyPolicyController: UIViewController {
         }
     }
 
-    
     // MARK: - Private Methods
     private func setupStyle() {
         view.backgroundColor = .gradientColor
