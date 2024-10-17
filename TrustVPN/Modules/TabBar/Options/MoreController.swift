@@ -179,7 +179,7 @@ extension MoreController {
     private func setupConstraints() {
         containerView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(400)
+            make.height.equalTo(450)
         }
         
         cancelView.snp.makeConstraints { make in

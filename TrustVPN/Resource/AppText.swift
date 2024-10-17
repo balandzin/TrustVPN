@@ -129,7 +129,7 @@ There are several main types of password attacks, with the most common being:
     static let vpnDescription = "A VPN (virtual private network) creates a secure, encrypted connection between your device and a remote server. This hides your IP address and encrypts your Internet traffic, making your online activities secure"
     static let goToSupport = "Go to Support"
     static var privatePolicyCapital: String = "Private Policy"
-    static var privatePolicyDescription: String = 
+    static var privatePolicyDescription: String =
 """
 Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim ipsam voluptatem, quia voluptas sit, aspernatur aut odit aut fugit, sed quia
 
@@ -137,4 +137,12 @@ Consequuntur magni dolores eos, qui ratione voluptatem sequi nesciunt, neque por
 
 Vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? At vero eos et accusamus et iusto odio dignissimos ducimus, qui blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias excepturi sint, obcaecati cupiditate non provident, similique sunt in culpa, qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio, cumque nihil impedit, quo minus id, quod maxime placeat, facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
 """
+    
+    static var currentIcon: String = "Current icon"
+    static var iconVariants: String = "Icon variants"
+    static var classic: String = "Classic"
+    static var dynamic: String = "Dynamic"
+    static var advanced: String = "Advanced"
+    static var abstraction: String = "Abstraction"
+    static var modern: String = "Modern"
 }

@@ -262,7 +262,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
 extension OptionsController {
     private func setupConstraints() {
         headerLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(30)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(15)
             make.leading.equalToSuperview().offset(20)
         }
         

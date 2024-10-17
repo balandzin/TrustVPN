@@ -52,7 +52,7 @@ final class ServerNotSelectedView: UIView {
     
     // MARK: - Private Methods
     private func setupView() {
-        backgroundColor = .black
+        backgroundColor = .clear
         addSubview(image)
         addSubview(titleLabel)
         addSubview(descriptionLabel)

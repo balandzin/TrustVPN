@@ -39,5 +39,55 @@
 
     <key>NSLocationAlwaysUsageDescription</key>
     <string>This app uses your location in the background to provide Bluetooth services.</string>
+
+    <!-- Добавление основной и альтернативных иконок -->
+    <key>CFBundleIcons</key>
+    <dict>
+        <key>CFBundlePrimaryIcon</key>
+        <dict>
+            <key>CFBundleIconFiles</key>
+            <array>
+                <string>AppIcon</string> <!-- Основная иконка приложения -->
+            </array>
+        </dict>
+        <key>CFBundleAlternateIcons</key>
+        <dict>
+            <key>classic</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>classic</string> <!-- Иконка Classic -->
+                </array>
+            </dict>
+            <key>dynamic</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>dynamic</string> <!-- Иконка Dynamic -->
+                </array>
+            </dict>
+            <key>advanced</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>advanced</string> <!-- Иконка Advanced -->
+                </array>
+            </dict>
+            <key>abstraction</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>abstraction</string> <!-- Иконка Abstraction -->
+                </array>
+            </dict>
+            <key>modern</key>
+            <dict>
+                <key>CFBundleIconFiles</key>
+                <array>
+                    <string>modern</string> <!-- Иконка Modern -->
+                </array>
+            </dict>
+        </dict>
+    </dict>
 </dict>
 </plist>
