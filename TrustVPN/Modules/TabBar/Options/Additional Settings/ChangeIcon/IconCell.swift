@@ -16,7 +16,6 @@ final class IconCell: UICollectionViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 16)
-        label.text = "Classic"
         label.textColor = AppColors.dataSecurityLabel
         return label
     }()
@@ -30,9 +29,9 @@ final class IconCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with icon: (name: String, iconName: String?)) {
+    func configure(with icon: (name: String, icon: UIImage?)) {
         nameLabel.text = icon.name
-        //imageView.image = UIImage(named: icon.iconName ?? "AppIcon")
+        imageView.image = icon.icon ?? UIImage(named: "AppIcon")
     }
     
     private func setupUI() {
