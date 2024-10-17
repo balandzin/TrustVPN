@@ -10,7 +10,7 @@ class BottomSheetController: UIViewController {
     )
     
     var closeSwipe: (() -> Void)?
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

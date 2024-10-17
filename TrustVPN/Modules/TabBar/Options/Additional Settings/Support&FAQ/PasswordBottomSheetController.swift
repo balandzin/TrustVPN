@@ -1,6 +1,7 @@
 import UIKit
 
 final class PasswordBottomSheetController: BottomSheetController {
+   
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()

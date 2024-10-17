@@ -73,8 +73,24 @@ final class SearchBottomSheetController: BottomSheetController {
     private var currentIndex = 0
     
     private var images: [
-        (indicator: UIImage, image: UIImage, title: String, subTitle: String)] = [(indicator: .loadImage(LoadService.shared.load?.images?.indicatorLeft) ?? UIImage(imageLiteralResourceName: "indicatorLeft"), image: .loadImage(LoadService.shared.load?.images?.welcomeImage) ?? UIImage(imageLiteralResourceName: "welcomeImage"), title: AppText.welcomeToDeviceSearch, subTitle: AppText.welcomeToPasswordSecurityDescription),
-        (indicator: .loadImage(LoadService.shared.load?.images?.indicatorRight) ?? UIImage(imageLiteralResourceName: "indicatorRight"), image: .loadImage(LoadService.shared.load?.images?.searchIndicator) ?? UIImage(imageLiteralResourceName: "searchIndicator"), title: AppText.informationOnTheIndicator, subTitle: AppText.indicatorDescription)]
+        (indicator: UIImage, image: UIImage, title: String, subTitle: String)] = [
+            (
+                indicator: .loadImage(LoadService.shared.load?.images?.indicatorLeft) ?? 
+                UIImage(imageLiteralResourceName: "indicatorLeft"),
+                image: .loadImage(LoadService.shared.load?.images?.welcomeImage) ??
+                UIImage(imageLiteralResourceName: "welcomeImage"),
+                title: AppText.welcomeToDeviceSearch,
+                subTitle: AppText.welcomeToPasswordSecurityDescription
+            ),
+            (
+                indicator: .loadImage(LoadService.shared.load?.images?.indicatorRight) ?? 
+                UIImage(imageLiteralResourceName: "indicatorRight"),
+                image: .loadImage(LoadService.shared.load?.images?.searchIndicator) ?? 
+                UIImage(imageLiteralResourceName: "searchIndicator"),
+                title: AppText.informationOnTheIndicator,
+                subTitle: AppText.indicatorDescription
+            )
+        ]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

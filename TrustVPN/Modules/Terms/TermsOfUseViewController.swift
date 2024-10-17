@@ -63,7 +63,7 @@ final class TermsOfUseViewController: UIViewController {
     
     private lazy var gradientView: UIView = {
         let gradientView = UIView()
-
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
         gradientLayer.locations = [0.0, 1.0]
@@ -74,13 +74,12 @@ final class TermsOfUseViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100)
         if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientView.bounds
@@ -107,7 +106,10 @@ final class TermsOfUseViewController: UIViewController {
         
         setupConstraints()
     }
-    
+}
+
+// MARK: - Constraints
+extension TermsOfUseViewController {
     private func setupConstraints() {
         
         shield.snp.makeConstraints { make in
@@ -121,7 +123,6 @@ final class TermsOfUseViewController: UIViewController {
             make.centerY.equalTo(shield)
             make.leading.equalTo(shield.snp.trailing).offset(8)
             make.trailing.equalToSuperview().inset(24)
-            
         }
         
         termsView.snp.makeConstraints { make in

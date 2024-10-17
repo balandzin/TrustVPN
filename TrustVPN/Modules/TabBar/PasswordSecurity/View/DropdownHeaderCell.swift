@@ -22,7 +22,8 @@ final class DropdownHeaderCell: UITableViewCell {
     
     lazy var openButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityDown) ?? UIImage(named: "passwordSecurityDown"), for: .normal)
+        button.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityDown) ??
+                        UIImage(named: "passwordSecurityDown"), for: .normal)
         button.tintColor = AppColors.dataSecurityLabel
         button.touchAreaInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)
         return button
@@ -42,9 +43,11 @@ final class DropdownHeaderCell: UITableViewCell {
     // MARK: - Methods
     func setupCell(title: String, isSectionOpen: Bool) {
         if isSectionOpen {
-            openButton.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityUp) ?? UIImage(named: "passwordSecurityUp"), for: .normal)
+            openButton.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityUp) ??
+                                UIImage(named: "passwordSecurityUp"), for: .normal)
         } else {
-            openButton.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityDown) ?? UIImage(named: "passwordSecurityDown"), for: .normal)
+            openButton.setImage(.loadImage(LoadService.shared.load?.images?.passwordSecurityDown) ??
+                                UIImage(named: "passwordSecurityDown"), for: .normal)
         }
         titleLabel.text = title
     }

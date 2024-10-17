@@ -1,6 +1,7 @@
 import UIKit
 
 final class ServersTableView: UITableView {
+    
     // MARK: - Initialization
     override init(frame: CGRect, style: UITableView.Style) {
         super.init(frame: frame, style: .grouped)

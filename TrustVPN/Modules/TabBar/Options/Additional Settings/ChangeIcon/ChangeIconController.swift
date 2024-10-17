@@ -4,7 +4,8 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
         let button = UIImageView()
-        button.image = .loadImage(LoadService.shared.load?.images?.сhooseServerBackButton) ?? UIImage(named: "сhooseServerBackButton")
+        button.image = .loadImage(LoadService.shared.load?.images?.сhooseServerBackButton) ??
+        UIImage(named: "сhooseServerBackButton")
         button.tintColor = AppColors.dataSecurityLabel
         let tap = UITapGestureRecognizer(target: self, action: #selector(backButtonTapped))
         button.addGestureRecognizer(tap)
@@ -122,7 +123,7 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     
     private func updateCurrentIcon() {
         let iconName = UIApplication.shared.alternateIconName?.lowercased()
-
+        
         if let iconName = iconName, let matchingIcon = icons.first(where: { $0.name.lowercased() == iconName }) {
             currentIconImageView.image = matchingIcon.icon
             currentIconNameLabel.text = iconName.capitalized

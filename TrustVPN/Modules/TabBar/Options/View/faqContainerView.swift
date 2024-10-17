@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 final class faqContainerView: UIView {
-
+    
     // MARK: - GUI Variables
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -21,7 +21,7 @@ final class faqContainerView: UIView {
         button.touchAreaInsets = UIEdgeInsets(top: -10, left: -10, bottom: -10, right: -10)
         return button
     }()
-
+    
     // MARK: - Initializers
     init(title: String) {
         super.init(frame: .zero)
@@ -29,11 +29,11 @@ final class faqContainerView: UIView {
         setupView()
         setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Setup View
     private func setupView() {
         backgroundColor = AppColors.loadingBar
@@ -43,7 +43,7 @@ final class faqContainerView: UIView {
         addSubview(titleLabel)
         addSubview(openButton)
     }
-
+    
     // MARK: - Setup Constraints
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in

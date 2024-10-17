@@ -82,6 +82,29 @@ final class ConnectionToViewController: UIViewController {
         setupConstraints()
     }
     
+    func setupView(server: VpnServers) {
+        countryName.text = server.countryName
+    }
+    
+    @objc private func closeButtonTapped() {
+        self.dismiss(animated: false) { [weak self] in
+            self?.view.layer.removeAllAnimations()
+        }
+    }
+    
+    private func startAnimation() {
+        loadingIndicator.frame.origin.x = 0
+        let animationDuration: TimeInterval = 1.0
+        let loadingBarWidth = loadingBar.frame.width - loadingIndicator.frame.width
+        
+        UIView.animate(withDuration: animationDuration, delay: 0, options: [.autoreverse, .repeat], animations: {
+            self.loadingIndicator.frame.origin.x = loadingBarWidth
+        }, completion: nil)
+    }
+}
+
+// MARK: - Constraints
+extension ConnectionToViewController {
     private func setupConstraints() {
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -121,26 +144,5 @@ final class ConnectionToViewController: UIViewController {
             make.width.equalTo(54)
             make.height.equalTo(6)
         }
-    }
-    
-    
-    func setupView(server: VpnServers) {
-        countryName.text = server.countryName
-    }
-    
-    @objc private func closeButtonTapped() {
-        self.dismiss(animated: false) { [weak self] in
-            self?.view.layer.removeAllAnimations()
-        }
-    }
-    
-    private func startAnimation() {
-        loadingIndicator.frame.origin.x = 0
-        let animationDuration: TimeInterval = 1.0
-        let loadingBarWidth = loadingBar.frame.width - loadingIndicator.frame.width
-        
-        UIView.animate(withDuration: animationDuration, delay: 0, options: [.autoreverse, .repeat], animations: {
-            self.loadingIndicator.frame.origin.x = loadingBarWidth
-        }, completion: nil)
     }
 }

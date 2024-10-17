@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 final class CustomLabel: UILabel {
-
+    
     // MARK: - Initialization
     init(title: String = "", fontSize: CGFloat = 18, textColor: UIColor = AppColors.almostWhite, textAlignment: NSTextAlignment = .left) {
         super.init(frame: .zero)
@@ -12,12 +12,12 @@ final class CustomLabel: UILabel {
         self.textAlignment = textAlignment
         setupStyle()
     }
-
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupStyle()
     }
-
+    
     // MARK: - Private Methods
     private func setupStyle() {
         numberOfLines = 1

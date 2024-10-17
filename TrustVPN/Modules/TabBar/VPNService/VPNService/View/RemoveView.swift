@@ -1,6 +1,7 @@
 import UIKit
 
-class RemoveView: UIView {
+final class RemoveView: UIView {
+    
     // MARK: - GUI Variables
     lazy var closeButton: UIImageView = {
         let button = UIImageView()

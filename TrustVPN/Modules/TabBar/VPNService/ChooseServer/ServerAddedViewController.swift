@@ -2,6 +2,7 @@ import UIKit
 import SnapKit
 
 final class ServerAddedViewController: BottomSheetController {
+    
     // MARK: - GUI Variables
     private let containerView: UIView = {
         let view = UIView()
@@ -16,7 +17,8 @@ final class ServerAddedViewController: BottomSheetController {
     
     private lazy var cancelView: UIImageView = {
         let image = UIImageView()
-        image.image = .loadImage(LoadService.shared.load?.images?.closeButton) ?? UIImage(named: "closeButton")
+        image.image = .loadImage(LoadService.shared.load?.images?.closeButton) ??
+        UIImage(named: "closeButton")
         image.contentMode = .scaleAspectFit
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(continueButtonTapped))
         image.addGestureRecognizer(recognizer)
@@ -35,7 +37,8 @@ final class ServerAddedViewController: BottomSheetController {
     
     private lazy var shieldView: UIImageView = {
         let image = UIImageView()
-        image.image = .loadImage(LoadService.shared.load?.images?.shield) ?? UIImage(named: "shield")
+        image.image = .loadImage(LoadService.shared.load?.images?.shield) ??
+        UIImage(named: "shield")
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -51,7 +54,8 @@ final class ServerAddedViewController: BottomSheetController {
     
     private lazy var serverAddedView: UIImageView = {
         let view = UIImageView()
-        view.image = .loadImage(LoadService.shared.load?.images?.server) ?? UIImage(named: "serverNotSelected")
+        view.image = .loadImage(LoadService.shared.load?.images?.server) ??
+        UIImage(named: "serverNotSelected")
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -97,7 +101,7 @@ final class ServerAddedViewController: BottomSheetController {
     // MARK: - Private Methods
     private func setupUI() {
         view.clipsToBounds = true
-
+        
         view.addSubview(containerView)
         containerView.addSubview(cancelView)
         containerView.addSubview(topLabelStackView)
@@ -111,6 +115,12 @@ final class ServerAddedViewController: BottomSheetController {
         setupConstraints()
     }
     
+    @objc private func continueButtonTapped() {
+        dismiss(animated: true)
+    }
+}
+
+extension ServerAddedViewController {
     private func setupConstraints() {
         containerView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
@@ -153,9 +163,5 @@ final class ServerAddedViewController: BottomSheetController {
             make.leading.trailing.equalToSuperview().inset(20)
             make.height.equalTo(52)
         }
-    }
-    
-    @objc private func continueButtonTapped() {
-        dismiss(animated: true)
     }
 }

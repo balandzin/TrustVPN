@@ -35,9 +35,9 @@ final class  CustomCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configuration
     func configure(with model: CollectionItemModel) {
-            iconImageView.image = model.icon
-            titleLabel.text = model.title
-        }
+        iconImageView.image = model.icon
+        titleLabel.text = model.title
+    }
     
     // MARK: - Private Methods
     private func setupStyle() {
@@ -66,5 +66,4 @@ final class  CustomCollectionViewCell: UICollectionViewCell {
             make.trailing.equalToSuperview().inset(5)
         }
     }
-    
 }

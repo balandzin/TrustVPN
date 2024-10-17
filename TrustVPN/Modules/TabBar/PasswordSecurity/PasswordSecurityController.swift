@@ -163,7 +163,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             updateHideProgressView(isHidden: true)
             return
         }
-
+        
         updateHideProgressView(isHidden: false)
         let score = calculatePasswordStrength(password)
         updatePasswordUI(for: score)
@@ -171,9 +171,9 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     
     // MARK: - Private Methods
     private func addTapGestureToHideKeyboard() {
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-            tapGesture.cancelsTouchesInView = false
-            view.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
     
     private func updateHideProgressView(isHidden: Bool) {
@@ -203,27 +203,103 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         
         switch score {
         case 0:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.0, crackedLabel: "", crackedLong: "")
+            strength = (
+                AppColors.unsecurePassword,
+                AppText.unsecurePassword,
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                UIImage(named: "unsecurePassword") ?? UIImage(),
+                0.0,
+                crackedLabel: "",
+                crackedLong: "")
         case 1:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.1, crackedLabel: "3", crackedLong: AppText.min)
+            strength = (
+                AppColors.unsecurePassword,
+                AppText.unsecurePassword,
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                UIImage(named: "unsecurePassword") ?? UIImage(),
+                0.1,
+                crackedLabel: "3",
+                crackedLong: AppText.min)
         case 2:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.2, crackedLabel: "5", crackedLong: AppText.min)
+            strength = (
+                AppColors.unsecurePassword,
+                AppText.unsecurePassword,
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                UIImage(named: "unsecurePassword") ?? UIImage(),
+                0.2,
+                crackedLabel: "5",
+                crackedLong: AppText.min)
         case 3:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.3, crackedLabel: "23", crackedLong: AppText.min)
+            strength = (
+                AppColors.unsecurePassword,
+                AppText.unsecurePassword,
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                UIImage(named: "unsecurePassword") ?? UIImage(),
+                0.3,
+                crackedLabel: "23",
+                crackedLong: AppText.min)
         case 4:
-            strength = (AppColors.unsecurePassword, AppText.unsecurePassword, .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? UIImage(named: "unsecurePassword") ?? UIImage(), 0.4, crackedLabel: "2", crackedLong: AppText.hours)
+            strength = (
+                AppColors.unsecurePassword,
+                AppText.unsecurePassword,
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                UIImage(named: "unsecurePassword") ?? UIImage(),
+                0.4,
+                crackedLabel: "2",
+                crackedLong: AppText.hours)
         case 5:
-            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.5, crackedLabel: "9", crackedLong: AppText.hours)
+            strength = (
+                AppColors.mediumPassword,
+                AppText.mediumPassword,
+                .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(),
+                0.5,
+                crackedLabel: "9",
+                crackedLong: AppText.hours)
         case 6:
-            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.6, crackedLabel: "112", crackedLong: AppText.hours)
+            strength = (
+                AppColors.mediumPassword,
+                AppText.mediumPassword,
+                .loadImage(LoadService.shared.load?.images?.mediumPassword) ??
+                UIImage(named: "mediumPassword") ?? UIImage(),
+                0.6,
+                crackedLabel: "112",
+                crackedLong: AppText.hours)
         case 7:
-            strength = (AppColors.mediumPassword, AppText.mediumPassword, .loadImage(LoadService.shared.load?.images?.mediumPassword) ?? UIImage(named: "mediumPassword") ?? UIImage(), 0.7, crackedLabel: "1239", crackedLong: AppText.hours)
+            strength = (
+                AppColors.mediumPassword,
+                AppText.mediumPassword,
+                .loadImage(LoadService.shared.load?.images?.mediumPassword) ??
+                UIImage(named: "mediumPassword") ?? UIImage(),
+                0.7,
+                crackedLabel: "1239",
+                crackedLong: AppText.hours)
         case 8:
-            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.8, crackedLabel: "67433", crackedLong: AppText.hours)
+            strength = (
+                AppColors.strongPassword,
+                AppText.strongPassword,
+                .loadImage(LoadService.shared.load?.images?.strongPassword) ??
+                UIImage(named: "strongPassword") ?? UIImage(),
+                0.8,
+                crackedLabel: "67433",
+                crackedLong: AppText.hours)
         case 9:
-            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 0.9, crackedLabel: "78565884", crackedLong: AppText.hours)
+            strength = (
+                AppColors.strongPassword,
+                AppText.strongPassword,
+                .loadImage(LoadService.shared.load?.images?.strongPassword) ??
+                UIImage(named: "strongPassword") ?? UIImage(),
+                0.9,
+                crackedLabel: "78565884",
+                crackedLong: AppText.hours)
         default:
-            strength = (AppColors.strongPassword, AppText.strongPassword, .loadImage(LoadService.shared.load?.images?.strongPassword) ?? UIImage(named: "strongPassword") ?? UIImage(), 1.0, crackedLabel: "56854456565858545", crackedLong: AppText.hours)
+            strength = (
+                AppColors.strongPassword,
+                AppText.strongPassword,
+                .loadImage(LoadService.shared.load?.images?.strongPassword) ??
+                UIImage(named: "strongPassword") ?? UIImage(),
+                1.0,
+                crackedLabel: "568544565658545",
+                crackedLong: AppText.hours)
         }
         
         successLabel.text = strength.label

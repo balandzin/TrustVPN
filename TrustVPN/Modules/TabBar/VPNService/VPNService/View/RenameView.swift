@@ -107,7 +107,10 @@ final class RenameView: UIView, UITextFieldDelegate {
         setupConstraints()
         
     }
-    
+}
+
+// MARK: - Setup Constraints
+extension RenameView {
     private func setupConstraints() {
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

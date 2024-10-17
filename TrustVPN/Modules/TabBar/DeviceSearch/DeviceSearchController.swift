@@ -2,7 +2,7 @@ import UIKit
 import CoreBluetooth
 import SnapKit
 
-class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
+final class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     
     // MARK: - GUI Variables
     private lazy var headerLabel: UILabel = {
@@ -29,7 +29,6 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         return view
     }()
     
-    // Степень близости устройства (от 0 до 1)
     private var proximity: CGFloat = 0 {
         didSet {
             updateProximityUI()
@@ -37,17 +36,9 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     }
     
     private var isScanning = false
-    
-    // Таймер для завершения поиска
     private var searchTimer: Timer?
-    
-    // Центр индикатора
     private var indicatorCenter: CGPoint!
-    
-    // Bluetooth Central Manager для поиска устройств
     private var centralManager: CBCentralManager!
-    
-    // Ограничение времени поиска (30 секунд)
     private let searchDuration: TimeInterval = 30.0
     
     // MARK: - Lifecycle
@@ -55,7 +46,6 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         super.viewDidLoad()
         setupUI()
         
-        // Инициализация CoreBluetooth Central Manager
         centralManager = CBCentralManager(delegate: self, queue: nil)
     }
     
@@ -63,25 +53,11 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     private func setupUI() {
         setupStyle()
         
-        if !Default.shared.isShowDeviceSearchInfo {
-            
-        }
-        
-        // Настройка полукруглого индикатора
         setupCircularProgress()
-        
-        // Настройка стрелки
         setupArrow()
-        
-        // Настройка лейбла для отображения близости
         setupProximityLabel()
-        
-        // Настройка текстового описания
         setupDescriptionLabel()
-        
-        // Настройка кнопки поиска устройства
         setupSearchButton()
-        
         setupConstraints()
     }
     
@@ -96,7 +72,6 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         let radius: CGFloat = 120
         
         
-        // Полукруг (дуга)
         let circularPath = UIBezierPath(arcCenter: center,
                                         radius: radius,
                                         startAngle: CGFloat.pi * 3 / 4,
@@ -109,11 +84,10 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         circularProgressLayer.strokeColor = UIColor.black.cgColor
         circularProgressLayer.lineCap = .round
         
-        // Настройка градиента для шкалы
         gradientLayer.frame = view.bounds
         gradientLayer.colors = [AppColors.aaa.cgColor, AppColors.bbb.cgColor, AppColors.ccc.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)  // Центр
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)    // Внешний радиус
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradientLayer.type = .conic
         gradientLayer.mask = circularProgressLayer
         
@@ -132,21 +106,17 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     private func setupArrow() {
         let arrowPath = UIBezierPath()
         
-        // Линия стрелки должна исходить от центра индикатора и иметь ограниченную длину
-        arrowPath.move(to: CGPoint(x: 0, y: 0)) // Стартовая точка (центр вращения)
-        arrowPath.addLine(to: CGPoint(x: 0, y: -90)) // Конечная точка стрелки (направление вверх)
+        arrowPath.move(to: CGPoint(x: 0, y: 0))
+        arrowPath.addLine(to: CGPoint(x: 0, y: -90))
         
-        // Настройка стрелки
         arrowLayer.path = arrowPath.cgPath
         arrowLayer.lineWidth = 6
         arrowLayer.strokeColor = UIColor.white.cgColor
         arrowLayer.lineCap = .round
         
-        // Позиционируем стрелку так, чтобы её центр совпадал с центром индикатора
-        arrowLayer.position = indicatorCenter // Устанавливаем центр стрелки
+        arrowLayer.position = indicatorCenter
         view.layer.addSublayer(arrowLayer)
         
-        // Стрелка начнет с положения 0
         updateProximityUI()
     }
     
@@ -185,18 +155,13 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     
     // MARK: - Update Proximity UI
     private func updateProximityUI() {
-        // Преобразуем степень близости в μТ (от 0 до 100)
         let proximityValue = Int(proximity * 100)
         proximityLabel.text = "\(proximityValue) μТ"
         
-        // Углы для стрелки: от 225 градусов (5π/4, слева) до 315 градусов (7π/4, справа)
-        let minAngle = 5 * CGFloat.pi / 4  // 225 градусов (слева)
-        let maxAngle = 11 * CGFloat.pi / 4  // 315 градусов (справа)
+        let minAngle = 5 * CGFloat.pi / 4
+        let maxAngle = 11 * CGFloat.pi / 4
+        let angle = minAngle + (maxAngle - minAngle) * proximity
         
-        // Вычисляем угол поворота на основе близости (proximity)
-        let angle = minAngle + (maxAngle - minAngle) * proximity // Линейное преобразование угла
-        
-        // Анимация поворота стрелки
         arrowLayer.setAffineTransform(CGAffineTransform(rotationAngle: angle))
     }
     
@@ -210,19 +175,14 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     }
     
     @objc private func startSearch() {
-        // Проверка состояния Bluetooth
         if centralManager.state != .poweredOn {
             showBluetoothAlert()
             return
         }
         
-        // Запускаем поиск устройств по Bluetooth
         centralManager.scanForPeripherals(withServices: nil, options: nil)
-        
-        // Таймер для остановки поиска через 30 секунд
         searchTimer = Timer.scheduledTimer(timeInterval: searchDuration, target: self, selector: #selector(stopSearch), userInfo: nil, repeats: false)
         
-        // Меняем текст кнопки на "Stop"
         searchButton.setTitle("Stop", for: .normal)
         isScanning = true
     }
@@ -231,18 +191,14 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         searchTimer?.invalidate()
         searchTimer = nil
         
-        // Останавливаем сканирование Bluetooth
         centralManager.stopScan()
         
-        // Меняем текст кнопки обратно на "Start scanning"
         searchButton.setTitle("Start scanning", for: .normal)
         isScanning = false
         
-        // Когда поиск завершен, можно сбросить индикатор (опционально)
         updateProximity(to: 0.0)
     }
     
-    // Функция для обновления уровня близости устройства
     private func updateProximity(to newValue: CGFloat) {
         proximity = max(0, min(1, newValue)) // Ограничиваем значение от 0 до 1
     }
@@ -250,32 +206,24 @@ class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     // MARK: - Bluetooth Delegate Methods
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
-            // Bluetooth включен, можно начать поиск
             print("Bluetooth включен и готов к поиску.")
         } else {
-            // Bluetooth выключен или недоступен
             showBluetoothAlert()
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        // Получаем значение RSSI и преобразуем его в диапазон от 0 до 1 для поворота стрелки
         let rssiValue = RSSI.intValue
         
-        // Преобразуем значение RSSI в относительное значение (где -100 RSSI это минимальное значение, 0 это максимальное)
         let proximityValue = calculateProximityFromRSSI(rssiValue)
         
-        // Обновляем индикатор в реальном времени
         updateProximity(to: proximityValue)
     }
     
-    // Функция для преобразования RSSI в значение близости
     private func calculateProximityFromRSSI(_ rssi: Int) -> CGFloat {
-        // Допустим, минимальное значение RSSI -100, максимальное 0
         let minRSSI: CGFloat = -100
         let maxRSSI: CGFloat = 0
         
-        // Преобразуем значение RSSI в диапазон от 0 до 1
         let proximityValue = (CGFloat(rssi) - minRSSI) / (maxRSSI - minRSSI)
         return max(0, min(1, proximityValue)) // Ограничиваем значения от 0 до 1
     }
@@ -304,8 +252,8 @@ extension DeviceSearchController {
         }
         
         proximityLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview() // Центрируем по горизонтали
-            make.top.equalTo(view.snp.centerY).offset(10) // Смещаем ниже центра круга
+            make.centerX.equalToSuperview()
+            make.top.equalTo(view.snp.centerY).offset(10)
         }
         
         descriptionLabel.snp.makeConstraints { make in

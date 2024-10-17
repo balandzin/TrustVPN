@@ -141,8 +141,6 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
         stopMonitoringNetwork()
     }
     
-    
-    
     // MARK: - Private Methods
     private func setupStyle() {
         view.backgroundColor = .gradientColor
@@ -167,10 +165,30 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     
     private func setupData() {
         items = [
-            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.support) ?? UIImage(named: "support") ?? UIImage(), title: AppText.supportAndFAQ, destinationVC: SupportController()),
-            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.privatePolicy) ?? UIImage(named: "privatePolicy") ?? UIImage(), title: AppText.privatePolicy, destinationVC: PrivacyPolicyController()),
-            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.changeIcon) ?? UIImage(named: "changeIcon") ?? UIImage(), title: AppText.changeIcon, destinationVC: ChangeIconController()),
-            CollectionItemModel(icon: .loadImage(LoadService.shared.load?.images?.termsOfUse) ?? UIImage(named: "termsOfUse") ?? UIImage(), title: AppText.termsOfUse, destinationVC: TermsOfUseController())
+            CollectionItemModel(
+                icon: .loadImage(LoadService.shared.load?.images?.support) ??
+                UIImage(named: "support") ?? UIImage(),
+                title: AppText.supportAndFAQ,
+                destinationVC: SupportController()
+            ),
+            CollectionItemModel(
+                icon: .loadImage(LoadService.shared.load?.images?.privatePolicy) ??
+                UIImage(named: "privatePolicy") ?? UIImage(),
+                title: AppText.privatePolicy,
+                destinationVC: PrivacyPolicyController()
+            ),
+            CollectionItemModel(
+                icon: .loadImage(LoadService.shared.load?.images?.changeIcon) ??
+                UIImage(named: "changeIcon") ?? UIImage(),
+                title: AppText.changeIcon,
+                destinationVC: ChangeIconController()
+            ),
+            CollectionItemModel(
+                icon: .loadImage(LoadService.shared.load?.images?.termsOfUse) ??
+                UIImage(named: "termsOfUse") ?? UIImage(),
+                title: AppText.termsOfUse,
+                destinationVC: TermsOfUseController()
+            )
         ]
         
         collectionView.reloadData()
@@ -229,7 +247,10 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: CustomCollectionViewCell.identifier,
+            for: indexPath
+        ) as? CustomCollectionViewCell else {
             return UICollectionViewCell()
         }
         let item = items[indexPath.item]
@@ -246,7 +267,11 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         return CGSize(width: 156, height: 92)
     }
     
@@ -259,6 +284,8 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     }
 }
 
+
+// MARK: - Setup Constraints
 extension OptionsController {
     private func setupConstraints() {
         headerLabel.snp.makeConstraints { make in

@@ -4,7 +4,8 @@ final class PrivacyPolicyController: UIViewController {
     // MARK: - GUI Variables
     private lazy var backButton: UIImageView = {
         let button = UIImageView()
-        button.image = .loadImage(LoadService.shared.load?.images?.сhooseServerBackButton) ?? UIImage(named: "сhooseServerBackButton")
+        button.image = .loadImage(LoadService.shared.load?.images?.сhooseServerBackButton) ?? 
+        UIImage(named: "сhooseServerBackButton")
         button.tintColor = AppColors.dataSecurityLabel
         let tap = UITapGestureRecognizer(target: self, action: #selector(backButtonTapped))
         button.addGestureRecognizer(tap)
@@ -24,7 +25,8 @@ final class PrivacyPolicyController: UIViewController {
     
     private lazy var cetralLogo: UIImageView = {
         let view = UIImageView()
-        view.image = .loadImage(LoadService.shared.load?.images?.centralLogo) ?? UIImage(named: "centralLogo")
+        view.image = .loadImage(LoadService.shared.load?.images?.centralLogo) ?? 
+        UIImage(named: "centralLogo")
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -32,7 +34,7 @@ final class PrivacyPolicyController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsVerticalScrollIndicator = false
-
+        
         return view
     }()
     
@@ -44,14 +46,14 @@ final class PrivacyPolicyController: UIViewController {
     
     private lazy var gradientView: UIView = {
         let gradientView = UIView()
-
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
         return gradientView
     }()
-
+    
     private let termsLabel: UILabel = {
         let label = UILabel()
         label.textColor = AppColors.dataSecurityLabel
@@ -72,7 +74,7 @@ final class PrivacyPolicyController: UIViewController {
         button.addTarget(self, action: #selector(goToSupportTapped), for: .touchUpInside)
         return button
     }()
-        
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,13 +85,13 @@ final class PrivacyPolicyController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100)
         if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientView.bounds
         }
     }
-
+    
     // MARK: - Private Methods
     private func setupStyle() {
         view.backgroundColor = .gradientColor

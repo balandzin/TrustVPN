@@ -1,6 +1,7 @@
 import UIKit
 
 final class ServerAddedView: UIView {
+    
     // MARK: - GUI Variables
     private lazy var containerView: UIView = {
         let view = UIView()

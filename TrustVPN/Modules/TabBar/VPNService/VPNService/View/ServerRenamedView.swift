@@ -1,6 +1,7 @@
 import UIKit
 
 final class ServerRenamedView: UIView {
+    
     // MARK: - GUI Variables
     private lazy var containerView: UIView = {
         let view = UIView()
@@ -11,7 +12,8 @@ final class ServerRenamedView: UIView {
     
     private lazy var serverRenamedImage: UIImageView = {
         let view = UIImageView()
-        view.image = .loadImage(LoadService.shared.load?.images?.vpnServerRenamed) ?? UIImage(named: "vpnServerRenamed")
+        view.image = .loadImage(LoadService.shared.load?.images?.vpnServerRenamed) ??
+        UIImage(named: "vpnServerRenamed")
         view.tintColor = AppColors.almostWhite
         return view
     }()
@@ -33,7 +35,6 @@ final class ServerRenamedView: UIView {
         containerView.addSubview(serverRenamedImage)
         
         setupConstraints()
-        
     }
     
     private func setupConstraints() {

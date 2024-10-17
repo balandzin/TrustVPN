@@ -8,18 +8,22 @@ final class SwipeConnectView: UIView {
         var title: UIImage {
             switch self {
             case .off:
-                return (.loadImage(LoadService.shared.load?.images?.swipeToConnect) ?? UIImage(named: "swipeToConnect")) ?? UIImage()
+                return (.loadImage(LoadService.shared.load?.images?.swipeToConnect)
+                        ?? UIImage(named: "swipeToConnect")) ?? UIImage()
             case .on:
-                return (.loadImage(LoadService.shared.load?.images?.swipeToDisconnect) ?? UIImage(named: "swipeToDisconnect")) ?? UIImage()
+                return (.loadImage(LoadService.shared.load?.images?.swipeToDisconnect)
+                        ?? UIImage(named: "swipeToDisconnect")) ?? UIImage()
             }
         }
         
         var icon: UIImage {
             switch self {
             case .off:
-                return (.loadImage(LoadService.shared.load?.images?.disconnectedImage) ?? UIImage(named: "disconnectedImage")) ?? UIImage()
+                return (.loadImage(LoadService.shared.load?.images?.disconnectedImage)
+                        ?? UIImage(named: "disconnectedImage")) ?? UIImage()
             case .on:
-                return (.loadImage(LoadService.shared.load?.images?.connectedImage) ?? UIImage(named: "connectedImage")) ?? UIImage()
+                return (.loadImage(LoadService.shared.load?.images?.connectedImage)
+                        ?? UIImage(named: "connectedImage")) ?? UIImage()
             }
         }
     }

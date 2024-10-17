@@ -7,7 +7,6 @@ final class OnboardViewController: UIViewController {
     private lazy var imageView: UIImageView = {
         let image = UIImageView(image: images[0].icon)
         image.contentMode = .scaleToFill
-        
         return image
     }()
     
@@ -28,7 +27,20 @@ final class OnboardViewController: UIViewController {
     // MARK: - Private Properties
     private var currentIndex = 0
     
-    private var images: [(icon: UIImage, title: String, subTitle: String)] = [(icon: .loadImage(LoadService.shared.load?.images?.onboard1) ?? UIImage(imageLiteralResourceName: "onboard1"), title: AppText.onboard1Title, subTitle: AppText.onboard1SubTitle), (icon: .loadImage(LoadService.shared.load?.images?.onboard2) ?? UIImage(imageLiteralResourceName: "onboard2"), title: AppText.onboard2Title, subTitle: AppText.onboard2SubTitle), (icon: .loadImage(LoadService.shared.load?.images?.onboard3) ?? UIImage(imageLiteralResourceName: "onboard3"), title: AppText.onboard3Title, subTitle: AppText.onboard3SubTitle)]
+    private var images: [(icon: UIImage, title: String, subTitle: String)] = [
+        (icon: .loadImage(LoadService.shared.load?.images?.onboard1) ?? 
+         UIImage(imageLiteralResourceName: "onboard1"),
+         title: AppText.onboard1Title,
+         subTitle: AppText.onboard1SubTitle),
+        (icon: .loadImage(LoadService.shared.load?.images?.onboard2) ?? 
+         UIImage(imageLiteralResourceName: "onboard2"),
+         title: AppText.onboard2Title,
+         subTitle: AppText.onboard2SubTitle),
+        (icon: .loadImage(LoadService.shared.load?.images?.onboard3) ?? 
+         UIImage(imageLiteralResourceName: "onboard3"),
+         title: AppText.onboard3Title,
+         subTitle: AppText.onboard3SubTitle)
+    ]
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 final class CustomContainerView: UIView {
-
+    
     // MARK: - UI Elements
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
@@ -13,7 +13,7 @@ final class CustomContainerView: UIView {
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
-
+    
     // MARK: - Initializers
     init(title: String) {
         super.init(frame: .zero)
@@ -21,11 +21,11 @@ final class CustomContainerView: UIView {
         setupView()
         setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Setup View
     private func setupView() {
         backgroundColor = AppColors.loadingBar
@@ -33,7 +33,7 @@ final class CustomContainerView: UIView {
         
         addSubview(titleLabel)
     }
-
+    
     // MARK: - Setup Constraints
     private func setupConstraints() {
         

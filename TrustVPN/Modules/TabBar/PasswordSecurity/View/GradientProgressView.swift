@@ -1,7 +1,6 @@
 import UIKit
 
-
-class GradientProgressView: UIView {
+final class GradientProgressView: UIView {
     
     private let gradientLayer = CAGradientLayer()
     private let maskLayer = CALayer()

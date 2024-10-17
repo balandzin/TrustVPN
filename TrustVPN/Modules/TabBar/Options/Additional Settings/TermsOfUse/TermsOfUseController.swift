@@ -32,7 +32,7 @@ final class TermsOfUseController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         let view = UIScrollView()
         view.showsVerticalScrollIndicator = false
-
+        
         return view
     }()
     
@@ -44,7 +44,7 @@ final class TermsOfUseController: UIViewController {
     
     private lazy var gradientView: UIView = {
         let gradientView = UIView()
-
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
         gradientLayer.locations = [0.0, 1.0]
@@ -52,7 +52,7 @@ final class TermsOfUseController: UIViewController {
         
         return gradientView
     }()
-
+    
     private let termsLabel: UILabel = {
         let label = UILabel()
         label.textColor = AppColors.dataSecurityLabel
@@ -74,7 +74,7 @@ final class TermsOfUseController: UIViewController {
         
         return button
     }()
-        
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,13 +85,13 @@ final class TermsOfUseController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100) // Нижняя часть
         if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientView.bounds
         }
     }
-
+    
     
     // MARK: - Private Methods
     private func setupStyle() {

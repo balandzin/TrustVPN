@@ -18,7 +18,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         setValue(customTabBar, forKey: "tabBar")
         createViewControllers()
         self.delegate = self
-
+        
         self.tabBar.tintColor = .clear
         
         programUpdate(index: selectedIndex)
@@ -58,15 +58,22 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     private func createViewControllers() {
         self.tabBar.unselectedItemTintColor = AppColors.dataSecurityLabel
-        vpnService = .loadImage(LoadService.shared.load?.images?.vpnService) ?? UIImage(named: "vpnService") ?? UIImage()
-        deviceSearch = .loadImage(LoadService.shared.load?.images?.deviceSearch) ?? UIImage(named: "deviceSearch") ?? UIImage()
-        passwordSecurity = .loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? UIImage(named: "passwordSecurity") ?? UIImage()
+        vpnService = .loadImage(LoadService.shared.load?.images?.vpnService) ?? 
+        UIImage(named: "vpnService") ?? UIImage()
+        deviceSearch = .loadImage(LoadService.shared.load?.images?.deviceSearch) ?? 
+        UIImage(named: "deviceSearch") ?? UIImage()
+        passwordSecurity = .loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? 
+        UIImage(named: "passwordSecurity") ?? UIImage()
         options = .loadImage(LoadService.shared.load?.images?.options) ?? UIImage(named: "options") ?? UIImage()
         
-        vpnServiceSelected = .loadImage(LoadService.shared.load?.images?.vpnServiceSelected) ?? UIImage(named: "vpnServiceSelected") ?? UIImage()
-        deviceSearchSelected = .loadImage(LoadService.shared.load?.images?.deviceSearchSelected) ?? UIImage(named: "deviceSearchSelected") ?? UIImage()
-        passwordSecuritySelected = .loadImage(LoadService.shared.load?.images?.passwordSecuritySelected) ?? UIImage(named: "passwordSecuritySelected") ?? UIImage()
-        optionsSelected = .loadImage(LoadService.shared.load?.images?.optionsSelected) ?? UIImage(named: "optionsSelected") ?? UIImage()
+        vpnServiceSelected = .loadImage(LoadService.shared.load?.images?.vpnServiceSelected) ?? 
+        UIImage(named: "vpnServiceSelected") ?? UIImage()
+        deviceSearchSelected = .loadImage(LoadService.shared.load?.images?.deviceSearchSelected) ?? 
+        UIImage(named: "deviceSearchSelected") ?? UIImage()
+        passwordSecuritySelected = .loadImage(LoadService.shared.load?.images?.passwordSecuritySelected) ?? 
+        UIImage(named: "passwordSecuritySelected") ?? UIImage()
+        optionsSelected = .loadImage(LoadService.shared.load?.images?.optionsSelected) ?? 
+        UIImage(named: "optionsSelected") ?? UIImage()
         
         viewControllers = [
             UIViewController.createNavController(

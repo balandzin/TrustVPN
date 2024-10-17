@@ -15,7 +15,8 @@ final class VpnBottomSheetController: BottomSheetController {
     
     private lazy var cancelView: UIImageView = {
         let image = UIImageView()
-        image.image = .loadImage(LoadService.shared.load?.images?.closeButton) ?? UIImage(named: "closeButton")
+        image.image = .loadImage(LoadService.shared.load?.images?.closeButton) ?? 
+        UIImage(named: "closeButton")
         image.contentMode = .scaleAspectFit
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(continueButtonTapped))
         image.addGestureRecognizer(recognizer)
@@ -34,7 +35,8 @@ final class VpnBottomSheetController: BottomSheetController {
     
     private lazy var shieldView: UIImageView = {
         let image = UIImageView()
-        image.image = .loadImage(LoadService.shared.load?.images?.shield) ?? UIImage(named: "shield")
+        image.image = .loadImage(LoadService.shared.load?.images?.shield) ?? 
+        UIImage(named: "shield")
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -50,7 +52,8 @@ final class VpnBottomSheetController: BottomSheetController {
     
     private lazy var serverAddedView: UIImageView = {
         let view = UIImageView()
-        view.image = .loadImage(LoadService.shared.load?.images?.server) ?? UIImage(named: "serverNotSelected")
+        view.image = .loadImage(LoadService.shared.load?.images?.server) ?? 
+        UIImage(named: "serverNotSelected")
         view.contentMode = .scaleAspectFit
         return view
     }()
@@ -96,7 +99,7 @@ final class VpnBottomSheetController: BottomSheetController {
     // MARK: - Private Methods
     private func setupUI() {
         view.clipsToBounds = true
-
+        
         view.addSubview(containerView)
         containerView.addSubview(cancelView)
         containerView.addSubview(topLabelStackView)
