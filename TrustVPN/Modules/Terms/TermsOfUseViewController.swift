@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-final class TermsOfUseViewController: UIViewController {
+final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - GUI Variables
     private lazy var shield: UIImageView = {
@@ -22,6 +22,7 @@ final class TermsOfUseViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = AppColors.termsView
         view.layer.cornerRadius = 26
+        view.clipsToBounds = true
         return view
     }()
     
@@ -31,7 +32,12 @@ final class TermsOfUseViewController: UIViewController {
         return view
     }()
     
-    private let contentView = UIView()
+    private let contentView: UIView = {
+        let view = UIView()
+        view.layer.cornerRadius = 26 // Добавляем закругление
+        view.layer.masksToBounds = true // Учитываем закругление для содержимого
+        return view
+    }()
     
     private lazy var termsHeaderLabel: UILabel = {
         let label = UILabel()
@@ -61,14 +67,17 @@ final class TermsOfUseViewController: UIViewController {
         return button
     }()
     
+    // Градиентное представление для исчезновения текста
     private lazy var gradientView: UIView = {
-        let gradientView = UIView()
-        
+        let view = UIView()
+        view.isUserInteractionEnabled = false
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
+        gradientLayer.colors = [UIColor.clear.cgColor, AppColors.termsView.withAlphaComponent(1).cgColor]
         gradientLayer.locations = [0.0, 1.0]
-        gradientView.layer.addSublayer(gradientLayer)
-        return gradientView
+        //gradientLayer.cornerRadius = 26
+        view.layer.addSublayer(gradientLayer)
+        view.layer.cornerRadius = 26
+        return view
     }()
     
     // MARK: - Lifecycle
@@ -79,14 +88,11 @@ final class TermsOfUseViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY, width: view.bounds.width, height: 100)
-        if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
-            gradientLayer.frame = gradientView.bounds
-        }
+        updateGradientFrame()
     }
     
     // MARK: - Private Methods
+    
     @objc private func acceptButtonTapped() {
         navigationController?.pushViewController(OnboardViewController(), animated: true)
     }
@@ -101,10 +107,22 @@ final class TermsOfUseViewController: UIViewController {
         scrollView.addSubview(contentView)
         contentView.addSubview(termsHeaderLabel)
         contentView.addSubview(termsLabel)
-        scrollView.addSubview(gradientView)
+        termsView.addSubview(gradientView)
         view.addSubview(acceptButton)
-        
         setupConstraints()
+    }
+    
+    private func updateGradientFrame() {
+        // Обновляем положение и размер градиентного слоя
+        gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY - 100, width: scrollView.frame.width, height: 100)
+        if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
+            gradientLayer.frame = gradientView.bounds
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Обновляем положение градиента при прокрутке
+        updateGradientFrame()
     }
 }
 
@@ -155,17 +173,16 @@ extension TermsOfUseViewController {
             make.bottom.equalToSuperview().inset(24)
         }
         
-        gradientView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(acceptButton.snp.top).offset(-20)
-            make.height.equalTo(120)
-        }
-        
         acceptButton.snp.makeConstraints { make in
             make.height.equalTo(52)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
             make.bottom.equalToSuperview().inset(68)
+        }
+        
+        gradientView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(termsView)
+            make.height.equalTo(100)
         }
     }
 }
