@@ -180,7 +180,7 @@ extension StartupViewController {
     private func showLastScene() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             if Default.shared.isShowOnboard {
-                //self.showTerms() Заменить, чтобы всегда показывался онбординг
+                //self.showTerms() //Заменить, чтобы всегда показывался онбординг
                 self.showTabBarController()
             } else {
                 self.showTerms()
