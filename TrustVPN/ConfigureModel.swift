@@ -68,6 +68,7 @@ struct Images : Codable {
     let advanced: String?
     let dynamic: String?
     let modern: String?
+    let background: String?
     
     
     

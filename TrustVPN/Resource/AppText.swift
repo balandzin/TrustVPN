@@ -111,7 +111,8 @@ There are several main types of password attacks, with the most common being:
         
         If you have any questions about features, problems or bugs, or have suggestions for improvement, we are here to help and take all ideas into consideration.
         
-        Need help? Email us! support@example.com
+        Need help? Email us! 
+        support@example.com
         
         Thank you for choosing our app!
         """

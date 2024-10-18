@@ -191,7 +191,7 @@ extension UIView {
 extension UIView {
     
     func applyDefaultBackgroundImage() {
-        let backgroundImage = .loadImage(LoadService.shared.load?.images?.startupBackground) ?? UIImage(named: "startupBackground")
+        let backgroundImage = .loadImage(LoadService.shared.load?.images?.background) ?? UIImage(named: "background")
         let backgroundImageView = UIImageView(image: backgroundImage)
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.frame = self.bounds

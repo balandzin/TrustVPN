@@ -33,13 +33,43 @@ final class SupportController: UIViewController, SearchRequiredControllerDelegat
         return label
     }()
     
-    private let supportLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = AppColors.dataSecurityLabel
-        label.textAlignment = .left
-        label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 18)
-        return label
+    //    private let supportLabel: UILabel = {
+    //        let label = UILabel()
+    //        label.textColor = AppColors.dataSecurityLabel
+    //        label.textAlignment = .left
+    //        label.numberOfLines = 0
+    //        label.font = .systemFont(ofSize: 18)
+    //        return label
+    //    }()
+    
+    private lazy var supportTextView: UITextView = {
+        let textView = UITextView()
+        textView.isEditable = false
+        textView.isScrollEnabled = false
+        textView.backgroundColor = .clear
+        textView.textAlignment = .left
+        
+        // Настраиваем текст и атрибуты
+        let text = AppText.supportText
+        let attributedText = NSMutableAttributedString(string: text, attributes: [
+            .font: UIFont.systemFont(ofSize: 16), // Настраиваем шрифт
+            .foregroundColor: AppColors.dataSecurityLabel // Настраиваем цвет текста
+        ])
+        
+        // Устанавливаем цвет и шрифт для ссылки
+        if let emailRange = text.range(of: AppText.supportEmail) {
+            let nsRange = NSRange(emailRange, in: text)
+            attributedText.addAttributes([
+                .link: "mailto:\(AppText.supportEmail)",
+                .font: UIFont.systemFont(ofSize: 16), // Шрифт ссылки
+                .foregroundColor: AppColors.loadingIndicator // Цвет ссылки
+            ], range: nsRange)
+        }
+        
+        textView.attributedText = attributedText
+        textView.dataDetectorTypes = .link // Позволяет распознавать ссылки
+        textView.linkTextAttributes = [.foregroundColor: UIColor.blue] // Настраиваем цвет ссылки
+        return textView
     }()
     
     private lazy var faqLabel: UILabel = {
@@ -74,14 +104,15 @@ final class SupportController: UIViewController, SearchRequiredControllerDelegat
     private func setupUI() {
         view.addSubview(backButton)
         view.addSubview(headerLabel)
-        view.addSubview(supportLabel)
+        //view.addSubview(supportLabel)
+        view.addSubview(supportTextView)
         view.addSubview(faqLabel)
         view.addSubview(deviceSearchView)
         view.addSubview(passwordSearchView)
         view.addSubview(vpnView)
         
         setupConstraints()
-        setupSupportLabel()
+        //setupSupportLabel()
     }
     
     private func addTargets() {
@@ -90,53 +121,53 @@ final class SupportController: UIViewController, SearchRequiredControllerDelegat
         vpnView.openButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(vpnViewTapped)))
     }
     
-    private func setupSupportLabel() {
-        let text = AppText.supportText
-        let attributedText = NSMutableAttributedString(string: text)
-        
-        if let emailRange = text.range(of: AppText.supportEmail) {
-            let nsRange = NSRange(emailRange, in: text)
-            attributedText.addAttribute(.link, value: "mailto:\(AppText.supportEmail)", range: nsRange)
-            attributedText.addAttribute(.foregroundColor, value: UIColor.blue, range: nsRange)
-        }
-        
-        supportLabel.attributedText = attributedText
-        supportLabel.numberOfLines = 0
-        supportLabel.isUserInteractionEnabled = true
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLabelTap))
-        supportLabel.addGestureRecognizer(tapGesture)
-    }
+    //    private func setupSupportLabel() {
+    //        let text = AppText.supportText
+    //        let attributedText = NSMutableAttributedString(string: text)
+    //
+    //        if let emailRange = text.range(of: AppText.supportEmail) {
+    //            let nsRange = NSRange(emailRange, in: text)
+    //            attributedText.addAttribute(.link, value: "mailto:\(AppText.supportEmail)", range: nsRange)
+    //            attributedText.addAttribute(.foregroundColor, value: UIColor.blue, range: nsRange)
+    //        }
+    //
+    //        supportLabel.attributedText = attributedText
+    //        supportLabel.numberOfLines = 0
+    //        supportLabel.isUserInteractionEnabled = true
+    //
+    //        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleLabelTap))
+    //        supportLabel.addGestureRecognizer(tapGesture)
+    //    }
     
     @objc private func backButtonTapped() {
         navigationController?.popViewController(animated: true)
     }
     
-    @objc private func handleLabelTap(gesture: UITapGestureRecognizer) {
-        let text = AppText.supportText
-        let nsText = text as NSString
-        
-        let emailRange = nsText.range(of: AppText.supportEmail)
-        let tapLocation = gesture.location(in: supportLabel)
-        
-        let layoutManager = NSLayoutManager()
-        let textStorage = NSTextStorage(attributedString: supportLabel.attributedText!)
-        let textContainer = NSTextContainer(size: supportLabel.bounds.size)
-        
-        layoutManager.addTextContainer(textContainer)
-        textStorage.addLayoutManager(layoutManager)
-        textContainer.lineFragmentPadding = 0
-        textContainer.lineBreakMode = supportLabel.lineBreakMode
-        textContainer.maximumNumberOfLines = supportLabel.numberOfLines
-        
-        let index = layoutManager.characterIndex(for: tapLocation, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
-        
-        if NSLocationInRange(index, emailRange) {
-            if let url = URL(string: "mailto:\(AppText.supportEmail)") {
-                UIApplication.shared.open(url)
-            }
-        }
-    }
+    //    @objc private func handleLabelTap(gesture: UITapGestureRecognizer) {
+    //        let text = AppText.supportText
+    //        let nsText = text as NSString
+    //
+    //        let emailRange = nsText.range(of: AppText.supportEmail)
+    //        let tapLocation = gesture.location(in: supportLabel)
+    //
+    //        let layoutManager = NSLayoutManager()
+    //        let textStorage = NSTextStorage(attributedString: supportLabel.attributedText!)
+    //        let textContainer = NSTextContainer(size: supportLabel.bounds.size)
+    //
+    //        layoutManager.addTextContainer(textContainer)
+    //        textStorage.addLayoutManager(layoutManager)
+    //        textContainer.lineFragmentPadding = 0
+    //        textContainer.lineBreakMode = supportLabel.lineBreakMode
+    //        textContainer.maximumNumberOfLines = supportLabel.numberOfLines
+    //
+    //        let index = layoutManager.characterIndex(for: tapLocation, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+    //
+    //        if NSLocationInRange(index, emailRange) {
+    //            if let url = URL(string: "mailto:\(AppText.supportEmail)") {
+    //                UIApplication.shared.open(url)
+    //            }
+    //        }
+    //    }
     
     @objc private func deviceSearchViewTapped() {
         let controller = SearchBottomSheetController()
@@ -176,13 +207,18 @@ extension SupportController {
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
-        supportLabel.snp.makeConstraints { make in
+        //        supportLabel.snp.makeConstraints { make in
+        //            make.top.equalTo(headerLabel.snp.bottom).offset(25)
+        //            make.leading.trailing.equalToSuperview().inset(24)
+        //        }
+        
+        supportTextView.snp.makeConstraints { make in
             make.top.equalTo(headerLabel.snp.bottom).offset(25)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
         faqLabel.snp.makeConstraints { make in
-            make.top.equalTo(supportLabel.snp.bottom).offset(25)
+            make.top.equalTo(supportTextView.snp.bottom).offset(25)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         

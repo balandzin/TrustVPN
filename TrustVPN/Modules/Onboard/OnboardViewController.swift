@@ -51,7 +51,7 @@ final class OnboardViewController: UIViewController {
     
     // MARK: - Private Methods
     private func setupUI() {
-        view.backgroundColor = .black
+        view.applyDefaultBackgroundImage()
         self.navigationItem.hidesBackButton = true
         
         infoView.info(title: images[0].title, subTitle: images[0].subTitle)
