@@ -310,7 +310,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
     }
     
     private func setupStyle() {
-        view.backgroundColor = .gradientColor
+        view.applyDefaultBackgroundImage()
         navigationController?.isNavigationBarHidden = true
         progressStackView.isHidden = true
     }

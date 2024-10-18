@@ -93,7 +93,7 @@ final class TermsOfUseViewController: UIViewController {
     
     private func setupUI() {
         self.navigationItem.hidesBackButton = true
-        
+        view.applyDefaultBackgroundImage()
         view.addSubview(shield)
         view.addSubview(dataSecurityLabel)
         view.addSubview(termsView)

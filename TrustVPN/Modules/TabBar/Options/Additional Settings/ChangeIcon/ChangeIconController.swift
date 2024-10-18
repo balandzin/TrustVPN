@@ -104,7 +104,7 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     
     // MARK: - Private Methods
     private func setupStyle() {
-        view.backgroundColor = .gradientColor
+        view.applyDefaultBackgroundImage()
     }
     
     private func setupUI() {

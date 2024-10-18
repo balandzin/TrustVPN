@@ -149,3 +149,60 @@ extension UIView {
         return self
     }
 }
+
+extension UIView {
+    static func applyCustomGradient(to view: UIView) {
+        let primaryColor = UIColor(hex: "#181818")
+        let secondaryColor = UIColor(hex: "#262626")
+        
+        if let previousGradientLayer = view.layer.sublayers?.first(where: { $0 is CAGradientLayer }) {
+            previousGradientLayer.removeFromSuperlayer()
+        }
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [
+            primaryColor.cgColor,
+            secondaryColor.withAlphaComponent(0.02).cgColor,
+            secondaryColor.withAlphaComponent(0.04).cgColor
+        ]
+        
+        gradientLayer.locations = [0.0, 0.5, 1.0]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.6)
+        gradientLayer.frame = view.bounds
+        
+        view.layer.insertSublayer(gradientLayer, at: 0)
+        
+        let leftCircleLayer = CAShapeLayer()
+        let leftCirclePath = UIBezierPath(arcCenter: CGPoint(x: view.bounds.width * 0.25, y: view.bounds.height * 0.5), radius: view.bounds.width * 0.3, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+        leftCircleLayer.path = leftCirclePath.cgPath
+        leftCircleLayer.fillColor = secondaryColor.withAlphaComponent(0.02).cgColor
+        
+        let rightCircleLayer = CAShapeLayer()
+        let rightCirclePath = UIBezierPath(arcCenter: CGPoint(x: view.bounds.width * 0.75, y: view.bounds.height * 0.3), radius: view.bounds.width * 0.4, startAngle: 0, endAngle: CGFloat.pi * 2, clockwise: true)
+        rightCircleLayer.path = rightCirclePath.cgPath
+        rightCircleLayer.fillColor = secondaryColor.withAlphaComponent(0.04).cgColor
+        
+        view.layer.insertSublayer(leftCircleLayer, at: 1)
+        view.layer.insertSublayer(rightCircleLayer, at: 2)
+    }
+}
+
+extension UIView {
+    
+    func applyDefaultBackgroundImage() {
+        let backgroundImage = .loadImage(LoadService.shared.load?.images?.startupBackground) ?? UIImage(named: "startupBackground")
+        let backgroundImageView = UIImageView(image: backgroundImage)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.frame = self.bounds
+        backgroundImageView.clipsToBounds = true
+        
+        self.subviews.forEach { subview in
+            if subview is UIImageView {
+                subview.removeFromSuperview()
+            }
+        }
+        
+        self.insertSubview(backgroundImageView, at: 0)
+    }
+}

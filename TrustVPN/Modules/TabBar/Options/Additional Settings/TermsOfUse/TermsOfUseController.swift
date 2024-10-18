@@ -95,7 +95,7 @@ final class TermsOfUseController: UIViewController {
     
     // MARK: - Private Methods
     private func setupStyle() {
-        view.backgroundColor = .gradientColor
+        view.applyDefaultBackgroundImage()
     }
     
     private func setupUI() {

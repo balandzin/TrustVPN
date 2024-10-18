@@ -62,7 +62,7 @@ final class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
     }
     
     private func setupStyle() {
-        view.backgroundColor = .gradientColor
+        view.applyDefaultBackgroundImage()
         navigationController?.isNavigationBarHidden = true
     }
     

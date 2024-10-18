@@ -68,7 +68,8 @@ final class VPNServiceController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .gradientColor
+        view.applyDefaultBackgroundImage()
+        //UIView.applyCustomGradient(to: view)
         self.navigationController?.isNavigationBarHidden = true
         setupUI()
     }
@@ -84,13 +85,6 @@ final class VPNServiceController: UIViewController {
             vpnServersTableView.isHidden = false
         }
         vpnServersTableView.reloadData()
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
-            gradientLayer.frame = gradientView.bounds
-        }
     }
     
     // MARK: - Private Methods
@@ -371,14 +365,14 @@ extension VPNServiceController {
         vpnServersTableView.snp.makeConstraints { make in
             make.top.equalTo(headerLabel.snp.bottom).offset(24)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
         }
         
         serverNotSelectedView.snp.makeConstraints { make in
             make.top.equalTo(headerLabel.snp.bottom).offset(80)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(-80)
         }
         
         renameView.snp.makeConstraints { make in

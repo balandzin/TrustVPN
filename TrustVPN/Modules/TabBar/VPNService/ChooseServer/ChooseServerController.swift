@@ -47,7 +47,7 @@ final class ChooseServerController: UIViewController {
     
     // MARK: - Private Methods
     private func setupUI() {
-        view.backgroundColor = .gradientColor
+        view.applyDefaultBackgroundImage()
         view.addSubview(backButton)
         view.addSubview(chooseServerLabel)
         view.addSubview(serversTableView)

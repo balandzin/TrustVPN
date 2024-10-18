@@ -13,16 +13,27 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let customTabBar = CustomTabBar()
-        setValue(customTabBar, forKey: "tabBar")
+        makeTabBarTransparent()
+        //let customTabBar = CustomTabBar()
+        //setValue(customTabBar, forKey: "tabBar")
         createViewControllers()
         self.delegate = self
         
         self.tabBar.tintColor = .clear
-        
+        self.tabBar.barTintColor = .clear
         programUpdate(index: selectedIndex)
     }
+    
+    private func makeTabBarTransparent() {
+            tabBar.backgroundImage = UIImage()
+            tabBar.shadowImage = UIImage()
+            tabBar.isTranslucent = true
+            tabBar.backgroundColor = UIColor.clear
+            
+            tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
+            tabBar.layer.shadowRadius = 0
+            tabBar.layer.shadowOpacity = 0
+        }
     
     private func updateTabBarImages(selectedIndex: Int, selectedImage: UIImage, unselectedImage: UIImage) {
         let tabBarItem = self.tabBar.items?[selectedIndex]
@@ -57,22 +68,22 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func createViewControllers() {
-        self.tabBar.unselectedItemTintColor = AppColors.dataSecurityLabel
-        vpnService = .loadImage(LoadService.shared.load?.images?.vpnService) ?? 
+        tabBar.unselectedItemTintColor = AppColors.dataSecurityLabel
+        vpnService = .loadImage(LoadService.shared.load?.images?.vpnService) ??
         UIImage(named: "vpnService") ?? UIImage()
-        deviceSearch = .loadImage(LoadService.shared.load?.images?.deviceSearch) ?? 
+        deviceSearch = .loadImage(LoadService.shared.load?.images?.deviceSearch) ??
         UIImage(named: "deviceSearch") ?? UIImage()
-        passwordSecurity = .loadImage(LoadService.shared.load?.images?.passwordSecurity) ?? 
+        passwordSecurity = .loadImage(LoadService.shared.load?.images?.passwordSecurity) ??
         UIImage(named: "passwordSecurity") ?? UIImage()
         options = .loadImage(LoadService.shared.load?.images?.options) ?? UIImage(named: "options") ?? UIImage()
         
-        vpnServiceSelected = .loadImage(LoadService.shared.load?.images?.vpnServiceSelected) ?? 
+        vpnServiceSelected = .loadImage(LoadService.shared.load?.images?.vpnServiceSelected) ??
         UIImage(named: "vpnServiceSelected") ?? UIImage()
-        deviceSearchSelected = .loadImage(LoadService.shared.load?.images?.deviceSearchSelected) ?? 
+        deviceSearchSelected = .loadImage(LoadService.shared.load?.images?.deviceSearchSelected) ??
         UIImage(named: "deviceSearchSelected") ?? UIImage()
-        passwordSecuritySelected = .loadImage(LoadService.shared.load?.images?.passwordSecuritySelected) ?? 
+        passwordSecuritySelected = .loadImage(LoadService.shared.load?.images?.passwordSecuritySelected) ??
         UIImage(named: "passwordSecuritySelected") ?? UIImage()
-        optionsSelected = .loadImage(LoadService.shared.load?.images?.optionsSelected) ?? 
+        optionsSelected = .loadImage(LoadService.shared.load?.images?.optionsSelected) ??
         UIImage(named: "optionsSelected") ?? UIImage()
         
         viewControllers = [
@@ -100,10 +111,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 }
 
-class CustomTabBar: UITabBar {
-    override func sizeThatFits(_ size: CGSize) -> CGSize {
-        var tabBarSize = super.sizeThatFits(size)
-        tabBarSize.height = 90
-        return tabBarSize
-    }
-}
+//class CustomTabBar: UITabBar {
+//    override func sizeThatFits(_ size: CGSize) -> CGSize {
+//        var tabBarSize = super.sizeThatFits(size)
+//        tabBarSize.height = 90
+//        return tabBarSize
+//    }
+//}

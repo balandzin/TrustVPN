@@ -143,7 +143,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     
     // MARK: - Private Methods
     private func setupStyle() {
-        view.backgroundColor = .gradientColor
+        view.applyDefaultBackgroundImage()
         navigationController?.isNavigationBarHidden = true
     }
     
