@@ -374,10 +374,13 @@ extension PasswordSecurityController {
         if expandedSections.contains(section) {
             expandedSections.remove(section)
         } else {
+            expandedSections.removeAll()
             expandedSections.insert(section)
         }
         
-        tableView.reloadData()
+        UIView.animate(withDuration: 0.3) {
+            self.tableView.reloadData()
+        }
     }
 }
 
