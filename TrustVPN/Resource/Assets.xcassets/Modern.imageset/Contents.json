@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Modern.png",
+      "filename" : "modern@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Modern 1.png",
+      "filename" : "modern@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Modern 2.png",
+      "filename" : "modern@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

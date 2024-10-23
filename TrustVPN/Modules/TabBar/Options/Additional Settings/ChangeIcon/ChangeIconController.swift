@@ -141,6 +141,7 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     private func changeAppIcon(to iconName: String?) {
         guard let name = iconName?.lowercased() else { return }
         guard UIApplication.shared.supportsAlternateIcons else {
+            print("Устройство не поддерживает смену иконок")
             return
         }
         
@@ -149,6 +150,7 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
                 print("Error changing app icon: \(error.localizedDescription)")
             } else {
                 self.updateCurrentIcon()
+                print("Иконка успешно изменена на \(iconName ?? "основную")")
             }
         }
     }

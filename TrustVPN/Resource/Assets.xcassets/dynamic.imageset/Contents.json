@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Dynamic.png",
+      "filename" : "dynamic@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Dynamic 1.png",
+      "filename" : "dynamic@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Dynamic 2.png",
+      "filename" : "dynamic@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

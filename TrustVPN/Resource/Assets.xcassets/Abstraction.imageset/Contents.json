@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Abstraction.png",
+      "filename" : "abstraction@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Abstraction 1.png",
+      "filename" : "abstraction@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Abstraction 2.png",
+      "filename" : "abstraction@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
