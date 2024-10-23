@@ -31,9 +31,13 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="PoN-2H-NkD" secondAttribute="bottom" id="5uB-Oh-Hu7"/>
                             <constraint firstItem="gs7-p6-fvb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GeZ-5b-oEx"/>
+                            <constraint firstItem="PoN-2H-NkD" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="WSA-X6-k0f"/>
                             <constraint firstAttribute="bottom" secondItem="PoN-2H-NkD" secondAttribute="bottom" id="hKv-GV-9jY"/>
                             <constraint firstItem="PoN-2H-NkD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="srJ-07-M30"/>
+                            <constraint firstItem="PoN-2H-NkD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="uh4-vz-5DG"/>
+                            <constraint firstItem="PoN-2H-NkD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wTD-Wz-yru"/>
                             <constraint firstItem="PoN-2H-NkD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xDs-RW-6Dy"/>
                             <constraint firstItem="gs7-p6-fvb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xGC-AJ-jND"/>
                             <constraint firstItem="PoN-2H-NkD" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="zhJ-75-cuh"/>
