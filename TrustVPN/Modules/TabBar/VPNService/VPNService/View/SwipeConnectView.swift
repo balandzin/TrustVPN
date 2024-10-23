@@ -5,7 +5,7 @@ final class SwipeConnectView: UIView {
         case off
         case on
         
-        var title: UIImage {
+        var titleImage: UIImage {
             switch self {
             case .off:
                 return (.loadImage(LoadService.shared.load?.images?.swipeToConnect)
@@ -13,6 +13,15 @@ final class SwipeConnectView: UIView {
             case .on:
                 return (.loadImage(LoadService.shared.load?.images?.swipeToDisconnect)
                         ?? UIImage(named: "swipeToDisconnect")) ?? UIImage()
+            }
+        }
+        
+        var titleDescription: String {
+            switch self {
+            case .off:
+                return AppText.swipeToConnect
+            case .on:
+                return AppText.swipeToDisconnect
             }
         }
         
@@ -36,10 +45,19 @@ final class SwipeConnectView: UIView {
     }()
     
     private lazy var titleView: UIImageView = {
-        let image = UIImageView(image: type.title)
+        let image = UIImageView(image: type.titleImage)
         image.contentMode = .scaleAspectFit
         image.isUserInteractionEnabled = true
         return image
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = AppColors.almostWhite
+        label.font = .systemFont(ofSize: 12)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        return label
     }()
     
     private let type: SwipeConnectViewType
@@ -61,7 +79,8 @@ final class SwipeConnectView: UIView {
     func type(_ type: SwipeConnectViewType, isAnimate: Bool) {
         if isAnimate {
             iconView.image = type.icon
-            titleView.image = type.title
+            titleView.image = type.titleImage
+            titleLabel.text = type.titleDescription
             
             UIView.animate(withDuration: 0.3, delay: 0, options: .allowUserInteraction) {
                 self.iconView.snp.remakeConstraints { make in
@@ -73,22 +92,37 @@ final class SwipeConnectView: UIView {
                         make.leading.equalTo(self).offset(6)
                     }
                 }
+                self.titleLabel.snp.remakeConstraints { make in
+                    if type == .on {
+                        make.centerY.equalTo(self)
+                        make.trailing.equalTo(self.iconView.snp.leading).offset(-10)
+                        make.width.equalTo(120)
+                    } else {
+                        make.centerY.equalTo(self)
+                        make.leading.equalTo(self.iconView.snp.trailing).offset(10)
+                        make.width.equalTo(120)
+                    }
+                }
                 
                 self.titleView.snp.remakeConstraints { make in
                     if type == .on {
                         make.centerY.equalTo(self)
-                        make.trailing.equalTo(self.iconView.snp.leading).offset(-10)
+                        make.trailing.equalTo(self.titleLabel.snp.leading).offset(-10)
+                        make.width.equalTo(40)
+                        make.height.equalTo(16)
                     } else {
                         make.centerY.equalTo(self)
-                        make.leading.equalTo(self.iconView.snp.trailing).offset(10)
+                        make.leading.equalTo(self.titleLabel.snp.trailing).offset(10)
+                        make.width.equalTo(40)
+                        make.height.equalTo(16)
                     }
                 }
-                
                 self.layoutIfNeeded()
             }
         } else {
             iconView.image = type.icon
-            titleView.image = type.title
+            titleView.image = type.titleImage
+            titleLabel.text = type.titleDescription
             
             self.iconView.snp.remakeConstraints { make in
                 if type == .on {
@@ -99,14 +133,29 @@ final class SwipeConnectView: UIView {
                     make.leading.equalTo(self).offset(6)
                 }
             }
+            self.titleLabel.snp.remakeConstraints { make in
+                if type == .on {
+                    make.centerY.equalTo(self)
+                    make.trailing.equalTo(self.iconView.snp.leading).offset(-10)
+                    make.width.equalTo(120)
+                } else {
+                    make.centerY.equalTo(self)
+                    make.leading.equalTo(self.iconView.snp.trailing).offset(10)
+                    make.width.equalTo(120)
+                }
+            }
             
             self.titleView.snp.remakeConstraints { make in
                 if type == .on {
                     make.centerY.equalTo(self)
-                    make.trailing.equalTo(self.iconView.snp.leading).offset(-10)
+                    make.trailing.equalTo(self.titleLabel.snp.leading).offset(-10)
+                    make.width.equalTo(40)
+                    make.height.equalTo(16)
                 } else {
                     make.centerY.equalTo(self)
-                    make.leading.equalTo(self.iconView.snp.trailing).offset(10)
+                    make.leading.equalTo(self.titleLabel.snp.trailing).offset(10)
+                    make.width.equalTo(40)
+                    make.height.equalTo(16)
                 }
             }
         }
@@ -115,15 +164,24 @@ final class SwipeConnectView: UIView {
     private func setupConstraints() {
         addSubview(iconView)
         addSubview(titleView)
+        addSubview(titleLabel)
         
         iconView.snp.makeConstraints { make in
             make.centerY.equalTo(self)
             make.leading.equalTo(self).offset(6)
         }
         
-        titleView.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self)
             make.leading.equalTo(iconView.snp.trailing).offset(10)
+            make.width.equalTo(120)
+        }
+        
+        titleView.snp.makeConstraints { make in
+            make.centerY.equalTo(self)
+            make.leading.equalTo(titleLabel.snp.trailing).offset(10)
+            make.width.equalTo(40)
+            make.height.equalTo(16)
         }
     }
     
@@ -142,13 +200,13 @@ final class SwipeConnectView: UIView {
     @objc private func swipeGestureAll(gesture: UISwipeGestureRecognizer) {
         switch gesture.direction {
         case .right:
+            generateHapticFeedback()
             self.type(.on, isAnimate: true)
             self.connected?(true)
-            generateHapticFeedback()
         case .left:
+            generateHapticFeedback()
             self.type(.off, isAnimate: true)
             self.connected?(false)
-            generateHapticFeedback()
         default:
             break
         }

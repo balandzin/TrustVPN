@@ -34,8 +34,8 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
     
     private let contentView: UIView = {
         let view = UIView()
-        view.layer.cornerRadius = 26 // Добавляем закругление
-        view.layer.masksToBounds = true // Учитываем закругление для содержимого
+        view.layer.cornerRadius = 26
+        view.layer.masksToBounds = true
         return view
     }()
     
@@ -113,7 +113,6 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func updateGradientFrame() {
-        // Обновляем положение и размер градиентного слоя
         gradientView.frame = CGRect(x: 0, y: scrollView.frame.maxY - 100, width: scrollView.frame.width, height: 100)
         if let gradientLayer = gradientView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientView.bounds
@@ -121,7 +120,6 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // Обновляем положение градиента при прокрутке
         updateGradientFrame()
     }
 }

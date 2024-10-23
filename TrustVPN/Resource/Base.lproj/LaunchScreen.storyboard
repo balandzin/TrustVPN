@@ -17,9 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="startupBackground" translatesAutoresizingMaskIntoConstraints="NO" id="PoN-2H-NkD">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startupBackground" translatesAutoresizingMaskIntoConstraints="NO" id="PoN-2H-NkD">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="centralLogo" translatesAutoresizingMaskIntoConstraints="NO" id="gs7-p6-fvb">
                                 <rect key="frame" x="139.66666666666666" y="369" width="114" height="114"/>
@@ -33,7 +32,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="gs7-p6-fvb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="GeZ-5b-oEx"/>
+                            <constraint firstAttribute="bottom" secondItem="PoN-2H-NkD" secondAttribute="bottom" id="hKv-GV-9jY"/>
+                            <constraint firstItem="PoN-2H-NkD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="srJ-07-M30"/>
+                            <constraint firstItem="PoN-2H-NkD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xDs-RW-6Dy"/>
                             <constraint firstItem="gs7-p6-fvb" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="xGC-AJ-jND"/>
+                            <constraint firstItem="PoN-2H-NkD" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="zhJ-75-cuh"/>
                         </constraints>
                     </view>
                 </viewController>

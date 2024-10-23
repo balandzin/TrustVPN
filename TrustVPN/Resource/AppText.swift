@@ -146,4 +146,6 @@ Vel illum, qui dolorem eum fugiat, quo voluptas nulla pariatur? At vero eos et a
     static var advanced: String = "Advanced"
     static var abstraction: String = "Abstraction"
     static var modern: String = "Modern"
+    static var swipeToDisconnect: String = "Swipe to disconnect"
+    static var swipeToConnect: String = "Swipe to connect"
 }

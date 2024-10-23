@@ -44,18 +44,6 @@ final class VPNServiceController: UIViewController {
         return image
     }()
     
-    private lazy var gradientView: UIView = {
-        let view = UIView()
-        // Настройка градиентного слоя
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.6).cgColor]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
-        view.layer.addSublayer(gradientLayer)
-        return view
-    }()
-    
     // MARK: - Initialization
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -69,7 +57,6 @@ final class VPNServiceController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.applyDefaultBackgroundImage()
-        //UIView.applyCustomGradient(to: view)
         self.navigationController?.isNavigationBarHidden = true
         setupUI()
     }
@@ -151,7 +138,6 @@ final class VPNServiceController: UIViewController {
         view.addSubview(renameView)
         view.addSubview(serverRenamedView)
         view.addSubview(removeView)
-        view.addSubview(gradientView)
         
         serverRenamedView.isHidden = true
         renameView.isHidden = true
@@ -365,7 +351,7 @@ extension VPNServiceController {
         vpnServersTableView.snp.makeConstraints { make in
             make.top.equalTo(headerLabel.snp.bottom).offset(24)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         serverNotSelectedView.snp.makeConstraints { make in
@@ -388,12 +374,6 @@ extension VPNServiceController {
         removeView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        gradientView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(100)
-        }
     }
 }
 
@@ -412,4 +392,3 @@ extension VPNServiceController {
         renameView.closeButton.isUserInteractionEnabled = true
     }
 }
-
