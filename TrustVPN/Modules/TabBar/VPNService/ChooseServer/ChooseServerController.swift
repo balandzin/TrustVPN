@@ -35,14 +35,9 @@ final class ChooseServerController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        loadSelectedServers()
         setupUI()
         loadVpnServers()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        guard let vpnServiceController = navigationController?.viewControllers.first as? VPNServiceController else { return }
-        vpnServiceController.selectedServers = selectedServers
     }
     
     // MARK: - Private Methods
@@ -120,6 +115,7 @@ final class ChooseServerController: UIViewController {
                 }
             }
         }
+        saveSelectedServers()
     }
 }
 
@@ -215,5 +211,28 @@ extension ChooseServerController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return nil
+    }
+}
+
+// MARK: - Save Selected Servers
+extension ChooseServerController {
+    func saveSelectedServers() {
+        do {
+            let encodedData = try JSONEncoder().encode(selectedServers)
+            UserDefaults.standard.set(encodedData, forKey: "selectedServers")
+        } catch {
+            print("Ошибка при сохранении серверов: \(error)")
+        }
+    }
+    
+    func loadSelectedServers() {
+        if let savedServersData = UserDefaults.standard.data(forKey: "selectedServers") {
+            do {
+                let decodedServers = try JSONDecoder().decode([VpnServers].self, from: savedServersData)
+                selectedServers = decodedServers
+            } catch {
+                print("Ошибка при загрузке серверов: \(error)")
+            }
+        }
     }
 }

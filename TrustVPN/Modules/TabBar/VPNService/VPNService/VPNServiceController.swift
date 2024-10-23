@@ -58,11 +58,13 @@ final class VPNServiceController: UIViewController {
         super.viewDidLoad()
         view.applyDefaultBackgroundImage()
         self.navigationController?.isNavigationBarHidden = true
+        loadSelectedServers()
         setupUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadSelectedServers()
         
         if selectedServers.isEmpty {
             serverNotSelectedView.isHidden = false
@@ -201,7 +203,6 @@ final class VPNServiceController: UIViewController {
     // MARK: - ObjC Methods
     @objc private func buttonTapped() {
         let chooseServerController = ChooseServerController()
-        chooseServerController.selectedServers = self.selectedServers
         chooseServerController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(chooseServerController, animated: false)
     }
@@ -255,6 +256,7 @@ final class VPNServiceController: UIViewController {
         guard let index = currentlyRemovedServerIndex else { return }
         
         selectedServers.remove(at: index)
+        saveSelectedServers()
         
         let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
         cell?.popupView.isHidden = true
@@ -390,5 +392,29 @@ extension VPNServiceController {
         let recognizerRename = UITapGestureRecognizer(target: self, action: #selector(cancelButtonTapped))
         renameView.closeButton.addGestureRecognizer(recognizerRename)
         renameView.closeButton.isUserInteractionEnabled = true
+    }
+}
+
+// MARK: - Save Selected Servers
+extension VPNServiceController {
+    func saveSelectedServers() {
+        do {
+            let encodedData = try JSONEncoder().encode(selectedServers)
+            UserDefaults.standard.set(encodedData, forKey: "selectedServers")
+        } catch {
+            print("Ошибка при сохранении серверов: \(error)")
+        }
+    }
+    
+    func loadSelectedServers() {
+        if let savedServersData = UserDefaults.standard.data(forKey: "selectedServers") {
+            do {
+                let decodedServers = try JSONDecoder().decode([VpnServers].self, from: savedServersData)
+                self.selectedServers = decodedServers
+            } catch {
+                print("Ошибка при загрузке серверов: \(error)")
+            }
+            vpnServersTableView.reloadData()
+        }
     }
 }
