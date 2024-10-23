@@ -353,8 +353,11 @@ extension PasswordSecurityController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DropdownHeaderCell") as! DropdownHeaderCell
         let resultTitle = "\(section + 1). \(titles[section])"
         cell.setupCell(title: resultTitle, isSectionOpen: false)
-        cell.openButton.addTarget(self, action: #selector(didTapHeader(_:)), for: .touchUpInside)
-        cell.openButton.tag = section
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapHeader(_:)))
+            cell.addGestureRecognizer(tapGesture)
+            cell.tag = section
+        cell.isUserInteractionEnabled = true
         return cell
     }
     
@@ -368,8 +371,9 @@ extension PasswordSecurityController {
         return UITableView.automaticDimension
     }
     
-    @objc func didTapHeader(_ sender: UIButton) {
-        let section = sender.tag
+    @objc func didTapHeader(_ sender: UITapGestureRecognizer) {
+        guard let header = sender.view else { return }
+        let section = header.tag  // Получаем секцию из тега заголовка
         
         if expandedSections.contains(section) {
             expandedSections.remove(section)
