@@ -335,7 +335,6 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         tableView.delegate = self
         
         setupConstraints()
-        
     }
 }
 
@@ -355,8 +354,8 @@ extension PasswordSecurityController {
         cell.setupCell(title: resultTitle, isSectionOpen: false)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapHeader(_:)))
-            cell.addGestureRecognizer(tapGesture)
-            cell.tag = section
+        cell.addGestureRecognizer(tapGesture)
+        cell.tag = section
         cell.isUserInteractionEnabled = true
         return cell
     }
@@ -373,7 +372,7 @@ extension PasswordSecurityController {
     
     @objc func didTapHeader(_ sender: UITapGestureRecognizer) {
         guard let header = sender.view else { return }
-        let section = header.tag  // Получаем секцию из тега заголовка
+        let section = header.tag
         
         if expandedSections.contains(section) {
             expandedSections.remove(section)
