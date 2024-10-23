@@ -57,7 +57,7 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.dataSecurityLabel
+        view.backgroundColor = AppColors.dataSecurityLabel.withAlphaComponent(0.1)
         view.layer.cornerRadius = 2
         return view
     }()
