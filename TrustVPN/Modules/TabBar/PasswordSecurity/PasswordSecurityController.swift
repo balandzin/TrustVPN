@@ -206,7 +206,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             strength = (
                 AppColors.unsecurePassword,
                 AppText.unsecurePassword,
-                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ??
                 UIImage(named: "unsecurePassword") ?? UIImage(),
                 0.0,
                 crackedLabel: "",
@@ -215,7 +215,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             strength = (
                 AppColors.unsecurePassword,
                 AppText.unsecurePassword,
-                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ??
                 UIImage(named: "unsecurePassword") ?? UIImage(),
                 0.1,
                 crackedLabel: "3",
@@ -224,7 +224,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             strength = (
                 AppColors.unsecurePassword,
                 AppText.unsecurePassword,
-                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ??
                 UIImage(named: "unsecurePassword") ?? UIImage(),
                 0.2,
                 crackedLabel: "5",
@@ -233,7 +233,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             strength = (
                 AppColors.unsecurePassword,
                 AppText.unsecurePassword,
-                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ??
                 UIImage(named: "unsecurePassword") ?? UIImage(),
                 0.3,
                 crackedLabel: "23",
@@ -242,7 +242,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
             strength = (
                 AppColors.unsecurePassword,
                 AppText.unsecurePassword,
-                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ?? 
+                .loadImage(LoadService.shared.load?.images?.unsecurePassword) ??
                 UIImage(named: "unsecurePassword") ?? UIImage(),
                 0.4,
                 crackedLabel: "2",
@@ -485,12 +485,12 @@ extension PasswordSecurityController {
         }
         
         tipsLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(12)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(tipsLabel.snp.bottom).offset(20)
+            make.top.equalTo(tipsLabel.snp.bottom).offset(15)
             make.leading.trailing.equalToSuperview().inset(20)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
