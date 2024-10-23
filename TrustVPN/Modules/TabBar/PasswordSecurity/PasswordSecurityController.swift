@@ -46,6 +46,7 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         let textField = PaddedTextField()
         textField.placeholder = AppText.typePassword
         textField.placeHolderColor = AppColors.dataSecurityLabel
+        textField.tintColor = AppColors.dataSecurityLabel
         textField.font = .systemFont(ofSize: 14, weight: .bold)
         textField.isSecureTextEntry = true
         textField.autocapitalizationType = .none
@@ -55,7 +56,6 @@ final class PasswordSecurityController: UIViewController, UITableViewDelegate, U
         textField.keyboardAppearance = .dark
         textField.backgroundColor = AppColors.textFieldBackground
         textField.addTarget(self, action: #selector(passwordTextChanged), for: .editingChanged)
-        
         return textField
     }()
     

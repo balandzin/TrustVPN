@@ -104,6 +104,11 @@
 		D373AB2B2CAD58B000DF2EC7 /* VPNServiceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AB2A2CAD58B000DF2EC7 /* VPNServiceTableView.swift */; };
 		D373AB2D2CAD594C00DF2EC7 /* ServerСell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */; };
 		D373AB302CAD7D7E00DF2EC7 /* SwipeConnectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D373AB2F2CAD7D7E00DF2EC7 /* SwipeConnectView.swift */; };
+		D398F8102CC949A4006BAC25 /* advanced.png in Resources */ = {isa = PBXBuildFile; fileRef = D398F80B2CC949A4006BAC25 /* advanced.png */; };
+		D398F8112CC949A4006BAC25 /* classic.png in Resources */ = {isa = PBXBuildFile; fileRef = D398F80C2CC949A4006BAC25 /* classic.png */; };
+		D398F8122CC949A4006BAC25 /* abstraction.png in Resources */ = {isa = PBXBuildFile; fileRef = D398F80D2CC949A4006BAC25 /* abstraction.png */; };
+		D398F8132CC949A4006BAC25 /* modern.png in Resources */ = {isa = PBXBuildFile; fileRef = D398F80E2CC949A4006BAC25 /* modern.png */; };
+		D398F8142CC949A4006BAC25 /* dynamic.png in Resources */ = {isa = PBXBuildFile; fileRef = D398F80F2CC949A4006BAC25 /* dynamic.png */; };
 		D3A017F82CB3D19A006238E1 /* PopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A017F72CB3D19A006238E1 /* PopupView.swift */; };
 		D3A017FA2CB3FF03006238E1 /* RenameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A017F92CB3FF03006238E1 /* RenameView.swift */; };
 		D3A017FC2CB40B35006238E1 /* PaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3A017FB2CB40B35006238E1 /* PaddedTextField.swift */; };
@@ -235,6 +240,11 @@
 		D373AB2A2CAD58B000DF2EC7 /* VPNServiceTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VPNServiceTableView.swift; sourceTree = "<group>"; };
 		D373AB2C2CAD594C00DF2EC7 /* ServerСell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServerСell.swift"; sourceTree = "<group>"; };
 		D373AB2F2CAD7D7E00DF2EC7 /* SwipeConnectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeConnectView.swift; sourceTree = "<group>"; };
+		D398F80B2CC949A4006BAC25 /* advanced.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = advanced.png; sourceTree = "<group>"; };
+		D398F80C2CC949A4006BAC25 /* classic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = classic.png; sourceTree = "<group>"; };
+		D398F80D2CC949A4006BAC25 /* abstraction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = abstraction.png; sourceTree = "<group>"; };
+		D398F80E2CC949A4006BAC25 /* modern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = modern.png; sourceTree = "<group>"; };
+		D398F80F2CC949A4006BAC25 /* dynamic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dynamic.png; sourceTree = "<group>"; };
 		D3A017F72CB3D19A006238E1 /* PopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupView.swift; sourceTree = "<group>"; };
 		D3A017F92CB3FF03006238E1 /* RenameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenameView.swift; sourceTree = "<group>"; };
 		D3A017FB2CB40B35006238E1 /* PaddedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaddedTextField.swift; sourceTree = "<group>"; };
@@ -694,6 +704,11 @@
 			children = (
 				D3CC70282CA2999100D747F5 /* AppDelegate.swift */,
 				D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */,
+				D398F80D2CC949A4006BAC25 /* abstraction.png */,
+				D398F80B2CC949A4006BAC25 /* advanced.png */,
+				D398F80C2CC949A4006BAC25 /* classic.png */,
+				D398F80F2CC949A4006BAC25 /* dynamic.png */,
+				D398F80E2CC949A4006BAC25 /* modern.png */,
 				D3CC70362CA2999200D747F5 /* Info.plist */,
 				D3CC703E2CA2A35500D747F5 /* PrivacyInfo.xcprivacy */,
 			);
@@ -807,7 +822,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3CC703F2CA2A35500D747F5 /* PrivacyInfo.xcprivacy in Resources */,
+				D398F8102CC949A4006BAC25 /* advanced.png in Resources */,
+				D398F8132CC949A4006BAC25 /* modern.png in Resources */,
+				D398F8142CC949A4006BAC25 /* dynamic.png in Resources */,
+				D398F8122CC949A4006BAC25 /* abstraction.png in Resources */,
 				D3CC70322CA2999200D747F5 /* Assets.xcassets in Resources */,
+				D398F8112CC949A4006BAC25 /* classic.png in Resources */,
 				D3CC70352CA2999200D747F5 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

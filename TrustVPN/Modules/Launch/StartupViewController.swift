@@ -68,8 +68,8 @@ final class StartupViewController: UIViewController {
             guard let self = self else { return }
             
             let ac = UIAlertController(
-                title: "Sorry",
-                message: "The app is undergoing technical work. We will finish soon and you will be able to use the app again :)",
+                title: "Attention!",
+                message: "No internet connection",
                 preferredStyle: .actionSheet
             )
             
