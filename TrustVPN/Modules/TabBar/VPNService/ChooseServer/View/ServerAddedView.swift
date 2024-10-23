@@ -34,7 +34,6 @@ final class ServerAddedView: UIView {
         containerView.addSubview(serverAddedImage)
         
         setupConstraints()
-        
     }
     
     private func setupConstraints() {
