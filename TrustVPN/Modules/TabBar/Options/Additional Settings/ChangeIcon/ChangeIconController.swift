@@ -57,7 +57,7 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     
     private lazy var separatorView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.dataSecurityLabel.withAlphaComponent(0.1)
+        view.backgroundColor = AppColors.dataSecurityLabel
         view.layer.cornerRadius = 2
         return view
     }()
@@ -86,12 +86,12 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
         return collectionView
     }()
     
-    let icons: [(name: String, icon: UIImage?)] = [
-        (name: AppText.classic, icon: .loadImage(LoadService.shared.load?.images?.classic) ?? UIImage(named: "classic")),
-        (name: AppText.dynamic, icon: .loadImage(LoadService.shared.load?.images?.dynamic) ?? UIImage(named: "dynamic")),
-        (name: AppText.advanced, icon: .loadImage(LoadService.shared.load?.images?.advanced) ?? UIImage(named: "advanced")),
-        (name: AppText.abstraction, icon: .loadImage(LoadService.shared.load?.images?.abstraction) ?? UIImage(named: "abstraction")),
-        (name: AppText.modern, icon: .loadImage(LoadService.shared.load?.images?.modern) ?? UIImage(named: "modern"))
+    let icons: [(name: String, icon: UIImage?, iconName: String)] = [
+        (name: AppText.classic, icon: UIImage(named: "classic"), iconName: "classic"),
+        (name: AppText.dynamic, icon: UIImage(named: "dynamic"), iconName: "dynamic"),
+        (name: AppText.advanced, icon: UIImage(named: "advanced"), iconName: "advanced"),
+        (name: AppText.abstraction, icon: UIImage(named: "abstraction"), iconName: "abstraction"),
+        (name: AppText.modern, icon: UIImage(named: "modern"), iconName: "modern")
     ]
     
     override func viewDidLoad() {
@@ -122,13 +122,13 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     }
     
     private func updateCurrentIcon() {
-        let iconName = UIApplication.shared.alternateIconName?.lowercased()
+        let iconName = UIApplication.shared.alternateIconName?.lowercased() ?? "AppIcon"
         
-        if let iconName = iconName, let matchingIcon = icons.first(where: { $0.name.lowercased() == iconName }) {
+        if let matchingIcon = icons.first(where: { $0.iconName.lowercased() == iconName }) {
             currentIconImageView.image = matchingIcon.icon
             currentIconNameLabel.text = iconName.capitalized
         } else {
-            currentIconImageView.image = .loadImage(LoadService.shared.load?.images?.classic) ?? UIImage(named: "classic")
+            currentIconImageView.image = UIImage(named: "classic")
             currentIconNameLabel.text = AppText.classic
         }
     }
@@ -139,7 +139,8 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
     
     // MARK: - Change App Icon
     private func changeAppIcon(to iconName: String?) {
-        guard let name = iconName?.lowercased() else { return }
+        guard let name = iconName else { return }
+        
         guard UIApplication.shared.supportsAlternateIcons else {
             print("Устройство не поддерживает смену иконок")
             return
@@ -150,7 +151,6 @@ final class ChangeIconController: UIViewController, UICollectionViewDelegate, UI
                 print("Error changing app icon: \(error.localizedDescription)")
             } else {
                 self.updateCurrentIcon()
-                print("Иконка успешно изменена на \(iconName ?? "основную")")
             }
         }
     }
@@ -172,7 +172,7 @@ extension ChangeIconController {
     // MARK: - UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedIcon = icons[indexPath.item]
-        changeAppIcon(to: selectedIcon.name)
+        changeAppIcon(to: selectedIcon.iconName)
     }
     
     // MARK: - UICollectionViewDelegateFlowLayout

@@ -29,7 +29,7 @@ final class IconCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure(with icon: (name: String, icon: UIImage?)) {
+    func configure(with icon: (name: String, icon: UIImage?, iconName: String)) {
         nameLabel.text = icon.name
         imageView.image = icon.icon ?? UIImage(named: "AppIcon")
     }
