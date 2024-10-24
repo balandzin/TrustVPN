@@ -114,17 +114,7 @@ final class PrivacyPolicyController: UIViewController {
     }
     
     @objc private func goToSupportTapped() {
-        if let viewControllers = navigationController?.viewControllers {
-            for controller in viewControllers {
-                if let optionsController = controller as? OptionsController {
-                    navigationController?.popToViewController(optionsController, animated: false)
-                    let supportController = SupportController()
-                    supportController.hidesBottomBarWhenPushed = true
-                    optionsController.navigationController?.pushViewController(supportController, animated: false)
-                    break
-                }
-            }
-        }
+        navigationController?.pushViewController(SupportController(), animated: false)
     }
 }
 

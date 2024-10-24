@@ -18,4 +18,5 @@ final class AppColors {
     static var bbb: UIColor = .init(hex: "#44C0E3")
     static var ccc: UIColor = .init(hex: "#119EE3")
     static var primary: UIColor = .init(hex: "#181818")
+    static var primary1: UIColor = .init(hex: "#191919")
 }

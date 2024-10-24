@@ -75,7 +75,7 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
         gradientLayer.locations = [0.0, 1.0]
         view.layer.addSublayer(gradientLayer)
         view.layer.cornerRadius = 26
-        view.isHidden = true
+        //view.isHidden = true
         return view
     }()
     
@@ -123,7 +123,6 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
             let contentHeight = contentView.frame.height
             let termsViewHeight = termsView.frame.height
             
-            // Показать gradientView, если контент больше чем termsView
             if contentHeight > termsViewHeight {
                 gradientView.isHidden = false
             } else {
