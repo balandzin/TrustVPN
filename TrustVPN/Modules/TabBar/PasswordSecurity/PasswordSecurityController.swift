@@ -485,7 +485,7 @@ extension PasswordSecurityController {
         }
         
         tipsLabel.snp.makeConstraints { make in
-            make.top.equalTo(passwordTextField.snp.bottom).offset(20)
+            make.top.equalTo(passwordTextField.snp.bottom).offset(30)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         

@@ -70,13 +70,11 @@ final class StartupViewController: UIViewController {
             let ac = UIAlertController(
                 title: "Attention!",
                 message: "No internet connection",
-                preferredStyle: .actionSheet
-            )
+                preferredStyle: .alert)
             
             ac.addAction(
                 UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { _ in
-                    self.loadServer__asl()
-                }))
+                    self.loadServer__asl() }))
             
             self.present(ac, animated: true)
         }

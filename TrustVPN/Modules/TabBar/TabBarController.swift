@@ -10,33 +10,33 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     var deviceSearchSelected: UIImage?
     var passwordSecuritySelected: UIImage?
     var optionsSelected: UIImage?
+    let customTabBar = CustomTabBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         makeTabBarTransparent()
-        //let customTabBar = CustomTabBar()
-        //setValue(customTabBar, forKey: "tabBar")
+        setValue(customTabBar, forKey: "tabBar")
         createViewControllers()
         self.delegate = self
         
-        self.tabBar.tintColor = .clear
-        self.tabBar.barTintColor = .clear
+        customTabBar.tintColor = .clear
+        customTabBar.barTintColor = .clear
         programUpdate(index: selectedIndex)
     }
     
     private func makeTabBarTransparent() {
-            tabBar.backgroundImage = UIImage()
-            tabBar.shadowImage = UIImage()
-            tabBar.isTranslucent = true
-            tabBar.backgroundColor = UIColor.clear
+        customTabBar.backgroundImage = UIImage()
+        customTabBar.shadowImage = UIImage()
+        customTabBar.isTranslucent = true
+        customTabBar.backgroundColor = UIColor.clear
             
-            tabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
-            tabBar.layer.shadowRadius = 0
-            tabBar.layer.shadowOpacity = 0
+        customTabBar.layer.shadowOffset = CGSize(width: 0, height: 0)
+        customTabBar.layer.shadowRadius = 0
+        customTabBar.layer.shadowOpacity = 0
         }
     
     private func updateTabBarImages(selectedIndex: Int, selectedImage: UIImage, unselectedImage: UIImage) {
-        let tabBarItem = self.tabBar.items?[selectedIndex]
+        let tabBarItem = self.customTabBar.items?[selectedIndex]
         
         tabBarItem?.image = unselectedImage.withRenderingMode(.alwaysOriginal)
         tabBarItem?.selectedImage = selectedImage.withRenderingMode(.alwaysOriginal)
@@ -68,7 +68,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     private func createViewControllers() {
-        tabBar.unselectedItemTintColor = AppColors.dataSecurityLabel
+        customTabBar.unselectedItemTintColor = AppColors.dataSecurityLabel
         vpnService = .loadImage(LoadService.shared.load?.images?.vpnService) ??
         UIImage(named: "vpnService") ?? UIImage()
         deviceSearch = .loadImage(LoadService.shared.load?.images?.deviceSearch) ??
@@ -111,10 +111,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
 }
 
-//class CustomTabBar: UITabBar {
-//    override func sizeThatFits(_ size: CGSize) -> CGSize {
-//        var tabBarSize = super.sizeThatFits(size)
-//        tabBarSize.height = 90
-//        return tabBarSize
-//    }
-//}
+class CustomTabBar: UITabBar {
+    override func sizeThatFits(_ size: CGSize) -> CGSize {
+        var tabBarSize = super.sizeThatFits(size)
+        tabBarSize.height = 112
+        return tabBarSize
+    }
+}
