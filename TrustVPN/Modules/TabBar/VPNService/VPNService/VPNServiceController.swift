@@ -222,15 +222,12 @@ final class VPNServiceController: UIViewController {
             
             let newName = renameView.renameTextField.text ?? ""
             
-            // Обновляем имя сервера
             if index < selectedServers.count {
                 selectedServers[index].serverName = newName
             }
             
-            // Сохраняем обновленный массив серверов
             saveSelectedServers()
             
-            // Скрываем и обновляем интерфейс
             cell?.popupView.isHidden = true
             renameView.isHidden = true
             vpnServersTableView.reloadData()
