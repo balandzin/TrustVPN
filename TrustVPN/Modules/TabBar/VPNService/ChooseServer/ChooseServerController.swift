@@ -98,7 +98,7 @@ final class ChooseServerController: UIViewController {
         if let index = selectedServers.firstIndex(where: { $0.id == server.id }) {
             selectedServers.remove(at: index)
             sender.setTitle(AppText.select, for: .normal)
-            sender.backgroundColor = AppColors.termsAcceptButton
+            sender.backgroundColor = AppColors.loadingIndicator
         } else {
             selectedServers.append(server)
             sender.setTitle(AppText.added, for: .normal)
@@ -189,7 +189,7 @@ extension ChooseServerController: UITableViewDelegate, UITableViewDataSource {
             cell.selectButton.backgroundColor = AppColors.dataSecurityLabel
         } else {
             cell.selectButton.setTitle(AppText.select, for: .normal)
-            cell.selectButton.backgroundColor = AppColors.termsAcceptButton
+            cell.selectButton.backgroundColor = AppColors.loadingIndicator
         }
         
         cell.selectButton.tag = indexPath.row

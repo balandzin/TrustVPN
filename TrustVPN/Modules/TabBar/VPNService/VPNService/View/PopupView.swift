@@ -6,7 +6,7 @@ final class PopupView: UIView {
     // MARK: - GUI Variables
     private lazy var popupView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.swipeBackground
+        view.backgroundColor = AppColors.loadingBar
         view.layer.cornerRadius = 20
         return view
     }()

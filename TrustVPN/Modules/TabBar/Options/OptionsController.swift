@@ -27,7 +27,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
     private lazy var moreButton: UIButton = {
         let button = UIButton()
         button.setTitle(AppText.moreButton, for: .normal)
-        button.setTitleColor(AppColors.termsAcceptButton, for: .normal)
+        button.setTitleColor(AppColors.loadingIndicator, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.addTarget(self, action: #selector(moreButtonTapped), for: .touchUpInside)
         return button
@@ -174,7 +174,7 @@ final class OptionsController: UIViewController, UICollectionViewDelegate, UICol
             CollectionItemModel(
                 icon: .loadImage(LoadService.shared.load?.images?.privatePolicy) ??
                 UIImage(named: "privatePolicy") ?? UIImage(),
-                title: AppText.privatePolicy,
+                title: AppText.privacyPolicy,
                 destinationVC: PrivacyPolicyController()
             ),
             CollectionItemModel(

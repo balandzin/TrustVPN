@@ -8,7 +8,7 @@ final class ServerNotSelectedView: UIView {
         button.setTitle(AppText.selectServer, for: .normal)
         button.setTitleColor(AppColors.almostWhite, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.backgroundColor = AppColors.termsAcceptButton
+        button.backgroundColor = AppColors.loadingIndicator
         button.layer.cornerRadius = 22
         return button
     }()

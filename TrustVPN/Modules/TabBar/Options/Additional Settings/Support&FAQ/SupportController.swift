@@ -106,6 +106,10 @@ final class SupportController: UIViewController, SearchRequiredControllerDelegat
         deviceSearchView.openButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deviceSearchViewTapped)))
         passwordSearchView.openButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(passwordSearchViewTapped)))
         vpnView.openButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(vpnViewTapped)))
+        
+        deviceSearchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(deviceSearchViewTapped)))
+        passwordSearchView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(passwordSearchViewTapped)))
+        vpnView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(vpnViewTapped)))
     }
     
     @objc private func backButtonTapped() {

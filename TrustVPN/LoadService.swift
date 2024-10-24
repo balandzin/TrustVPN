@@ -55,6 +55,18 @@ final class LoadService {
                         // Установка цветов из модели
                         AppColors.loadingBar = .init(hex: model.colors?.loadingBar ?? "#303030")
                         AppColors.loadingIndicator = .init(hex: model.colors?.loadingIndicator ?? "#0093E5")
+                        AppColors.dataSecurityLabel = .init(hex: model.colors?.dataSecurityLabel ?? "#A0A0A0")
+                        AppColors.termsView = .init(hex: model.colors?.termsView ?? "#262626")
+                        AppColors.almostWhite = .init(hex: model.colors?.almostWhite ?? "#FAFAFA")
+                        AppColors.dropRed = .init(hex: model.colors?.dropRed ?? "#D52B1E")
+                        AppColors.textFieldBackground = .init(hex: model.colors?.textFieldBackground ?? "#3A3A3A")
+                        AppColors.unsecurePassword = .init(hex: model.colors?.unsecurePassword ?? "#F53333")
+                        AppColors.mediumPassword = .init(hex: model.colors?.mediumPassword ?? "#E7EB14")
+                        AppColors.strongPassword = .init(hex: model.colors?.strongPassword ?? "#2ECC71")
+                        AppColors.lightBlueAccent1 = .init(hex: model.colors?.lightBlueAccent1 ?? "#8DF2FA")
+                        AppColors.mediumBlueAccent2 = .init(hex: model.colors?.mediumBlueAccent2 ?? "#44C0E3")
+                        AppColors.darkBlueAccent3 = .init(hex: model.colors?.darkBlueAccent3 ?? "#119EE3")
+                        AppColors.primary = .init(hex: model.colors?.primary ?? "#181818")
                         
                         // Инициализация массива URL изображений
                         var imagesUrl = [String]()

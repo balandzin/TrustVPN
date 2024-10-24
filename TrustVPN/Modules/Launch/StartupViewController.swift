@@ -69,7 +69,7 @@ final class StartupViewController: UIViewController {
             
             let ac = UIAlertController(
                 title: "Attention!",
-                message: "No internet connection",
+                message: "No internet access. Check the internet connection and try again.",
                 preferredStyle: .alert)
             
             ac.addAction(

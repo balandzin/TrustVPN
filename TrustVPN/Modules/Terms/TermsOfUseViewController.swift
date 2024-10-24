@@ -61,7 +61,7 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
         button.setTitle(AppText.termsAcceptButton, for: .normal)
         button.setTitleColor(AppColors.almostWhite, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 16)
-        button.backgroundColor = AppColors.termsAcceptButton
+        button.backgroundColor = AppColors.loadingIndicator
         button.layer.cornerRadius = 25
         button.addTarget(self, action: #selector(acceptButtonTapped), for: .touchUpInside)
         return button

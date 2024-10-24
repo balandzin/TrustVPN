@@ -85,7 +85,7 @@ final class DeviceSearchController: UIViewController, CBCentralManagerDelegate {
         circularProgressLayer.lineCap = .round
         
         gradientLayer.frame = view.bounds
-        gradientLayer.colors = [AppColors.aaa.cgColor, AppColors.bbb.cgColor, AppColors.ccc.cgColor]
+        gradientLayer.colors = [AppColors.lightBlueAccent1.cgColor, AppColors.mediumBlueAccent2.cgColor, AppColors.darkBlueAccent3.cgColor]
         gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.5)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradientLayer.type = .conic

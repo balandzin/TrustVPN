@@ -36,7 +36,7 @@ final class RemoveView: UIView {
     
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.backgroundColor = AppColors.swipeBackground
+        view.backgroundColor = AppColors.loadingBar
         view.layer.cornerRadius = 26
         return view
     }()

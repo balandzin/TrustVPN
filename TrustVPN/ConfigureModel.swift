@@ -125,8 +125,20 @@ struct Images : Codable {
 }
 
 struct Colors : Codable {
-    let loadingBar : String?
-    let loadingIndicator : String?
+    let loadingBar: String?
+    let loadingIndicator: String?
+    let dataSecurityLabel: String?
+    let termsView: String?
+    let almostWhite: String?
+    let dropRed: String?
+    let textFieldBackground: String?
+    let unsecurePassword: String?
+    let mediumPassword: String?
+    let strongPassword: String?
+    let lightBlueAccent1: String?
+    let mediumBlueAccent2: String?
+    let darkBlueAccent3: String?
+    let primary: String?
 }
 
 struct Texts : Codable {

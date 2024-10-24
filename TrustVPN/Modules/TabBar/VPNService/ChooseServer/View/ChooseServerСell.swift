@@ -28,7 +28,7 @@ final class ChooseServerСell: UITableViewCell {
         let button = UIButton(type: .system)
         button.setTitle("Select", for: .normal)
         button.setTitleColor(AppColors.almostWhite, for: .normal)
-        button.backgroundColor = AppColors.termsAcceptButton
+        button.backgroundColor = AppColors.loadingIndicator
         button.titleLabel?.font = .systemFont(ofSize: 16)
         button.layer.cornerRadius = 20
         return button

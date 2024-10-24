@@ -99,7 +99,7 @@ There are several main types of password attacks, with the most common being:
     static var additionalSettings: String = "Additional settings"
     static var changeIcon: String = "Change icon"
     static var supportAndFAQ = "Support & FAQ"
-    static var privatePolicy: String = "Private policy"
+    static var privacyPolicy: String = "Privacy Policy"
     static var termsOfUse: String = "Terms of Use"
     static var ipAdress: String = "ip addresses"
     static var versionIVP: String = "Version IVP"

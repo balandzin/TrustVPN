@@ -16,7 +16,7 @@ final class ServerСell: UITableViewCell {
     lazy var swipeConnectView: SwipeConnectView = {
         let view = SwipeConnectView(type: .off)
         view.layer.cornerRadius = 36
-        view.backgroundColor = AppColors.swipeBackground
+        view.backgroundColor = AppColors.loadingBar
         return view
     }()
     
