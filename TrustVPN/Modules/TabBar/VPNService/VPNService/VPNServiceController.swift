@@ -218,27 +218,30 @@ final class VPNServiceController: UIViewController {
     
     @objc func saveButtonTapped(sender: UIButton) {
         guard let index = currentlyRenamedServerIndex else { return }
-        let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
-        
-        let newName = renameView.renameTextField.text ?? ""
-        
-        UserDefaults.standard.set(newName, forKey: "ServerName_\(index)")
-        
-        if index  < selectedServers.count {
-            selectedServers[index].serverName = newName
-        }
-        
-        cell?.popupView.isHidden = true
-        renameView.isHidden = true
-        
-        vpnServersTableView.reloadData()
-        currentlyRenamedServerIndex = nil
-        renameView.renameTextField.resignFirstResponder()
-        
-        serverRenamedView.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.serverRenamedView.isHidden = true
-        }
+            let cell = vpnServersTableView.cellForRow(at: IndexPath(row: index, section: 0)) as? ServerСell
+            
+            let newName = renameView.renameTextField.text ?? ""
+            
+            // Обновляем имя сервера
+            if index < selectedServers.count {
+                selectedServers[index].serverName = newName
+            }
+            
+            // Сохраняем обновленный массив серверов
+            saveSelectedServers()
+            
+            // Скрываем и обновляем интерфейс
+            cell?.popupView.isHidden = true
+            renameView.isHidden = true
+            vpnServersTableView.reloadData()
+            
+            currentlyRenamedServerIndex = nil
+            renameView.renameTextField.resignFirstResponder()
+            
+            serverRenamedView.isHidden = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.serverRenamedView.isHidden = true
+            }
     }
     
     @objc func cancelButtonTapped(sender: UIButton) {
