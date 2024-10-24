@@ -67,16 +67,15 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
         return button
     }()
     
-    // Градиентное представление для исчезновения текста
     private lazy var gradientView: UIView = {
         let view = UIView()
         view.isUserInteractionEnabled = false
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.clear.cgColor, AppColors.termsView.withAlphaComponent(1).cgColor]
         gradientLayer.locations = [0.0, 1.0]
-        //gradientLayer.cornerRadius = 26
         view.layer.addSublayer(gradientLayer)
         view.layer.cornerRadius = 26
+        view.isHidden = true
         return view
     }()
     
@@ -89,6 +88,7 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         updateGradientFrame()
+        checkContentHeight()
     }
     
     // MARK: - Private Methods
@@ -119,6 +119,18 @@ final class TermsOfUseViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    private func checkContentHeight() {
+            let contentHeight = contentView.frame.height
+            let termsViewHeight = termsView.frame.height
+            
+            // Показать gradientView, если контент больше чем termsView
+            if contentHeight > termsViewHeight {
+                gradientView.isHidden = false
+            } else {
+                gradientView.isHidden = true
+            }
+        }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         updateGradientFrame()
     }
@@ -145,7 +157,7 @@ extension TermsOfUseViewController {
             make.top.equalTo(shield.snp.bottom).offset(24)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalTo(acceptButton.snp.top).offset(-50)
+            make.bottom.equalTo(acceptButton.snp.top).offset(-40)
         }
         
         scrollView.snp.makeConstraints { make in
@@ -175,7 +187,7 @@ extension TermsOfUseViewController {
             make.height.equalTo(52)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(68)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
         
         gradientView.snp.makeConstraints { make in

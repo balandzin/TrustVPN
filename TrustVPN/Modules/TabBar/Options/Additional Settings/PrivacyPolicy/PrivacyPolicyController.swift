@@ -46,9 +46,8 @@ final class PrivacyPolicyController: UIViewController {
     
     private lazy var gradientView: UIView = {
         let gradientView = UIView()
-        
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.withAlphaComponent(0.7).cgColor]
+        gradientLayer.colors = [UIColor.clear.cgColor, AppColors.primary.withAlphaComponent(0.7).cgColor]
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.addSublayer(gradientLayer)
         return gradientView

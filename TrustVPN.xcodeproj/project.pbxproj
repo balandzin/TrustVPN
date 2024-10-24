@@ -665,6 +665,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		D398F8152CCA2936006BAC25 /* Logo */ = {
+			isa = PBXGroup;
+			children = (
+				D398F80D2CC949A4006BAC25 /* abstraction.png */,
+				D398F80B2CC949A4006BAC25 /* advanced.png */,
+				D398F80C2CC949A4006BAC25 /* classic.png */,
+				D398F80F2CC949A4006BAC25 /* dynamic.png */,
+				D398F80E2CC949A4006BAC25 /* modern.png */,
+			);
+			path = Logo;
+			sourceTree = "<group>";
+		};
 		D3CC701C2CA2999100D747F5 = {
 			isa = PBXGroup;
 			children = (
@@ -704,11 +716,7 @@
 			children = (
 				D3CC70282CA2999100D747F5 /* AppDelegate.swift */,
 				D3CC702A2CA2999100D747F5 /* SceneDelegate.swift */,
-				D398F80D2CC949A4006BAC25 /* abstraction.png */,
-				D398F80B2CC949A4006BAC25 /* advanced.png */,
-				D398F80C2CC949A4006BAC25 /* classic.png */,
-				D398F80F2CC949A4006BAC25 /* dynamic.png */,
-				D398F80E2CC949A4006BAC25 /* modern.png */,
+				D398F8152CCA2936006BAC25 /* Logo */,
 				D3CC70362CA2999200D747F5 /* Info.plist */,
 				D3CC703E2CA2A35500D747F5 /* PrivacyInfo.xcprivacy */,
 			);

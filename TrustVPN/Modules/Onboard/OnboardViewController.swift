@@ -91,7 +91,7 @@ final class OnboardViewController: UIViewController {
             make.height.equalTo(52)
             make.leading.equalToSuperview().inset(24)
             make.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(68)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(25)
         }
     }
     
